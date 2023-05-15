@@ -490,17 +490,17 @@ function makeSliders(device) {
                     let value = Number.parseFloat(slider.value);
                     param.value = value;
 
-                    if (value === 0){
+                    if (value === 1){
                         label.textContent = "X-axis";
-                    } else if(value === 1){
+                    } else if(value === 2){
                         label.textContent = "Y-axis";
-                    } else if (value === 2){
-                        label.textContent = "Z-axis";
                     } else if (value === 3){
-                        label.textContent = "X-gyro";
+                        label.textContent = "Z-axis";
                     } else if (value === 4){
-                        label.textContent = "Y-gyro";
+                        label.textContent = "X-gyro";
                     } else if (value === 5){
+                        label.textContent = "Y-gyro";
+                    } else if (value === 6){
                         label.textContent = "Z-gyro";
                     }
                     
