@@ -491,17 +491,17 @@ function makeSliders(device) {
                     param.value = value;
 
                     if (value === 0){
-                        label.textContent = "motion";
-                    } else if(value === 1){
-                        label.textContent = "pitch";
-                    } else if (value === 2){
-                        label.textContent = "roll";
-                    } else if (value === 3){
                         label.textContent = "X-axis";
-                    } else if (value === 4){
+                    } else if(value === 1){
                         label.textContent = "Y-axis";
-                    } else if (value === 5){
+                    } else if (value === 2){
                         label.textContent = "Z-axis";
+                    } else if (value === 3){
+                        label.textContent = "X-gyro";
+                    } else if (value === 4){
+                        label.textContent = "Y-gyro";
+                    } else if (value === 5){
+                        label.textContent = "Z-gyro";
                     }
                     
                 });
