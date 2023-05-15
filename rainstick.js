@@ -105,7 +105,7 @@ async function setup() {
     // (Optional) Fetch the dependencies
     let dependencies = [];
     try {
-        const dependenciesResponse = await fetch("export/dependenciesRS.json");
+        const dependenciesResponse = await fetch("export/dependencies.json");
         dependencies = await dependenciesResponse.json();
 
         // Prepend "export" to any file dependenciies
