@@ -1,0 +1,34 @@
+[
+  {
+    "id": "b_s1_wav",
+    "file": "media\\s1.wav"
+  },
+  {
+    "id": "b_s2_wav",
+    "file": "media\\s2.wav"
+  },
+  {
+    "id": "b_s3_wav",
+    "file": "media\\s3.wav"
+  },
+  {
+    "id": "b_s4_wav",
+    "file": "media\\s4.wav"
+  },
+  {
+    "id": "b_s5_wav",
+    "file": "media\\s5.wav"
+  },
+  {
+    "id": "b_s6_wav",
+    "file": "media\\s6.wav"
+  },
+  {
+    "id": "b_s7_wav",
+    "file": "media\\s7.wav"
+  },
+  {
+    "id": "b_s8_wav",
+    "file": "media\\s8.wav"
+  }
+]
