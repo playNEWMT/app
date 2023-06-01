@@ -2,7 +2,7 @@
 <html lang="en" >
   <!-- Invisible things... -->
   <meta charset="UTF-8">
-  <title>BLE-MIDI Receiver</title>
+  <title>Wearable Jazz</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab&display=swap" rel="stylesheet">
 <head>
   <!-- Stylesheet-->
@@ -11,6 +11,10 @@
 <body>
   <div class="indexbtn">
     <a href="./index.html" class="homebtn">Home</a>
+  </div>
+
+  <div class="dynamicbtn" id="iconnect">
+    <button id="ibutton" class="connectbtn" onclick="scanToConnect()">Connect</button>
   </div>
 
   <div class="connected-devices">
@@ -22,20 +26,13 @@
 
   <div id="rnbo-sensor-sliders">
     <!-- <h2></h2> -->
-    <em id="no-sensor-label">No Sensor Interaction</em>
+    <!-- <em id="no-sensor-label">No Sensor Interaction</em> -->
   </div>
 
   <details>
     <summary><h3>Click to connect sensors and check connection status!</h3></summary>
     <!-- Button -->
     <div class="sum">
-        <div class="dynamicbtn" id="iconnect">
-          <button id="ibutton" class="connectbtn" onclick="scanToConnect()">Connect</button>
-        </div>
-      
-        <div class="dynamicbtn" id="iconnect">
-          <button id="ibutton" class="connectbtn" onclick="scanToDisconnect()">Disconnect</button>
-        </div>
       
         <div class="briefer">
           <p id="info" class="info"></p>
@@ -47,6 +44,10 @@
           <section id="midi-data">  
               <ul></ul>
           </section>
+        </div>
+
+        <div class="dynamicbtn" id="iconnect">
+          <button id="ibutton" class="connectbtn" onclick="scanToDisconnect()">Disconnect</button>
         </div>
     </div>
   </details>
@@ -60,9 +61,8 @@
     <!-- <div>
       <h1 id="patcher-title">Unnamed patcher</h1>
     </div> -->
-
+    <h2>Parameters</h2>
     <div id="rnbo-parameter-sliders">
-      <h2>Parameters</h2>
       <em id="no-param-label">No parameters</em>
     </div>
 

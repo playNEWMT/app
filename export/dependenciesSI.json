@@ -1,0 +1,314 @@
+[
+  {
+    "id": "b_access_granted_wav",
+    "file": "media\\access granted.wav"
+  },
+  {
+    "id": "b_activate_wav",
+    "file": "media\\activate.wav"
+  },
+  {
+    "id": "b_alien_growl_wav",
+    "file": "media\\alien growl.wav"
+  },
+  {
+    "id": "b_backyard_ambience_wav",
+    "file": "media\\backyard ambience.wav"
+  },
+  {
+    "id": "b_bark_wav",
+    "file": "media\\bark.wav"
+  },
+  {
+    "id": "b_baseball_bat_wav",
+    "file": "media\\baseball bat.wav"
+  },
+  {
+    "id": "b_basket_baLL_wav",
+    "file": "media\\basket baLL.wav"
+  },
+  {
+    "id": "b_bedtime_wav",
+    "file": "media\\bedtime.wav"
+  },
+  {
+    "id": "b_bell_wav",
+    "file": "media\\bell.wav"
+  },
+  {
+    "id": "b_bird_wav",
+    "file": "media\\bird.wav"
+  },
+  {
+    "id": "b_bubbles_wav",
+    "file": "media\\bubbles.wav"
+  },
+  {
+    "id": "b_Cartoon_Drum_Roll_Snare_01_wav",
+    "file": "media\\Cartoon Drum Roll Snare 01.wav"
+  },
+  {
+    "id": "b_cell_phone_wav",
+    "file": "media\\cell phone.wav"
+  },
+  {
+    "id": "b_chime_wav",
+    "file": "media\\chime.wav"
+  },
+  {
+    "id": "b_coin_wav",
+    "file": "media\\coin.wav"
+  },
+  {
+    "id": "b_crash_wav",
+    "file": "media\\crash.wav"
+  },
+  {
+    "id": "b_creek_ambience_wav",
+    "file": "media\\creek ambience.wav"
+  },
+  {
+    "id": "b_dinosaur_wav",
+    "file": "media\\dinosaur.wav"
+  },
+  {
+    "id": "b_drag_wav",
+    "file": "media\\drag.wav"
+  },
+  {
+    "id": "b_dream_wav",
+    "file": "media\\dream.wav"
+  },
+  {
+    "id": "b_drive_wav",
+    "file": "media\\drive.wav"
+  },
+  {
+    "id": "b_drum_break_2_wav",
+    "file": "media\\drum break 2.wav"
+  },
+  {
+    "id": "b_drum_break_3_wav",
+    "file": "media\\drum break 3.wav"
+  },
+  {
+    "id": "b_drum_break_wav",
+    "file": "media\\drum break.wav"
+  },
+  {
+    "id": "b_drum_fill_2_wav",
+    "file": "media\\drum fill 2.wav"
+  },
+  {
+    "id": "b_drum_fill_wav",
+    "file": "media\\drum fill.wav"
+  },
+  {
+    "id": "b_explosion_wav",
+    "file": "media\\explosion.wav"
+  },
+  {
+    "id": "b_fast_bubbles_wav",
+    "file": "media\\fast bubbles.wav"
+  },
+  {
+    "id": "b_golf_ball_wav",
+    "file": "media\\golf ball.wav"
+  },
+  {
+    "id": "b_golf_swing_wav",
+    "file": "media\\golf swing.wav"
+  },
+  {
+    "id": "b_hat_wav",
+    "file": "media\\hat.wav"
+  },
+  {
+    "id": "b_ice_wav",
+    "file": "media\\ice.wav"
+  },
+  {
+    "id": "b_jump_wav",
+    "file": "media\\jump.wav"
+  },
+  {
+    "id": "b_kick_wav",
+    "file": "media\\kick.wav"
+  },
+  {
+    "id": "b_knocking_wav",
+    "file": "media\\knocking.wav"
+  },
+  {
+    "id": "b_laser_wav",
+    "file": "media\\laser.wav"
+  },
+  {
+    "id": "b_light_saber_2_wav",
+    "file": "media\\light saber 2.wav"
+  },
+  {
+    "id": "b_light_saber_wav",
+    "file": "media\\light saber.wav"
+  },
+  {
+    "id": "b_Master_wav",
+    "file": "media\\Master.wav"
+  },
+  {
+    "id": "b_suspense_wav",
+    "file": "media\\suspense.wav"
+  },
+  {
+    "id": "b_office_phone_wav",
+    "file": "media\\office phone.wav"
+  },
+  {
+    "id": "b_paper_wav",
+    "file": "media\\paper.wav"
+  },
+  {
+    "id": "b_pink_noise_wav",
+    "file": "media\\pink noise.wav"
+  },
+  {
+    "id": "b_rain_ambience_wav",
+    "file": "media\\rain ambience.wav"
+  },
+  {
+    "id": "b_raquet_ball_wav",
+    "file": "media\\raquet ball.wav"
+  },
+  {
+    "id": "b_rhodes_wav",
+    "file": "media\\rhodes.wav"
+  },
+  {
+    "id": "b_rising_arp_wav",
+    "file": "media\\rising arp.wav"
+  },
+  {
+    "id": "b_robot_burp_wav",
+    "file": "media\\robot burp.wav"
+  },
+  {
+    "id": "b_robot_growl_wav",
+    "file": "media\\robot growl.wav"
+  },
+  {
+    "id": "b_robot_off_wav",
+    "file": "media\\robot off.wav"
+  },
+  {
+    "id": "b_robot_rev_up_wav",
+    "file": "media\\robot rev up.wav"
+  },
+  {
+    "id": "b_robot_talk_wav",
+    "file": "media\\robot talk.wav"
+  },
+  {
+    "id": "b_robot_talk_001_wav",
+    "file": "media\\robot talk-001.wav"
+  },
+  {
+    "id": "b_robot_talk_002_wav",
+    "file": "media\\robot talk-002.wav"
+  },
+  {
+    "id": "b_robot_yell_wav",
+    "file": "media\\robot yell.wav"
+  },
+  {
+    "id": "b_roll_wav",
+    "file": "media\\roll.wav"
+  },
+  {
+    "id": "b_scrape_wav",
+    "file": "media\\scrape.wav"
+  },
+  {
+    "id": "b_ship_land_wav",
+    "file": "media\\ship land.wav"
+  },
+  {
+    "id": "b_ship_power_down_wav",
+    "file": "media\\ship power down.wav"
+  },
+  {
+    "id": "b_ship_takeoff_wav",
+    "file": "media\\ship takeoff.wav"
+  },
+  {
+    "id": "b_simple_arp_wav",
+    "file": "media\\simple arp.wav"
+  },
+  {
+    "id": "b_sitar_wav",
+    "file": "media\\sitar.wav"
+  },
+  {
+    "id": "b_slide_wav",
+    "file": "media\\slide.wav"
+  },
+  {
+    "id": "b_snare_wav",
+    "file": "media\\snare.wav"
+  },
+  {
+    "id": "b_soca_beat_wav",
+    "file": "media\\soca beat.wav"
+  },
+  {
+    "id": "b_splash_wav",
+    "file": "media\\splash.wav"
+  },
+  {
+    "id": "b_spring_wav",
+    "file": "media\\spring.wav"
+  },
+  {
+    "id": "b_step_wav",
+    "file": "media\\step.wav"
+  },
+  {
+    "id": "b_synth_birds_wav",
+    "file": "media\\synth birds.wav"
+  },
+  {
+    "id": "b_tennis_ball_wav",
+    "file": "media\\tennis ball.wav"
+  },
+  {
+    "id": "b_tennis_swing_wav",
+    "file": "media\\tennis swing.wav"
+  },
+  {
+    "id": "b_warble_wav",
+    "file": "media\\warble.wav"
+  },
+  {
+    "id": "b_water_slosh_wav",
+    "file": "media\\water_slosh.wav"
+  },
+  {
+    "id": "b_whistle_wav",
+    "file": "media\\whistle.wav"
+  },
+  {
+    "id": "b_whoosh_wav",
+    "file": "media\\whoosh.wav"
+  },
+  {
+    "id": "b_wind_ambience_wav",
+    "file": "media\\wind ambience.wav"
+  },
+  {
+    "id": "b_woo_wav",
+    "file": "media\\woo.wav"
+  },
+  {
+    "id": "b_zip_wav",
+    "file": "media\\zip.wav"
+  }
+]

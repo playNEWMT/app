@@ -2,7 +2,7 @@
 <html lang="en" >
   <!-- Invisible things... -->
   <meta charset="UTF-8">
-  <title>BLE-MIDI Receiver</title>
+  <title>Rainstick</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab&display=swap" rel="stylesheet">
 <head>
   <!-- Stylesheet-->
@@ -13,8 +13,12 @@
     <a href="./index.html" class="homebtn">Home</a>
   </div>
 
+  <div class="dynamicbtn" id="iconnect">
+    <button id="ibutton" class="connectbtn" onclick="scanToConnect()">Connect</button>
+  </div>
+
   <div class="connected-devices">
-    <h2>Connected Sensors:</h1>
+    <h3>Connected Sensors:</h1>
     <div class="sensor-grid" id="connected-devices-list">
       
     </div>
@@ -22,33 +26,32 @@
 
   <div id="rnbo-sensor-sliders">
     <!-- <h2></h2> -->
-    <em id="no-sensor-label">No Sensor Interaction</em>
+    <!-- <em id="no-sensor-label">No Sensor Interaction</em> -->
   </div>
 
   <details>
-    <summary><h3>Click to connect sensors and check connection status!</h3></summary>
+    <summary><h3>Click to view instructions and check connection status!</h3></summary>
     <!-- Button -->
     <div class="sum">
-        <div class="dynamicbtn" id="iconnect">
-          <button id="ibutton" class="connectbtn" onclick="scanToConnect()">Connect</button>
-        </div>
+      <p><h4>INSTRUCTIONS</h4></p>
+
+      <div class="briefer">
+        <p id="info" class="info"></p>
+        <p id="hide" class="sidenote">Some older devices and browsers do not support neither MIDI nor Bluetooth.</p>
+      </div>
+    
+      <!-- Console -->
+      <div class="console" id="iConsole">
+        <section id="midi-data">  
+            <ul></ul>
+        </section>
+      </div>
       
         <div class="dynamicbtn" id="iconnect">
           <button id="ibutton" class="connectbtn" onclick="scanToDisconnect()">Disconnect</button>
         </div>
+      </div> 
       
-        <div class="briefer">
-          <p id="info" class="info"></p>
-          <p id="hide" class="sidenote">Some older devices and browsers do not support neither MIDI nor Bluetooth.</p>
-        </div>
-      
-        <!-- Console -->
-        <div class="console" id="iConsole">
-          <section id="midi-data">  
-              <ul></ul>
-          </section>
-        </div>
-    </div>
   </details>
 
   <div class="window">
@@ -61,24 +64,15 @@
       <h1 id="patcher-title">Unnamed patcher</h1>
     </div> -->
 
+    <h2>Parameters</h2>
     <div id="rnbo-parameter-sliders">
-      <h2>Parameters</h2>
       <em id="no-param-label">No parameters</em>
-
-      <div class="slider-container">
-        <div class="slider-bar"></div>
-        <div class="slider-thumb"></div>
-        <div class="slider-progress">0%</div>
-      </div>
-      <p class="slider-output">Progress: 0%</p>
     </div>
-    
-
-    <br>
 
     <h2>Sounds</h2>
-    <div id="rnbo-clickable-keyboard">
+    <div id="sounds" class="sounds">
       <em id="no-samples-label">No Samples Detected</em>
+      <select id="sounds-dropdown"></select>
     </div>
 
     <!-- <div id="drop-area">

@@ -57,7 +57,10 @@ window.onload=function(){
 
 
 
-
+// const desiredSampleRate = 44100; // desired sample rate in Hz
+// const audioContext = new (window.AudioContext || window.webkitAudioContext)({
+//   sampleRate: desiredSampleRate
+// });
 
 async function setup() {
     const patchExportURL = "export/rainstick.export.json";
@@ -105,7 +108,7 @@ async function setup() {
     // (Optional) Fetch the dependencies
     let dependencies = [];
     try {
-        const dependenciesResponse = await fetch("export/dependencies.json");
+        const dependenciesResponse = await fetch("export/dependenciesRS.json");
         dependencies = await dependenciesResponse.json();
 
         // Prepend "export" to any file dependenciies
@@ -147,12 +150,6 @@ async function setup() {
     // loadPresets(device, patcher);
 
       // Usage example:
-  const container = document.querySelector('.slider-container');
-  const output = document.querySelector('.slider-output');
-  
-  new Slider(container, (progress) => {
-    output.textContent = `Progress: ${Math.round(progress * 100)}%`;
-  });
 
     // (Optional) Connect MIDI inputs
     makeMIDIKeyboard(device, dependencies.length);
@@ -277,10 +274,12 @@ function playNote (device, midiMessage) {
 // }
 
 function makeMIDIKeyboard(device, samples) {
-    let sdiv = document.getElementById("rnbo-clickable-keyboard");
+    const sdiv = document.getElementById("sounds")
     if (samples === 0) return;
 
     sdiv.removeChild(document.getElementById("no-samples-label"));
+    const dropdown = document.getElementById("sounds-dropdown");
+
 
     const descriptions = device.dataBufferDescriptions;
     const buf = device.parametersById.get("whichbuffer");
@@ -294,25 +293,18 @@ function makeMIDIKeyboard(device, samples) {
             //     console.log(`Buffer with id ${desc.id} references remote URL ${desc.url}`);
             // }
         if (buffer.id != "myBuffer"){
-                index = index - 1;
-                const key = document.createElement("div");
-                const label = document.createElement("p");
-                label.textContent = buffer.id;
-                label.style.fontWeight = "bold";
-                label.style.fontFamily = "Roboto";
-                label.style.fontSize = "20px";
-                key.appendChild(label);
-                key.addEventListener("pointerdown", () => {
-                    buf.value = index;
-
-                    key.classList.add("clicked");
-            });
-
-            key.addEventListener("pointerup", () => key.classList.remove("clicked"));
-
-            sdiv.appendChild(key);
+            index = index - 1;
+            const option = document.createElement("option");
+                
+            option.textContent = buffer.id;
+            option.value = index; 
+            dropdown.appendChild(option);
         }
 
+    });
+
+    dropdown.addEventListener("change", (event) => {
+        buf.value = event.target.value;
     });
 
 
@@ -365,156 +357,279 @@ function makeMIDIKeyboard(device, samples) {
 
 
 class Slider {
-    constructor(container, onChange) {
-      this.container = container;
-      this.onChange = onChange;
-      this.bar = this.container.querySelector('.slider-bar');
-      this.thumb = this.container.querySelector('.slider-thumb');
-      this.progressText = this.container.querySelector('.slider-progress');
-      this.isDragging = false;
-  
-      this.thumb.addEventListener('mousedown', this.startDragging.bind(this));
-      this.container.addEventListener('mousemove', this.drag.bind(this));
-      this.container.addEventListener('mouseup', this.stopDragging.bind(this));
-      this.container.addEventListener('mouseleave', this.stopDragging.bind(this));
+    constructor(containerParent, param, onChange) {
+        this.param = param
+        this.min = this.param.min;
+        this.max = this.param.max;
+        this.step = (this.max - this.min) / (this.param.steps - 1);
+        this.value = this.param.value.toFixed(2);
+
+        this.parent = containerParent;
+        this.container = null;
+        this.bar = null;
+        this.thumb = null;
+        this.sliderText = null;
+        this.label = null;
+
+        this.onChange = onChange;
+        this.isDragging = false;
+    }
+
+    initializeSlider() {
+
+        // console.log(this.param.steps, this.step, this.min, this.max);
+
+        this.bar = document.createElement("div");
+        this.bar.classList.add('slider-bar');
+
+        this.thumb = document.createElement("div");
+        this.thumb.classList.add('slider-thumb');
+
+        this.sliderText = document.createElement("div");
+        this.sliderText.classList.add('slider-progress');
+
+        this.label = document.createElement("label");
+        this.label.classList.add('slider-label');
+        let paramLabel = this.param.name;
+        paramLabel = paramLabel.replace(new RegExp('user_', 'g'), '');
+        this.label.textContent = `${paramLabel}`;
+
+        this.container = document.createElement("div");
+        this.container.classList.add('slider-container');
+        this.container.appendChild(this.sliderText);
+        this.container.appendChild(this.label);
+        this.container.appendChild(this.bar);
+        this.container.appendChild(this.thumb);
+        
+        this.parent.appendChild(this.container);
+
+        //doesn't work
+        let progress
+        if (this.param.steps > 1) {
+            progress = ((this.value - this.min) / this.step) / ((this.max - this.min) / this.step);
+        } else {
+            progress = (this.value / (this.max - this.min)) - this.min;
+        }
+        this.updateSlider(progress);
+
+        this.thumb.addEventListener('mousedown', this.startDragging.bind(this));
+        document.addEventListener('mousemove', this.drag.bind(this));
+        document.addEventListener('mouseup', this.stopDragging.bind(this));
+        this.container.addEventListener('mouseup', this.printValue.bind(this));
     }
   
     startDragging(event) {
-      this.isDragging = true;
-      this.drag(event);
+        this.isDragging = true;
+        this.drag(event);
     }
   
     drag(event) {
-      if (this.isDragging) {
+        if (!this.isDragging) {return};
+
         const containerRect = this.container.getBoundingClientRect();
         const positionX = event.clientX - containerRect.left;
-        const progress = Math.max(0, Math.min(1, positionX / containerRect.width));
-        this.updateSlider(progress);
-        this.onChange(progress);
-      }
+        const totalWidth = containerRect.width;
+        const rawProgress = Math.max(0, Math.min(1, positionX / totalWidth))
+
+        let progress;
+        let currentValue;
+
+    
+        if (this.param.steps > 1) {
+            // const numSteps = Math.floor((this.max - this.min) / this.step) + 1;
+            const stepSize = 1 / this.param.steps;
+            const closestStep = Math.round(rawProgress / stepSize);
+            progress = closestStep * stepSize;
+            currentValue = this.min + Math.round((progress * (this.max - this.min)) / this.step) * this.step;
+        } else {
+            progress = rawProgress;
+            currentValue = this.min + progress * (this.max - this.min);
+        }
+
+        currentValue = currentValue.toFixed(2);
+
+        if (this.value !== currentValue) {
+            this.value = currentValue;
+            this.updateSlider(progress);
+            this.onChange(this.value);
+
+        }
+
     }
   
     stopDragging() {
-      this.isDragging = false;
+        this.isDragging = false;
+    }
+
+    printValue() {
+        console.log("Slider value:", this.value);
     }
   
     updateSlider(progress) {
-      this.thumb.style.left = `${progress * 100}%`;
-      this.bar.style.width = `${progress * 100}%`;
-      this.progressText.textContent = `${Math.round(progress * 100)}%`;
+        this.thumb.style.left = `${progress * 100}%`;
+        this.bar.style.width = `${progress * 100}%`;
+        this.sliderText.textContent = this.value;
     }
+}
+
+function makeSensorButtons(device) {
+    let sdiv = document.getElementById("rnbo-sensor-sliders");
+    let noSensorLabel = document.getElementById("no-sensor-label");
+    if (noParamLabel && device.numParameters > 0) sdiv.removeChild(noSensorLabel);
 }
 
 
 function makeSliders(device) {
+
+    
     let pdiv = document.getElementById("rnbo-parameter-sliders");
     let sdiv = document.getElementById("rnbo-sensor-sliders");
-    let noSensorLabel = document.getElementById("no-sensor-label");
+
+
     let noParamLabel = document.getElementById("no-param-label");
     if (noParamLabel && device.numParameters > 0) pdiv.removeChild(noParamLabel);
 
     //* fix *// 
-    if (noParamLabel && device.numParameters > 0) sdiv.removeChild(noSensorLabel);
+    
 
     // This will allow us to ignore parameter update events while dragging the slider.
     let isDraggingSlider = false;
     let uiElements = {};
+    let index = 1;
+    let sliders =[];
+    // let testparam = device.parametersById.get("user_grain_pitch");
+    // let vol = device.parametersById.get("user_volume");
+
+
 
     device.parameters.forEach(param => {
+
+
+
         // Subpatchers also have params. If we want to expose top-level
         // params only, the best way to determine if a parameter is top level
         // or not is to exclude parameters with a '/' in them.
         // You can uncomment the following line if you don't want to include subpatcher params
         // if (param.id.includes("/")) return;
 
-        if (param.id.includes("buffer")) return;
+        // if (param.id.includes("buffer")) return;
         
-        if (param.id.includes("sensor")) {
-            // Create a label, an input slider and a value display
-            let label = document.createElement("label");
-            let slider = document.createElement("input");
-            let text = document.createElement("label");
-            let sliderContainer = document.createElement("div");
-            sliderContainer.appendChild(label);
-            sliderContainer.appendChild(slider);
-            sliderContainer.appendChild(text);
+        // if (param.id.includes("sensor")) return; //{
+        //     // Create a label, an input slider and a value display
+        //     let label = document.createElement("label");
+        //     let slider = document.createElement("input");
+        //     let text = document.createElement("label");
+        //     let sliderContainer = document.createElement("div");
+        //     sliderContainer.appendChild(label);
+        //     sliderContainer.appendChild(slider);
+        //     sliderContainer.appendChild(text);
             
 
-            // Add a name for the label
-            label.setAttribute("name", param.name);
-            label.setAttribute("for", param.name);
-            label.setAttribute("class", "sensor-label");
-            label.textContent = `${param.name}: `;
-            text = param.name;
+        //     // Add a name for the label
+        //     label.setAttribute("name", param.name);
+        //     label.setAttribute("for", param.name);
+        //     label.setAttribute("class", "sensor-label");
+        //     label.textContent = `${param.name}: `;
+        //     text = param.name;
 
-            // Make each slider reflect its parameter
-            slider.setAttribute("type", "range");
-            slider.setAttribute("class", "param-slider");
-            slider.setAttribute("id", param.id);
-            slider.setAttribute("name", param.name);
-            slider.setAttribute("min", param.min);
-            slider.setAttribute("max", param.max);
-            if (param.steps > 1) {
-                slider.setAttribute("step", (param.max - param.min) / (param.steps - 1));
-            } else {
-                slider.setAttribute("step", (param.max - param.min) / 1000.0);
-            }
-            slider.setAttribute("value", param.value);
+        //     // Make each slider reflect its parameter
+        //     slider.setAttribute("type", "range");
+        //     slider.setAttribute("class", "param-slider");
+        //     slider.setAttribute("id", param.id);
+        //     slider.setAttribute("name", param.name);
+        //     slider.setAttribute("min", param.min);
+        //     slider.setAttribute("max", param.max);
+        //     if (param.steps > 1) {
+        //         slider.setAttribute("step", (param.max - param.min) / (param.steps - 1));
+        //     } else {
+        //         slider.setAttribute("step", (param.max - param.min) / 1000.0);
+        //     }
+        //     slider.setAttribute("value", param.value);
 
-            // Make each slider control its parameter
-            slider.addEventListener("pointerdown", () => {
-                isDraggingSlider = true;
-            });
-            slider.addEventListener("pointerup", () => {
-                isDraggingSlider = false;
-                slider.value = param.value;
-            });
-            if (param.name.includes("channel")){
-                slider.addEventListener("input", () => {
-                    let value = Number.parseFloat(slider.value);
-                    param.value = value;
+        //     // Make each slider control its parameter
+        //     slider.addEventListener("pointerdown", () => {
+        //         isDraggingSlider = true;
+        //     });
+        //     slider.addEventListener("pointerup", () => {
+        //         isDraggingSlider = false;
+        //         slider.value = param.value;
+        //     });
+        //     if (param.name.includes("channel")){
+        //         slider.addEventListener("input", () => {
+        //             let value = Number.parseFloat(slider.value);
+        //             param.value = value;
 
-                    if (value === 1){
-                        label.textContent = "channel A";
-                    } else if(value === 2){
-                        label.textContent = "channel B";
-                    } else if (value === 3){
-                        label.textContent = "channel C";
-                    } else if (value === 4){
-                        label.textContent = "channel D";
-                    }
+        //             if (value === 1){
+        //                 label.textContent = "channel A";
+        //             } else if(value === 2){
+        //                 label.textContent = "channel B";
+        //             } else if (value === 3){
+        //                 label.textContent = "channel C";
+        //             } else if (value === 4){
+        //                 label.textContent = "channel D";
+        //             }
 
-                });
-            } else if (param.name.includes("angle")){
-                slider.addEventListener("input", () => {
-                    let value = Number.parseFloat(slider.value);
-                    param.value = value;
+        //         });
+        //     } else if (param.name.includes("angle")){
+        //         slider.addEventListener("input", () => {
+        //             let value = Number.parseFloat(slider.value);
+        //             param.value = value;
 
-                    if (value === 1){
-                        label.textContent = "X-axis";
-                    } else if(value === 2){
-                        label.textContent = "Y-axis";
-                    } else if (value === 3){
-                        label.textContent = "Z-axis";
-                    } else if (value === 4){
-                        label.textContent = "X-gyro";
-                    } else if (value === 5){
-                        label.textContent = "Y-gyro";
-                    } else if (value === 6){
-                        label.textContent = "Z-gyro";
-                    }
+        //             if (value === 1){
+        //                 label.textContent = "X-axis";
+        //             } else if(value === 2){
+        //                 label.textContent = "Y-axis";
+        //             } else if (value === 3){
+        //                 label.textContent = "Z-axis";
+        //             } else if (value === 4){
+        //                 label.textContent = "X-gyro";
+        //             } else if (value === 5){
+        //                 label.textContent = "Y-gyro";
+        //             } else if (value === 6){
+        //                 label.textContent = "Z-gyro";
+        //             }
                     
-                });
+        //         });
+        //     }
+
+
+
+        //     // Store the slider and text by name so we can access them later
+        //     uiElements[param.id] = { slider, text};
+
+        //     // Add the slider element
+        //     sdiv.appendChild(sliderContainer);
+        // }
+        if (param.name.includes("user")){
+            const onChange = (value) => {
+                param.value = value;
+                console.log(`Updated ${param.name} to ${param.value}`);
             }
-
-
-
-            // Store the slider and text by name so we can access them later
-            uiElements[param.id] = { slider, text};
-
-            // Add the slider element
-            sdiv.appendChild(sliderContainer);
+    
+            let slider = new Slider(pdiv, param, onChange);
+    
+    
+            slider.initializeSlider();
+            sliders.push(slider);
         }
+        if (param.name.includes("sensor_channel")){
+            const onChange = (value) => {
+                param.value = value;
+                console.log(`Updated ${param.name} to ${param.value}`);
+            }
+    
+            let slider = new Slider(sdiv, param, onChange);
+            // slider.style.alignSelf = "center";
+    
+    
+            slider.initializeSlider();
+            sliders.push(slider);
+        }
+
+        
+    
+    
+        return;
 
         if (param.id.includes("visualize") || param.id.includes("user")) {
             
@@ -558,6 +673,7 @@ function makeSliders(device) {
             slider.addEventListener("pointerup", () => {
                 isDraggingSlider = false;
                 slider.value = param.value;
+                console.log(param.value);
                 text.value = param.value.toFixed(1);
             });
             slider.addEventListener("input", () => {
@@ -587,13 +703,13 @@ function makeSliders(device) {
         }
     });
     // Listen to parameter changes from the device
-    device.parameterChangeEvent.subscribe(param => {
-        if (!isDraggingSlider && !param.name.includes("buffer")){
-            uiElements[param.id].slider.value = param.value;
-            //console.log(param.value);
-            uiElements[param.id].text.value = param.value.toFixed(1);
-        }
-    });
+    // device.parameterChangeEvent.subscribe(param => {
+    //     if (!isDraggingSlider && !param.name.includes("buffer")){
+    //         uiElements[param.id].slider.value = param.value;
+    //         //console.log(param.value);
+    //         uiElements[param.id].text.value = param.value.toFixed(1);
+    //     }
+    // });
 }
 
 // function makeDropArea(device, context) {
@@ -668,7 +784,10 @@ class Sensor {
         this.characteristic = null;
         this.channel = 0;
         this.shortName = '';
-        this.className = '';
+        this.color = [];
+        this.deviceBlock = null;
+        this.deviceLabel = '';
+        this.deviceSlider = null;
     }
 
     async connect() {
@@ -721,25 +840,25 @@ class Sensor {
     }
 
     figureOutChannel() {
-        if (this.name === 'NTEL_M5_Ch1') {
+        if (this.name.includes("1")) {
             this.channel = 1;
-            this.shortName = 'A : Channel 1'
-            this.className = 'device-block-ch1'
-        } else if (this.name === 'NTEL_M5_Ch2') {
+            this.shortName = 'Sensor 1';
+            this.color = ['3px solid rgb(255, 0, 0)', '#ff000033'];
+        } else if (this.name.includes("2")) {
             this.channel = 2;
-            this.shortName = 'B : Channel 2'
-            this.className = 'device-block-ch2'
-        } else if (this.name === 'NTEL_M5_Ch3') {
+            this.shortName = this.name;
+            this.color = ['3px solid rgb(38, 34, 255)', '#2622ff33'];
+        } else if (this.name.includes("3")) {
             this.channel = 3;
-            this.shortName = 'C : Channel 3'
-            this.className = 'device-block-ch3'
-        } else if (this.name === 'NTEL_M5_Ch4') {
+            this.shortName = 'Sensor 3';
+            this.color = ['3px solid rgb(43, 255, 0)', '#2bff0033'];
+        } else {
             this.channel = 4;
-            this.shortName = 'D : Channel 4'
-            this.className = 'device-block-ch4'
+            this.shortName = 'Unknown Device';
+            this.color = ['3px solid rgb(141, 141, 141)', '#85858533'];
         }
-    }
 
+    }
 }
 
 function updateConnectedDevicesList() {
@@ -747,11 +866,79 @@ function updateConnectedDevicesList() {
     connectedDevicesList.innerHTML = '';
     sensorArray.forEach((sensor) => {
         const deviceBlock = document.createElement('div');
-        deviceBlock.className = sensor.className;
-        deviceBlock.textContent = sensor.shortName ? sensor.shortName : 'Unknown device';
+        deviceBlock.classList.add('device-block');
+        deviceBlock.style.border = sensor.color[0];
+        deviceBlock.style.backgroundColor = sensor.color[1];
+
+        const deviceLabel = document.createElement('span');
+        deviceLabel.textContent = sensor.shortName ? sensor.shortName : 'Unknown device';
+        deviceLabel.classList.add('device-label')
+        deviceBlock.appendChild(deviceLabel);   
+        // const dropdownArrow = document.createElement('div');
+        // dropdownArrow.classList.add('dropdown-arrow');
+        // deviceBlock.appendChild(dropdownArrow);
+        const dropdownContainer = document.createElement('select');
+        deviceBlock.appendChild(dropdownContainer);
+        dropdownContainer.classList.add('dropdown-container');
+        dropdownContainer.style.backgroundColor = sensor.color[1];
+
+        // const deviceOnButton = document.createElement('button');
+        // deviceBlock.appendChild(deviceOnButton);
+        // deviceOnButton.classList.add('device-on-button')
+        
+        const deviceSlider = document.createElement('input');
+        deviceSlider.setAttribute('type', 'range');
+        deviceSlider.setAttribute('class', 'device-slider');
+        deviceBlock.appendChild(deviceSlider);  
+        // const dropdownContainer = document.createElement('div');
+        // dropdownContainer.classList.add('dropdown-container');
+        // deviceBlock.appendChild(dropdownContainer); 
+        // DO A DROP DOWN MENU LIKE THE SOUNDS!!!
+        device.parameters.forEach(param => {
+            if (param.name.includes(`sensor${sensor.channel}`)){ 
+                xyz = ['X-axis', 'Y-axis', 'Z-axis'];
+                index = 1
+                xyz.forEach(axis => {
+                    const option = document.createElement("option");
+                        
+                    option.textContent = axis;
+                    option.value = index; 
+                    dropdownContainer.appendChild(option);
+
+                    index = index + 1;
+
+                });
+                
+                dropdownContainer.addEventListener("change", (event) => {
+                    param.value = event.target.value;
+                    console.log(event.target.value);
+                });
+                
+            }
+        }); 
+        
+        // button.addEventListener("click", function() {
+        //     // Button click logic here
+        //   });
+
+        // dropdownArrow.addEventListener('click', () => {
+        //   dropdownContainer.classList.toggle('show');
+        // });
+
         connectedDevicesList.appendChild(deviceBlock);
+
+        device.parameterChangeEvent.subscribe(param => {
+          if (param.name.includes(`visualize${sensor.channel}`)) {
+              deviceSlider.setAttribute('min', param.min + 30);
+              deviceSlider.setAttribute('max', param.max - 30);
+              deviceSlider.setAttribute("step", (param.max - param.min) / 1000.0);  
+              // deviceSlider = new Slider(deviceBlock, param, onChange)
+
+              deviceSlider.value = param.value;
+          }
+      });
     });
-  }
+}
 
 async function connectToDevice(device) {
     let existingSensor = sensorArray.find(s => s.id === device.id);

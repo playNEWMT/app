@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "kick",
+    "file": "media\\kick.wav"
+  },
+  {
+    "id": "snare",
+    "file": "media\\snare.wav"
+  },
+  {
+    "id": "hat",
+    "file": "media\\hat.wav"
+  }
+]
