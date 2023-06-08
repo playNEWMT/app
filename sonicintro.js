@@ -278,7 +278,9 @@ function makeMIDIKeyboard(device, samples) {
     const sldiv = document.getElementById("sounds-loop");
     if (samples === 0) return;
 
-    let noSamples = document.getElementById("no-samples-label");
+    let noSamples = document.getElementById("no-samples-label-trig");
+    noSamples.remove();
+    noSamples = document.getElementById("no-samples-label-loop");
     noSamples.remove();
 
     const dropdown_trig = document.getElementById("trig-dropdown");
@@ -302,9 +304,9 @@ function makeMIDIKeyboard(device, samples) {
             // } else {
             //     console.log(`Buffer with id ${desc.id} references remote URL ${desc.url}`);
             // }
-        if (buffer.id != "trig_snd" && buffer.id != "cont_snd")
+        if (buffer.id != "trig_snd" && buffer.id != "loop_snd")
         {
-            index = index - 1;
+            index = index;
             const option_trig = document.createElement("option");
             const option_cont = document.createElement("option");
                 
@@ -323,6 +325,7 @@ function makeMIDIKeyboard(device, samples) {
 
     dropdown_trig.addEventListener("change", (event) => {
         buf_trig.value = event.target.value;
+        console.log(event.target.value)
     });
 
     dropdown_cont.addEventListener("change", (event) => {

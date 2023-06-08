@@ -306,7 +306,6 @@ function makeMIDIKeyboard(device, samples) {
         });
 
         sdropdown.addEventListener("change", (event) => {
-            console.log(event.target.value);
             buf.value = event.target.value;
             
         });
@@ -314,7 +313,7 @@ function makeMIDIKeyboard(device, samples) {
 
         const key = document.createElement("div");
         const label = document.createElement("p");
-        label.textContent = "Test Sound";
+        label.textContent = "Play Sound";
         key.appendChild(label);
         key.addEventListener("pointerdown", () => {
             let midiChannel = number - 1;
