@@ -274,12 +274,15 @@ function playNote (device, midiMessage) {
 // }
 
 function makeMIDIKeyboard(device, samples) {
-    const sdiv = document.getElementById("sounds");
+    const stdiv = document.getElementById("sounds-trig");
+    const sldiv = document.getElementById("sounds-loop");
     if (samples === 0) return;
 
-    sdiv.removeChild(document.getElementById("no-samples-label"));
+    let noSamples = document.getElementById("no-samples-label");
+    noSamples.remove();
+
     const dropdown_trig = document.getElementById("trig-dropdown");
-    const dropdown_cont = document.getElementById("cont-dropdown");
+    const dropdown_cont = document.getElementById("loop-dropdown");
 
 
 
@@ -320,16 +323,74 @@ function makeMIDIKeyboard(device, samples) {
 
     dropdown_trig.addEventListener("change", (event) => {
         buf_trig.value = event.target.value;
-        console.log(buf_trig.value);
     });
 
     dropdown_cont.addEventListener("change", (event) => {
         buf_cont.value = event.target.value;
     });
 
+    //fix this later need to figure out why it isn't being routed propperly in RNBO for now using channel 5 and 6 but should be able to send different note messages on channel 5 per say
 
+    const ttestdiv = document.getElementById("trig-test");
+    const ltestdiv = document.getElementById("loop-test"); 
 
+    const keytrig = document.createElement("div");
+    const labeltrig = document.createElement("p");
+    labeltrig.textContent = "Test Sound";
+    keytrig.appendChild(labeltrig);
+    keytrig.addEventListener("pointerdown", () => {
+        let midiChannel = 5;
+        // Format a MIDI message paylaod, this constructs a MIDI on event
+        let noteOnMessage = [
+            144 + midiChannel, // Code for a note on: 10010000 & midi channel (0-15)
+            60, // MIDI Note
+            100 // MIDI Velocity
+        ];
+    
+    
+        // Including rnbo.min.js (or the unminified rnbo.js) will add the RNBO object
+        // to the global namespace. This includes the TimeNow constant as well as
+        // the MIDIEvent constructor.
+        // let midiPort = 0;
+    
+        // When scheduling an event to occur in the future, use the current audio context time
+        // multiplied by 1000 (converting seconds to milliseconds) for now.
+        let noteOnEvent = new RNBO.MIDIEvent(device.context.currentTime * 1000, 0, noteOnMessage);
 
+        device.scheduleEvent(noteOnEvent);
+        keytrig.classList.add("clicked");
+    });
+    keytrig.addEventListener("pointerup", () => keytrig.classList.remove("clicked"));
+    ttestdiv.appendChild(keytrig);
+
+    const keyloop = document.createElement("div");
+    const labelloop = document.createElement("p");
+    labelloop.textContent = "Test Sound";
+    keyloop.appendChild(labelloop);
+    keyloop.addEventListener("pointerdown", () => {
+        let midiChannel = 6;
+        // Format a MIDI message paylaod, this constructs a MIDI on event
+        let noteOnMessage = [
+            144 + midiChannel, // Code for a note on: 10010000 & midi channel (0-15)
+            60, // MIDI Note
+            100 // MIDI Velocity
+        ];
+    
+    
+        // Including rnbo.min.js (or the unminified rnbo.js) will add the RNBO object
+        // to the global namespace. This includes the TimeNow constant as well as
+        // the MIDIEvent constructor.
+        // let midiPort = 0;
+    
+        // When scheduling an event to occur in the future, use the current audio context time
+        // multiplied by 1000 (converting seconds to milliseconds) for now.
+        let noteOnEvent = new RNBO.MIDIEvent(device.context.currentTime * 1000, 0, noteOnMessage);
+
+        device.scheduleEvent(noteOnEvent);
+        keyloop.classList.add("clicked");
+    });
+    keyloop.addEventListener("pointerup", () => keyloop.classList.remove("clicked"));
+    ltestdiv.appendChild(keyloop);
 
 
 //     const midiNotes = [49, 52, 56, 63];
@@ -504,12 +565,16 @@ function makeSensorButtons(device) {
 function makeSliders(device) {
 
     
-    let pdiv = document.getElementById("rnbo-parameter-sliders");
+    let tdiv = document.getElementById("trigger-sliders");
+    let ldiv = document.getElementById("loop-sliders");
     let sdiv = document.getElementById("rnbo-sensor-sliders");
 
 
-    let noParamLabel = document.getElementById("no-param-label");
-    if (noParamLabel && device.numParameters > 0) pdiv.removeChild(noParamLabel);
+    let noParamLabel = document.getElementById("no-param-label-trig");
+    if (noParamLabel && device.numParameters > 0) noParamLabel.remove();
+
+    noParamLabel = document.getElementById("no-param-label-loop");
+    if (noParamLabel && device.numParameters > 0) noParamLabel.remove();
 
     //* fix *// 
     
@@ -525,7 +590,8 @@ function makeSliders(device) {
 
 
     device.parameters.forEach(param => {
-        infodiv = document.getElementById("sensor-info");
+        infodivtrig = document.getElementById("sensor-info-trig");
+        infodivloop = document.getElementById("sensor-info-loop");
 
         if (param.name.includes("info")){
             infoContainer = document.createElement("div");
@@ -556,7 +622,7 @@ function makeSliders(device) {
             slider.setAttribute("step", (param.max - param.min) / 100.0);
 
 
-            if (param.name.includes("trig")) {
+            if (param.name.includes("threshold")) {
                 slider.setAttribute("value", param.value);
                 // Make each slider control its parameter
                 slider.addEventListener("pointerdown", () => {
@@ -574,11 +640,17 @@ function makeSliders(device) {
             }
             
 
+            if (param.name.includes("trig")){
+                infodivtrig.appendChild(infoContainer);
+            }
 
+            if (param.name.includes("loop")){
+                infodivloop.appendChild(infoContainer);
+            }
 
 
             // Add the slider element
-            infodiv.appendChild(infoContainer);
+
 
             if (param.name.includes("visualize")){
                 slider.style.pointerEvents = "none";
@@ -691,22 +763,45 @@ function makeSliders(device) {
         //     // Add the slider element
         //     sdiv.appendChild(sliderContainer);
         // }
-        if (param.name.includes("user")){
+        if (param.name.includes("user") && param.name.includes("trig")){
             const onChange = (value) => {
                 param.value = value;
                 console.log(`Updated ${param.name} to ${param.value}`);
             }
     
-            let slider = new Slider(pdiv, param, onChange);
+            let slider = new Slider(tdiv, param, onChange);
     
     
             slider.initializeSlider();
             sliders.push(slider);
         }
-        if (param.name.includes("sensor_channel")){
+
+        if (param.name.includes("user") && param.name.includes("loop")){
             const onChange = (value) => {
                 param.value = value;
                 console.log(`Updated ${param.name} to ${param.value}`);
+            }
+    
+            let slider = new Slider(ldiv, param, onChange);
+    
+    
+            slider.initializeSlider();
+            sliders.push(slider);
+        }
+        if (param.name.includes("sensor_to")){
+            const onChange = (value) => {
+                param.value = value;
+                console.log(`Updated ${param.name} to ${param.value}`);
+                if (param.name.includes("trig")){
+                    let tsound = document.getElementById("trigger-sound");
+                    value = Math.round(value);
+                    tsound.className = `p${value}`;
+                }
+                if (param.name.includes("loop")){
+                    let lsound = document.getElementById("loop-sound");
+                    value = Math.round(value);
+                    lsound.className = `p${value}`;
+                }
             }
     
             let slider = new Slider(sdiv, param, onChange);
@@ -716,6 +811,7 @@ function makeSliders(device) {
             slider.initializeSlider();
             sliders.push(slider);
         }
+
 
         
     

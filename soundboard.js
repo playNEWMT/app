@@ -63,7 +63,7 @@ window.onload=function(){
 // });
 
 async function setup() {
-    const patchExportURL = "export/rainstick.export.json";
+    const patchExportURL = "export/soundboard.export.json";
 
     // Create AudioContext
     const WAContext = window.AudioContext || window.webkitAudioContext;
@@ -108,7 +108,7 @@ async function setup() {
     // (Optional) Fetch the dependencies
     let dependencies = [];
     try {
-        const dependenciesResponse = await fetch("export/dependenciesRS.json");
+        const dependenciesResponse = await fetch("export/dependenciesSB.json");
         dependencies = await dependenciesResponse.json();
 
         // Prepend "export" to any file dependenciies
@@ -138,7 +138,7 @@ async function setup() {
     //document.getElementById("patcher-title").innerText = (patcher.desc.meta.filename || "Unnamed Patcher") + " (v" + patcher.desc.meta.rnboversion + ")";
 
     // (Optional) Automatically create sliders for the device parameters
-    makeSliders(device);
+    // makeSliders(device);
 
     // (Optional) Create a form to send messages to RNBO inputs
     //makeInportForm(device);
@@ -274,71 +274,74 @@ function playNote (device, midiMessage) {
 // }
 
 function makeMIDIKeyboard(device, samples) {
-    const sdiv = document.getElementById("sounds")
-    const bdiv = document.getElementById("rnbo-clickable-keyboard");
     if (samples === 0) return;
-
-    sdiv.removeChild(document.getElementById("no-samples-label"));
-    const dropdown = document.getElementById("sounds-dropdown");
-
-
+    let noSamples = document.getElementById("no-samples-label");
+    noSamples.remove();
+    const numberOfSounds = [1, 2, 3, 4, 5];
     const descriptions = device.dataBufferDescriptions;
-    const buf = device.parametersById.get("whichbuffer");
 
-    // Each description will have a unique id, as well as a "file" or "url" key, depending on whether 
-    // the buffer references a local file or a remote URL
-    descriptions.forEach((buffer, index) => {
+    numberOfSounds.forEach((number) =>{
+        const sbutton = document.getElementById(`sound${number}`);
+        const sdropdown = document.getElementById(`sound${number}-dropdown`);
+        const buf = device.parametersById.get(`whichbuffer${number}`);
+        let index = 0;
+
+        descriptions.forEach((buffer) => {
             // if (!!desc.file) {
             //     console.log(`Buffer with id ${desc.id} references file ${desc.file}`);
             // } else {
             //     console.log(`Buffer with id ${desc.id} references remote URL ${desc.url}`);
             // }
-        if (buffer.id != "myBuffer"){
-            index = index - 1;
-            const option = document.createElement("option");
+            if (buffer.id != "snd1" && buffer.id != "snd2" && buffer.id != "snd3"
+            && buffer.id != "snd4" && buffer.id != "snd5"){
                 
-            option.textContent = buffer.id;
-            option.value = index; 
-            dropdown.appendChild(option);
-            console.log(buffer.id, index)
-        }
+                const option = document.createElement("option");
+
+                option.textContent = buffer.id;
+                option.value = index; 
+                sdropdown.appendChild(option);
+                index = index + 1;
+            }
+
+        });
+
+        sdropdown.addEventListener("change", (event) => {
+            console.log(event.target.value);
+            buf.value = event.target.value;
+            
+        });
+
+
+        const key = document.createElement("div");
+        const label = document.createElement("p");
+        label.textContent = "Test Sound";
+        key.appendChild(label);
+        key.addEventListener("pointerdown", () => {
+            let midiChannel = number - 1;
+            // Format a MIDI message paylaod, this constructs a MIDI on event
+            let noteOnMessage = [
+                144 + midiChannel, // Code for a note on: 10010000 & midi channel (0-15)
+                60, // MIDI Note
+                100 // MIDI Velocity
+            ];
+        
+        
+            // Including rnbo.min.js (or the unminified rnbo.js) will add the RNBO object
+            // to the global namespace. This includes the TimeNow constant as well as
+            // the MIDIEvent constructor.
+            // let midiPort = 0;
+        
+            // When scheduling an event to occur in the future, use the current audio context time
+            // multiplied by 1000 (converting seconds to milliseconds) for now.
+            let noteOnEvent = new RNBO.MIDIEvent(device.context.currentTime * 1000, 0, noteOnMessage);
+
+            device.scheduleEvent(noteOnEvent);
+            key.classList.add("clicked");
+        });
+        key.addEventListener("pointerup", () => key.classList.remove("clicked"));
+        sbutton.appendChild(key);
 
     });
-
-    dropdown.addEventListener("change", (event) => {
-        buf.value = event.target.value;
-        console.log(event.target.value)
-    });
-
-
-    const key = document.createElement("div");
-    const label = document.createElement("p");
-    label.textContent = "Test Sound";
-    key.appendChild(label);
-    key.addEventListener("pointerdown", () => {
-        let midiChannel = 5;
-        // Format a MIDI message paylaod, this constructs a MIDI on event
-        let noteOnMessage = [
-            144 + midiChannel, // Code for a note on: 10010000 & midi channel (0-15)
-            60, // MIDI Note
-            100 // MIDI Velocity
-        ];
-    
-    
-        // Including rnbo.min.js (or the unminified rnbo.js) will add the RNBO object
-        // to the global namespace. This includes the TimeNow constant as well as
-        // the MIDIEvent constructor.
-        // let midiPort = 0;
-    
-        // When scheduling an event to occur in the future, use the current audio context time
-        // multiplied by 1000 (converting seconds to milliseconds) for now.
-        let noteOnEvent = new RNBO.MIDIEvent(device.context.currentTime * 1000, 0, noteOnMessage);
-
-        device.scheduleEvent(noteOnEvent);
-        key.classList.add("clicked");
-    });
-    key.addEventListener("pointerup", () => key.classList.remove("clicked"));
-    bdiv.appendChild(key);
 }
 
 

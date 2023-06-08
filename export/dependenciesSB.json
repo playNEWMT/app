@@ -42,13 +42,5 @@
   {
     "id": "b_bubbles_wav",
     "file": "media\\bubbles.wav"
-  },
-  {
-    "id": "b_Cartoon_Drum_Roll_Snare_01_wav",
-    "file": "media\\Cartoon Drum Roll Snare 01.wav"
-  },
-  {
-    "id": "b_cell_phone_wav",
-    "file": "media\\cell phone.wav"
   }
 ]

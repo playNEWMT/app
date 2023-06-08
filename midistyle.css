@@ -153,35 +153,35 @@ p.sidenote {
   max-width: 540px;
 } */
 
-#rnbo-clickable-keyboard {
-  display: flex;
-  flex-wrap: wrap;
+.rnbo-clickable-keyboard {
+flex: 1;
 }
 
-#rnbo-clickable-keyboard > div {
-  margin: 2px;
+.rnbo-clickable-keyboard > div {
+  margin: 5px;
   border: none;
+  user-select: none;
   min-height: 50px;
-  flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #3f51b55b;
+  background-color: #adadad94;
   color: #FFFFFF;
   text-emphasis: bold;
+  font-size: 20px;
   border-radius: 10px;
   cursor: pointer;
-  padding: 8px;
+  padding: 4px;
 }
 
-#rnbo-clickable-keyboard > div.clicked {
+.rnbo-clickable-keyboard > div.clicked {
   background-color: #222222;
   color: #DDDDDD;
 }
 
 
 
-#rnbo-parameter-sliders {
+.rnbo-parameter-sliders {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -189,12 +189,12 @@ p.sidenote {
   padding: 2rem;
 }
 
-#rnbo-parameter-sliders > div {
+.rnbo-parameter-sliders > div {
   flex-basis: 48%;
   margin-bottom: 50px;
 }
 
-#rnbo-parameter-sliders > div > input:first-of-type {
+.rnbo-parameter-sliders > div > input:first-of-type {
   flex-grow: 1;
 }
 
@@ -507,6 +507,11 @@ details > div {
   margin-right: 15%;
 }
 
+#sample-group {
+  display: flex;
+  align-items: center;
+}
+
 select {
   background-color: #ffffff;
   border: 1px solid #CCCCCC;
@@ -556,6 +561,27 @@ select::selection {
 #rnbo-sensor-sliders > div > input:first-of-type {
   flex-grow: 1;
 }
+
+
+.p1 {
+  background-color: #fc7b971c;
+  border-radius: 1rem;
+  outline: 3px solid rgb(255, 0, 0);
+}
+
+.p2 {
+  background-color: #8fa3fd33;
+  border-radius: 1rem;
+  outline: 3px solid rgb(38, 34, 255);
+}
+
+.p3 {
+  background-color: #9ffa8833;
+  border-radius: 1rem;
+  outline: 3px solid rgb(43, 255, 0);
+}
+
+
 /* 
 #rnbo-sensor-sliders > div > input:first-of-type {
   flex-grow: 1;

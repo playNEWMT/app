@@ -478,12 +478,15 @@ function makeSensorButtons(device) {
 function makeSliders(device) {
 
     
-    let pdiv = document.getElementById("rnbo-parameter-sliders");
+    let p1div = document.getElementById("p1-sliders");
+    let p2div = document.getElementById("p2-sliders");
+    let p3div = document.getElementById("p3-sliders");
     let sdiv = document.getElementById("rnbo-sensor-sliders");
 
 
     let noParamLabel = document.getElementById("no-param-label");
-    if (noParamLabel && device.numParameters > 0) pdiv.removeChild(noParamLabel);
+    if (noParamLabel && device.numParameters > 0) noParamLabel.remove();
+
 
     //* fix *// 
     
@@ -596,31 +599,59 @@ function makeSliders(device) {
         //     // Add the slider element
         //     sdiv.appendChild(sliderContainer);
         // }
-        if (param.name.includes("user")){
+        if ((param.name.includes("user") && param.name.includes("p1"))
+        || (param.name.includes("kick") || param.name.includes("snare"))){
             const onChange = (value) => {
                 param.value = value;
                 console.log(`Updated ${param.name} to ${param.value}`);
             }
     
-            let slider = new Slider(pdiv, param, onChange);
+            let slider1 = new Slider(p1div, param, onChange);
     
     
-            slider.initializeSlider();
-            sliders.push(slider);
+            slider1.initializeSlider();
+            sliders.push(slider1);
         }
-        if (param.name.includes("sensor_channel")){
+
+        if (param.name.includes("user") && param.name.includes("p2")){
             const onChange = (value) => {
                 param.value = value;
                 console.log(`Updated ${param.name} to ${param.value}`);
             }
     
-            let slider = new Slider(sdiv, param, onChange);
-            // slider.style.alignSelf = "center";
+            let slider2 = new Slider(p2div, param, onChange);
     
     
-            slider.initializeSlider();
-            sliders.push(slider);
+            slider2.initializeSlider();
+            sliders.push(slider2);
         }
+
+        if (param.name.includes("user") && param.name.includes("p3")){
+            const onChange = (value) => {
+                param.value = value;
+                console.log(`Updated ${param.name} to ${param.value}`);
+            }
+    
+            let slider3 = new Slider(p3div, param, onChange);
+    
+    
+            slider3.initializeSlider();
+            sliders.push(slider3);
+        }
+
+        // if (param.name.includes("sensor_channel")){
+        //     const onChange = (value) => {
+        //         param.value = value;
+        //         console.log(`Updated ${param.name} to ${param.value}`);
+        //     }
+    
+        //     let slider = new Slider(sdiv, param, onChange);
+        //     // slider.style.alignSelf = "center";
+    
+    
+        //     slider.initializeSlider();
+        //     sliders.push(slider);
+        // }
 
         
     

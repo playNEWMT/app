@@ -2,7 +2,7 @@
 <html lang="en" >
   <!-- Invisible things... -->
   <meta charset="UTF-8">
-  <title>Rainstick</title>
+  <title>Sound Board</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab&display=swap" rel="stylesheet">
 <head>
   <!-- Stylesheet-->
@@ -58,8 +58,7 @@
 
   <div class="window">
     <!-- Main Content-->
-    <div id="rainstick" class="p1">
-      <h1>Rainstick</h1>
+      <h1>Sound Board</h1>
       <noscript>You need to enable JavaScript to run this app.</noscript>
       <div id="volume-slider" class="rnbo-parameter-sliders">
 
@@ -69,23 +68,57 @@
       <!-- <div>
         <h1 id="patcher-title">Unnamed patcher</h1>
       </div> -->
-
+<!-- 
       <h2>Parameters</h2>
       <div id="rnbo-parameter-sliders" class="rnbo-parameter-sliders">
         <em id="no-param-label">No parameters</em>
-      </div>
+      </div> -->
 
       <h2>Sounds</h2>
-      <div id="sounds" class="sounds">
-        <em id="no-samples-label">No Samples Detected</em>
+
+      <em id="no-samples-label">No Samples Detected</em>
+
+      <div class="sounds">
         <div id="sample-group">
-          <div id="rnbo-clickable-keyboard" class="rnbo-clickable-keyboard"></div> 
-          <select id="sounds-dropdown"></select>
+          <div id="sound1" class="rnbo-clickable-keyboard"></div> 
+          <select id="sound1-dropdown"></select>
         </div>
       </div>
+
+      <div class="sounds">
+        <!-- <em id="no-samples-label">No Samples Detected</em> -->
+        <div id="sample-group">
+          <div id="sound2" class="rnbo-clickable-keyboard"></div> 
+          <select id="sound2-dropdown"></select>
+        </div>
+      </div>
+
+      <div class="sounds">
+        <!-- <em id="no-samples-label">No Samples Detected</em> -->
+        <div id="sample-group">
+          <div id="sound3" class="rnbo-clickable-keyboard"></div> 
+          <select id="sound3-dropdown"></select>
+        </div>
+      </div>
+
+      <div class="sounds">
+        <!-- <em id="no-samples-label">No Samples Detected</em> -->
+        <div id="sample-group">
+          <div id="sound4" class="rnbo-clickable-keyboard"></div> 
+          <select id="sound4-dropdown"></select>
+        </div>
+      </div>
+
+      <div class="sounds">
+        <!-- <em id="no-samples-label">No Samples Detected</em> -->
+        <div id="sample-group">
+          <div id="sound5" class="rnbo-clickable-keyboard"></div> 
+          <select id="sound5-dropdown"></select>
+        </div>
+      </div>
+
       
-    </br>
-    </div>
+    <!-- </br>-->
     <!-- <div id="drop-area">
       <form class="my-form">
         <p>Upload a file with the file dialog or by dragging and dropping a .wav file onto the dashed region</p>
@@ -130,7 +163,7 @@
   <script src="./common.js"></script>
   <script src="./midiBLEdecoder.js"></script>
   <!-- <script src="./blerx.js"></script> -->
-  <script src="./rainstick.js"></script>
+  <script src="./soundboard.js"></script>
   <script src="./midiContentDecoder.js"></script>
   <!-- Load the script that creates the RNBO device  -->
   <!-- Uncomment if you know the version of your exported RNBO patch to avoid dynamic loading -->
