@@ -8,7 +8,11 @@ html {
 body {
   padding: 3em 2em;
   font-family: 'Roboto Slab', serif;
+  margin: 0 auto;
+  max-width: 1000px;
 }
+
+
 
 .window {
   padding: 1em;
@@ -281,6 +285,8 @@ flex: 1;
 
 .slider-label {
   background-color: #ccc;
+  /* min-width: 10rem; */
+  white-space: nowrap;
   padding: 5px 10px;
   border-radius: 20px;
   position: absolute;

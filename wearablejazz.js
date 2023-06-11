@@ -388,6 +388,7 @@ class Slider {
         this.label.classList.add('slider-label');
         let paramLabel = this.param.name;
         paramLabel = paramLabel.replace(new RegExp('user_', 'g'), '');
+        paramLabel = paramLabel.replace(new RegExp('_', 'g'), ' ');
         this.label.textContent = `${paramLabel}`;
 
         this.container = document.createElement("div");

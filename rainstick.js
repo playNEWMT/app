@@ -296,11 +296,15 @@ function makeMIDIKeyboard(device, samples) {
         if (buffer.id != "myBuffer"){
             index = index - 1;
             const option = document.createElement("option");
-                
-            option.textContent = buffer.id;
+            let bufferText = buffer.id
+            let optionText = bufferText.replace(new RegExp('b_', 'g'), '');
+            optionText = optionText.replace(new RegExp('_wav', 'g'), '');
+            optionText = optionText.replace(new RegExp('_', 'g'), ' ');
+
+
+            option.textContent = optionText;
             option.value = index; 
             dropdown.appendChild(option);
-            console.log(buffer.id, index)
         }
 
     });
@@ -378,6 +382,7 @@ class Slider {
         this.label.classList.add('slider-label');
         let paramLabel = this.param.name;
         paramLabel = paramLabel.replace(new RegExp('user_', 'g'), '');
+        paramLabel = paramLabel.replace(new RegExp('_', 'g'), ' ');
         this.label.textContent = `${paramLabel}`;
 
         this.container = document.createElement("div");

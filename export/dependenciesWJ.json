@@ -1,14 +1,14 @@
 [
   {
-    "id": "kick",
-    "file": "media\\kick.wav"
+    "id": "b_kick_2_wav",
+    "file": "media\\kick 2.wav"
   },
   {
-    "id": "snare",
+    "id": "b_snare_wav",
     "file": "media\\snare.wav"
   },
   {
-    "id": "hat",
-    "file": "media\\hat.wav"
+    "id": "b_hat_2_wav",
+    "file": "media\\hat 2.wav"
   }
 ]

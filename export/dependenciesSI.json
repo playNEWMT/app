@@ -1,7 +1,15 @@
 [
   {
+    "id": "b_access_granted_wav",
+    "file": "media\\access granted.wav"
+  },
+  {
+    "id": "b_bark_wav",
+    "file": "media\\bark.wav"
+  },
+  {
     "id": "b_baseball_bat_wav",
-    "file": "media\\baseball_bat.wav"
+    "file": "media\\baseball bat.wav"
   },
   {
     "id": "b_baseball_catch_wav",
@@ -10,22 +18,6 @@
   {
     "id": "b_baseball_cleats_walking_wav",
     "file": "media\\baseball_cleats_walking.wav"
-  },
-  {
-    "id": "b_baseball_fly_ball_left_wav",
-    "file": "media\\baseball_fly_ball_left.wav"
-  },
-  {
-    "id": "b_baseball_foul_ball_wav",
-    "file": "media\\baseball_foul_ball.wav"
-  },
-  {
-    "id": "b_baseball_next_up_to_bat_wav",
-    "file": "media\\baseball_next_up_to_bat.wav"
-  },
-  {
-    "id": "b_baseball_runners_on_the_corners_wav",
-    "file": "media\\baseball_runners_on_the_corners.wav"
   },
   {
     "id": "b_baseball_running_on_dirt_wav",
@@ -58,5 +50,145 @@
   {
     "id": "b_baseball_youre_out_wav",
     "file": "media\\baseball_youre_out.wav"
+  },
+  {
+    "id": "b_bird_wav",
+    "file": "media\\bird.wav"
+  },
+  {
+    "id": "b_bubbles_wav",
+    "file": "media\\bubbles.wav"
+  },
+  {
+    "id": "b_chime_wav",
+    "file": "media\\chime.wav"
+  },
+  {
+    "id": "b_clap_wav",
+    "file": "media\\clap.wav"
+  },
+  {
+    "id": "b_cowbell_wav",
+    "file": "media\\cowbell.wav"
+  },
+  {
+    "id": "b_crash_cymbal_wav",
+    "file": "media\\crash cymbal.wav"
+  },
+  {
+    "id": "b_creek_ambience_wav",
+    "file": "media\\creek ambience.wav"
+  },
+  {
+    "id": "b_drum_roll_wav",
+    "file": "media\\drum roll.wav"
+  },
+  {
+    "id": "b_explosion_wav",
+    "file": "media\\explosion.wav"
+  },
+  {
+    "id": "b_finger_cymbals_wav",
+    "file": "media\\finger cymbals.wav"
+  },
+  {
+    "id": "b_golf_ball_wav",
+    "file": "media\\golf ball.wav"
+  },
+  {
+    "id": "b_golf_swing_wav",
+    "file": "media\\golf swing.wav"
+  },
+  {
+    "id": "b_hat_2_wav",
+    "file": "media\\hat 2.wav"
+  },
+  {
+    "id": "b_hat_wav",
+    "file": "media\\hat.wav"
+  },
+  {
+    "id": "b_jump_wav",
+    "file": "media\\jump.wav"
+  },
+  {
+    "id": "b_kick_2_wav",
+    "file": "media\\kick 2.wav"
+  },
+  {
+    "id": "b_kick_3_wav",
+    "file": "media\\kick 3.wav"
+  },
+  {
+    "id": "b_kick_4_wav",
+    "file": "media\\kick 4.wav"
+  },
+  {
+    "id": "b_kick_wav",
+    "file": "media\\kick.wav"
+  },
+  {
+    "id": "b_laser_wav",
+    "file": "media\\laser.wav"
+  },
+  {
+    "id": "b_light_saber_2_wav",
+    "file": "media\\light saber 2.wav"
+  },
+  {
+    "id": "b_light_saber_wav",
+    "file": "media\\light saber.wav"
+  },
+  {
+    "id": "b_rain_ambience_wav",
+    "file": "media\\rain ambience.wav"
+  },
+  {
+    "id": "b_robot_burp_wav",
+    "file": "media\\robot burp.wav"
+  },
+  {
+    "id": "b_robot_growl_wav",
+    "file": "media\\robot growl.wav"
+  },
+  {
+    "id": "b_robot_off_wav",
+    "file": "media\\robot off.wav"
+  },
+  {
+    "id": "b_robot_talk_wav",
+    "file": "media\\robot talk.wav"
+  },
+  {
+    "id": "b_robot_yell_wav",
+    "file": "media\\robot yell.wav"
+  },
+  {
+    "id": "b_snare_2_wav",
+    "file": "media\\snare 2.wav"
+  },
+  {
+    "id": "b_snare_3_wav",
+    "file": "media\\snare 3.wav"
+  },
+  {
+    "id": "b_snare_wav",
+    "file": "media\\snare.wav"
+  },
+  {
+    "id": "b_step_wav",
+    "file": "media\\step.wav"
+  },
+  {
+    "id": "b_triangle_wav",
+    "file": "media\\triangle.wav"
+  },
+  {
+    "id": "b_whoosh_wav",
+    "file": "media\\whoosh.wav"
+  },
+  {
+    "id": "b_wind_ambience_wav",
+    "file": "media\\wind ambience.wav"
   }
 ]

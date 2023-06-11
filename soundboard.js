@@ -297,7 +297,13 @@ function makeMIDIKeyboard(device, samples) {
                 
                 const option = document.createElement("option");
 
-                option.textContent = buffer.id;
+                let bufferText = buffer.id
+                let optionText = bufferText.replace(new RegExp('b_', 'g'), '');
+                optionText = optionText.replace(new RegExp('_wav', 'g'), '');
+                optionText = optionText.replace(new RegExp('_', 'g'), ' ');
+
+
+                option.textContent = optionText;
                 option.value = index; 
                 sdropdown.appendChild(option);
                 index = index + 1;
