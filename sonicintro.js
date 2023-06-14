@@ -488,6 +488,8 @@ class Slider {
         this.label.classList.add('slider-label');
         let paramLabel = this.param.name;
         paramLabel = paramLabel.replace(new RegExp('user_', 'g'), '');
+        paramLabel = paramLabel.replace(new RegExp('trig', 'g'), '');
+        paramLabel = paramLabel.replace(new RegExp('loop', 'g'), '');
         paramLabel = paramLabel.replace(new RegExp('_', 'g'), ' ');
         this.label.textContent = `${paramLabel}`;
 
@@ -616,10 +618,13 @@ function makeSliders(device) {
             infoContainer.appendChild(slider);
 
             // Add a name for the label
+            let paramName = param.name;
+            paramName = paramName.replace(new RegExp('info_', 'g'), '');
+            paramName = paramName.replace(new RegExp('_', 'g'), ' ');
             label.setAttribute("name", param.name);
             label.setAttribute("for", param.name);
             label.setAttribute("class", "param-label");
-            label.textContent = `${param.name}: `;
+            label.textContent = `${paramName}: `;
 
             // Make each slider reflect its parameter
             slider.setAttribute("type", "range");
@@ -666,7 +671,7 @@ function makeSliders(device) {
             // Add the slider element
 
 
-            if (param.name.includes("visualize")){
+            if (param.name.includes("Visualization")){
                 slider.style.pointerEvents = "none";
                 device.parameterChangeEvent.subscribe(param => {
                     if (param.id === slider.id){
@@ -802,7 +807,7 @@ function makeSliders(device) {
             slider.initializeSlider();
             sliders.push(slider);
         }
-        if (param.name.includes("sensor_to")){
+        if (param.name.includes("sensor_")){
             const onChange = (value) => {
                 param.value = value;
                 console.log(`Updated ${param.name} to ${param.value}`);

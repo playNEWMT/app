@@ -100,6 +100,10 @@
     "file": "media\\golf swing.wav"
   },
   {
+    "id": "b_hand_drum_loop_wav",
+    "file": "media\\hand drum loop.wav"
+  },
+  {
     "id": "b_hat_2_wav",
     "file": "media\\hat 2.wav"
   },
@@ -140,8 +144,16 @@
     "file": "media\\light saber.wav"
   },
   {
+    "id": "b_lofi_loop_wav",
+    "file": "media\\lofi loop.wav"
+  },
+  {
     "id": "b_rain_ambience_wav",
     "file": "media\\rain ambience.wav"
+  },
+  {
+    "id": "b_rhodes_loop_wav",
+    "file": "media\\rhodes loop.wav"
   },
   {
     "id": "b_robot_burp_wav",
@@ -178,6 +190,14 @@
   {
     "id": "b_step_wav",
     "file": "media\\step.wav"
+  },
+  {
+    "id": "b_synth_loop_wav",
+    "file": "media\\synth loop.wav"
+  },
+  {
+    "id": "b_synthwave_hiphop_loop_wav",
+    "file": "media\\synthwave hiphop loop.wav"
   },
   {
     "id": "b_triangle_wav",
