@@ -877,7 +877,7 @@ class Sensor {
             this.color = ['3px solid rgb(255, 0, 0)', '#ff000033'];
         } else if (this.name.includes("2")) {
             this.channel = 2;
-            this.shortName = this.name;
+            this.shortName = 'Sensor 2';
             this.color = ['3px solid rgb(38, 34, 255)', '#2622ff33'];
         } else if (this.name.includes("3")) {
             this.channel = 3;
@@ -908,10 +908,10 @@ function updateConnectedDevicesList() {
         // const dropdownArrow = document.createElement('div');
         // dropdownArrow.classList.add('dropdown-arrow');
         // deviceBlock.appendChild(dropdownArrow);
-        // const dropdownContainer = document.createElement('select');
-        // deviceBlock.appendChild(dropdownContainer);
-        // dropdownContainer.classList.add('dropdown-container');
-        // dropdownContainer.style.backgroundColor = sensor.color[1];
+        const dropdownContainer = document.createElement('select');
+        deviceBlock.appendChild(dropdownContainer);
+        dropdownContainer.classList.add('dropdown-container');
+        dropdownContainer.style.backgroundColor = sensor.color[1];
 
         // const deviceOnButton = document.createElement('button');
         // deviceBlock.appendChild(deviceOnButton);
@@ -925,28 +925,29 @@ function updateConnectedDevicesList() {
         // dropdownContainer.classList.add('dropdown-container');
         // deviceBlock.appendChild(dropdownContainer); 
         // DO A DROP DOWN MENU LIKE THE SOUNDS!!!
-        // device.parameters.forEach(param => {
-        //     if (param.name.includes(`sensor${sensor.channel}`)){ 
-        //         xyz = ['X-axis', 'Y-axis', 'Z-axis'];
-        //         index = 1
-        //         xyz.forEach(axis => {
-        //             const option = document.createElement("option");
+        device.parameters.forEach(param => {
+            if (param.name.includes(`sensor${sensor.channel}`)){ 
+                xyz = ['X-axis', 'Y-axis', 'Z-axis'];
+                index = 1
+                xyz.forEach(axis => {
+                    const option = document.createElement("option");
                         
-        //             option.textContent = axis;
-        //             option.value = index; 
-        //             dropdownContainer.appendChild(option);
+                    option.textContent = axis;
+                    option.value = index; 
+                    dropdownContainer.appendChild(option);
 
-        //             index = index + 1;
+                    index = index + 1;
 
-        //         });
+                });
                 
-        //         dropdownContainer.addEventListener("change", (event) => {
-        //             param.value = event.target.value;
-        //             console.log(event.target.value);
-        //         });
+                dropdownContainer.addEventListener("change", (event) => {
+                    param.value = event.target.value;
+                    console.log(event.target.value);
+                });
                 
-        //     }
-        // }); 
+                dropdownContainer.value = param.value;
+            }
+        }); 
         
         // button.addEventListener("click", function() {
         //     // Button click logic here
