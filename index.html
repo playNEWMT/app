@@ -3,67 +3,154 @@
 <!-- Invisible things... -->
 <meta charset="UTF-8">
 <title>NTEL Home</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab&display=swap" rel="stylesheet">
+
 <head>
   <!-- Stylesheet-->
-  <link rel="stylesheet" type="text/css" href="midistyle.css">
+  <link rel="stylesheet" type="text/css" href="NTELstyle.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Chivo:wght@400,600&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
 </head>
+
+<div id="mySidebar" class="sidebar">
+  <h2><emph></emph></h2>
+  <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a> -->
+  <ul class="menu">
+    <li><a href="./index.html">Home</a></li>
+    <li>
+      <a href="./instrumentsmain.html">Instruments</a>
+      <ul class="submenu">
+        <li><a href="./rainstick.html">Rainstick</a></li>
+        <li><a href="./sonicintro.html">Sonic<br>Introduction</a></li>
+        <li><a href="./wearablejazz.html">Wearable<br>Jazz</a></li>
+        <li><a href="./soundboard.html">Sound Board</a></li>
+      </ul>
+    </li>
+    <li><a href="./curriculummain.html">Curriculum</a></li>
+    
+    
+  </ul>
+</div>
+
 <body>
-  <div class="window">
-    <!-- Main Content-->
-    <div class="briefer">
-      <h1>NTEL Instruments</h1>
-      <p class="info"> Click on one of the instruments below and connect your M5-Stick sensors to play</p>
+  <div class="main-container" id="main-container">
+    <header>
+      
+      <button class="openbtn" onclick="toggleNav()">☰ </br> > </button>
+      <p class="click-here">↑</br>click </br>here!</p>
+    </header>
+    <main id="main">
+
+      <h1 style="font-size: 100px; line-height: 85px;">NEWMT</h1>
+      <h2 style="font-size: 22px; text-align: center; line-height: 5px;">Neurodiverse Educational Wearable - Music Tech</h2>
+
+      <div class="mission-statement">
+        <p>
+          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias 
+        </p>
+      </div>
+
+      <div class="two-buttons-next-to">
+        <a class="picture-button-item" style="margin-right: 1.66667em;"href="./curriculum.html" aria-label="NEWMT Intruments">
+          <div class="picture-button-image">
+            <img class="centered-image" src="./media/TESTIMAGEREMOVE.jpg">
+          </div>
+          <div class="picture-button-text">
+            <h3 class="picture-button-title">Curriculum</h3>
+            <p class="picture-button-description">View our curriculum centered on neurodiversity and computational thinking!</p>
+          </div>
+        </a>
+
+        <a class="picture-button-item" href="./instruments.html" aria-label="NEWMT Intruments">
+          <div class="picture-button-image">
+            <img class="centered-image" src="./media/TESTIMAGEREMOVE.jpg">
+          </div>
+          <div class="picture-button-text">
+            <h3 class="picture-button-title">Instruments</h3>
+            <p class="picture-button-description">Play our interactive and embodied wearable instruments with an M5 Stick!</p>
+          </div>
+        </a>
+      </div>
+
+      <a class="professional-development" href="./index.html" aria-label="Participate in Professional Development">
+        <h3>Participate for Personal Development!</h3>
+        <p>Here is how to participate for personal development</p>
+      </a>
+
+      <div class="warning-container">
+        <div class="warning-icon">!</div>
+        <div class="warning-bubble">
+          To use web MIDI in combination with web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Sticks</a> to use our instruments.
+        </div>
+      </div>
 
 
-      <p class="sidenote">To use web MIDI in combination to web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. </p>
-    </div>
 
 
-    <div class="indexbtn">
-      <a href="./sonicintro.html" class="rxbutton">Sonic Introduction</a>
-      <a href="./rainstick.html" class="rxbutton">Rainstick</a>
-      <a href="./wearablejazz.html" class="rxbutton">Wearable Jazz</a>
-      <a href="./soundboard.html" class="rxbutton">Sound Board</a>
-    </div>
+      <div class="project-description">
+        <h3>Project Description</h3>
+        <p>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        </p>
+      </div>
 
-    <!-- <div class="indexbtn">
-      <a href="./multirx.html" class="rxbutton">MIDI Rx</a>
-    </div> -->
+      <div class="events-calendar">
+        <h2 style="text-align: center; margin-top: -10px; margin-bottom: -5px;">- Events -</h2>
+        <iframe src="https://calendar.google.com/calendar/embed?src=csmcleod%40asu.edu&ctz=America%2FPhoenix&mode=AGENDA&showTitle=0" style="border: 0" width="100%" height="200" frameborder="0" scrolling="no"></iframe>
+      </div>
 
-    <!-- 
-    <div class="indexbtn">
-      <a href="./multirx.html" class="rxbutton">Sensor Samples</a>
-    </div>
-    
-    <div class="indexbtn">
-      <a href="./multirx.html" class="rxbutton">Weighted MIDI Melodies</a>
-    </div> -->
+      <div class="about-us">
+        <h2 style="text-align: center; margin-top:-10px;">- Who are we? -</h2>
+        <div class="about-us-item">
+          <div class="about-us-image-container">
+            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/TESTIMAGEREMOVE.jpg"></div>
+          </div>
+          <div class="about-us-text" style="border-bottom-left-radius: 0px;">
+            <h3>ASU</h3>
+            <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est</p>  
+          </div>
+        </div>
 
-    <!-- maybe rainstick, clacker, cloudy, and roller are under kinematic intruments category can switch in instrument-->
-    <!-- maybe cloudy and loop sample player are in one w mode switch like ^^-->
+        <div class="about-us-item-reversed">
+          <div class="about-us-text" style="border-bottom-right-radius: 0px;">
+            <h3>NERC</h3>
+            <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est</p>
+          </div>
+          <div class="about-us-image-container">
+            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/TESTIMAGEREMOVE.jpg"></div>
+          </div>
+        </div>
 
-    <!-- 
-    <div class="indexbtn">
-      <a href="./multirx.html" class="rxbutton">Clacker</a>
-    </div>
+        <div class="about-us-item">
+          <div class="about-us-image-container">
+            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/TESTIMAGEREMOVE.jpg"></div>
+          </div>
+          <div class="about-us-text" style="border-bottom-left-radius: 0px;">
+            <h3>Teachers</h3>
+            <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est</p>  
+          </div>
+        </div>
 
-    <div class="indexbtn">
-      <a href="./multirx.html" class="rxbutton">Roller</a>
-    </div>
-    
-    <div class="indexbtn">
-      <a href="./multirx.html" class="rxbutton">Cloudy</a>
-    </div>
+        <div class="about-us-item-reversed">
+          <div class="about-us-text" style="border-bottom-right-radius: 0px;">
+            <h3>Something else?</h3>
+            <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est</p>
+          </div>
+          <div class="about-us-image-container">
+            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/TESTIMAGEREMOVE.jpg"></div>
+          </div>
+        </div>
 
-    <div class="indexbtn">
-      <a href="./multirx.html" class="rxbutton">Loop Player</a>
-    </div> -->
-
-
-    
-
+      </div>
+      
+      
+    </main>
+    <footer>
+      <p>hello this is my footer</p>
+    </footer>
   </div>
 </body>
+
+<script src="./common.js"></script>
 
 </html>

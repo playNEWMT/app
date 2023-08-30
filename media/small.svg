@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="10"
+   height="10"
+   viewBox="0 0 2.6458333 2.6458333"
+   version="1.1"
+   id="svg1583"
+   inkscape:export-filename="small.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   sodipodi:docname="triangle.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1585"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="32"
+     inkscape:cx="2.765625"
+     inkscape:cy="4.09375"
+     inkscape:window-width="1581"
+     inkscape:window-height="1401"
+     inkscape:window-x="-8"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid7707" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1580" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:#bf8fbe;fill-opacity:1;stroke:#bf8fbe;stroke-width:0.149438;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path123878"
+       cx="0.6089257"
+       cy="0.6604982"
+       rx="0.10619431"
+       ry="0.081848167" />
+    <ellipse
+       style="fill:#bf8fbe;fill-opacity:1;stroke:#bf8fbe;stroke-width:0.149438;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path123878-2"
+       cx="1.0655284"
+       cy="0.66065687"
+       rx="0.10619431"
+       ry="0.081848167" />
+    <rect
+       style="fill:#bf8fbe;fill-opacity:1;stroke:none;stroke-width:0.429928;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="rect123882"
+       width="0.48065662"
+       height="0.31256914"
+       x="0.60522479"
+       y="0.50437224" />
+    <ellipse
+       style="fill:#bf8fbe;fill-opacity:1;stroke:#bf8fbe;stroke-width:0.149438;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path123878-9"
+       cx="1.706897"
+       cy="1.2920018"
+       rx="0.10619431"
+       ry="0.081848167" />
+    <ellipse
+       style="fill:#bf8fbe;fill-opacity:1;stroke:#bf8fbe;stroke-width:0.149438;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path123878-2-4"
+       cx="2.1634998"
+       cy="1.2921605"
+       rx="0.10619431"
+       ry="0.081848167" />
+    <rect
+       style="fill:#bf8fbe;fill-opacity:1;stroke:none;stroke-width:0.429928;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="rect123882-9"
+       width="0.48065662"
+       height="0.31256914"
+       x="1.7031963"
+       y="1.1358758" />
+    <ellipse
+       style="fill:#bf8fbe;fill-opacity:1;stroke:#bf8fbe;stroke-width:0.149438;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path123878-9-9"
+       cx="0.53759289"
+       cy="1.7860328"
+       rx="0.10619431"
+       ry="0.081848167" />
+    <ellipse
+       style="fill:#bf8fbe;fill-opacity:1;stroke:#bf8fbe;stroke-width:0.149438;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="path123878-2-4-4"
+       cx="0.99419558"
+       cy="1.7861915"
+       rx="0.10619431"
+       ry="0.081848167" />
+    <rect
+       style="fill:#bf8fbe;fill-opacity:1;stroke:none;stroke-width:0.429928;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="rect123882-9-1"
+       width="0.48065662"
+       height="0.31256914"
+       x="0.53389215"
+       y="1.6299068" />
+  </g>
+</svg>

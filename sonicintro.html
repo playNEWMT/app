@@ -1,194 +1,159 @@
 <!DOCTYPE html>
 <html lang="en" >
   <!-- Invisible things... -->
-  <meta charset="UTF-8">
-  <title>Sonic Introduction</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed|Roboto+Slab&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Sonic Introduction</title>
+  <!-- Stylesheet-->
+
 <head>
   <!-- Stylesheet-->
-  <link rel="stylesheet" type="text/css" href="midistyle.css">
+  <link rel="stylesheet" type="text/css" href="NTELstyle.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Chivo:wght@400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
 </head>
-<body>
-  <div class="indexbtn">
-    <a href="./index.html" class="homebtn">Home</a>
-  </div>
 
-  <div class="dynamicbtn" id="iconnect">
-    <button id="ibutton" class="connectbtn" onclick="scanToConnect()">Connect</button>
-  </div>
 
-  <div class="connected-devices">
-    <h3>Connected Sensors:</h1>
-    <div class="sensor-grid" id="connected-devices-list">
-      
+<div id="mySidebar" class="sidebar">
+  <h2><emph></emph></h2>
+  <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a> -->
+  <ul class="menu">
+    <li><a href="./index.html">Home</a></li>
+    <li>
+      <a href="./instrumentsmain.html">Instruments</a>
+      <ul class="submenu">
+        <li><a href="./rainstick.html">Rainstick</a></li>
+        <li><a href="./sonicintro.html">Sonic<br>Introduction</a></li>
+        <li><a href="./wearablejazz.html">Wearable<br>Jazz</a></li>
+        <li><a href="./soundboard.html">Sound Board</a></li>
+      </ul>
+    </li>
+    <li><a href="./curriculummain.html">Curriculum</a></li>
+    <li><a href="./vocabulary.html">Vocabulary</a></li>
+    <li><a href="./resources.html">Other Resources</a></li>
+    <li><a href="./aboutus.html">About Us</a></li>
+    <li><a href="./getconnected.html">Get Connected</a></li>
+    <li><a href="./accessibility.html">Accessibility</a></li>
+  </ul>
+</div>
+
+<div id="infoSidebar" class="info-sidebar">
+  <p> under construction </p>
+</div>
+
+<div id="sensorSidebar" class="sensor-sidebar">
+  <div class="sidebarbuttons">
+    <div class="dynamicbtn" id="iconnect">
+      <button id="sensor-connect" class="connectbtnsidebar" onclick="scanToConnect()">Connect</button>
+    </div>
+    <div class="dynamicbtn" id="iconnect">
+      <button id="ibutton" class="connectbtnsidebar" onclick="scanToDisconnect()">Disconnect</button>
     </div>
   </div>
-
-  <div id="rnbo-sensor-sliders">
-    <!-- <h2></h2> -->
-    <!-- <em id="no-sensor-label">No Sensor Interaction</em> -->
+  <div id="connected-devices-1"></div>
+  <div id="connected-devices-2"></div>
+  <div id="connected-devices-3"></div>
+  <div id="connected-devices-misc"></div>
+  
+  <div class="console" id="iConsole">
+    <h2><u>info log:</u></h2>
+    <section id="midi-data">  
+        <ul></ul>
+    </section>
   </div>
+</div>
 
-  <details>
-    <summary><h3>Click to view instructions and check connection status!</h3></summary>
-    <!-- Button -->
-    <div class="sum">
-      <p><h4>
-      </br>- Connect a sensor!
-      </br>- Choose which sensor controls the Trigger a Sound section with 'sensor trigger'.
-      </br>- Choose which axis to use with the dropdown menu in the sensor block.
-      </br>- Either gyroscope or accelerometer mode works! If you want to flick to trigger a sound use gyroscope mode and if you want to tilt the sensor choose accelerometer mode. (click the top side button on your sensor to switch modes)
-      </br>- Choose a sound in the dropdown.
-      </br>- Tilt or Flick the sensor to trigger a sound.
-      </br>- Change the threshold to alter the behavior of triggering the sound.
-      </br>- For looping it is best to use accelerometer mode.
-      </br>- Choose a sensor with 'sensor loop'
-      </br>- Increase the volume of the Loop a Sound section.
-      </br>- Change sensitivity to alter how much tilt you need to loop the sound.
+<body>
+  <div class="main-container" id="main-container">
+    <header>
+      <button class="openbtn" onclick="toggleNav()">☰ </br> > </button>
+      <button class="openbtnSS" onclick="toggleSS()"> > </button>
+      <button class="openbtninfo" onclick="toggleInfo()">?</br> > </button>
+      <p>
+        <a href="./index.html">Home</a> &gt; <a href="./instrumentsmain.html">Instruments</a> &gt; <a href="./sonicintro.html">Sonic Introduction</a>
+      </p>
+    </header>
+    <main>
 
-      </h4></p>
-
-      <div class="briefer">
-        <p id="info" class="info"></p>
-        <p id="hide" class="sidenote">Some older devices and browsers do not support neither MIDI nor Bluetooth.</p>
-      </div>
-    
-      <!-- Console -->
-      <div class="console" id="iConsole">
-        <section id="midi-data">  
-            <ul></ul>
-        </section>
-      </div>
-      
-        <div class="dynamicbtn" id="iconnect">
-          <button id="ibutton" class="connectbtn" onclick="scanToDisconnect()">Disconnect</button>
+      <h1>TRIGGER</h1>
+      <div id="connected-to-trig" class="connected-to"><strong>connected to:</strong></div>
+      <div id="trigger-sound" class="instrument"> 
+        <div class="connect-wash">
+          <div class="dynamicbtn" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="scanToConnect()">Connect</button>
+          </div>
         </div>
-      </div> 
-      
-  </details>
-
-  <div class="window">
-    <!-- Main Content-->
-    <h1>Sonic Introduction</h1>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-
-    <!-- <div id="rnbo-root"> -->
-    <!-- <div>
-      <h1 id="patcher-title">Unnamed patcher</h1>
-    </div> -->
-
-    <!-- going to need one section for the trigger and visualization,
-    ^^^ will both need to be a regular html slider so grab the code from rnbo template
-    then a section for that sensors sound,
-    then a section for the parameters -->
-
-
-
-      <div id="trigger-sound" class="p1">
-        <h2>Trigger a Sound</h2>
-        <div id="sensor-info-trig"></div>
-
-        <h3>Parameters</h3>
-        <div id="trigger-sliders" class="rnbo-parameter-sliders">
-          <em id="no-param-label-trig">No parameters</em>
-        </div>
-
         <div id="sounds-trig" class="sounds">
-          <h3>Trigger Sound Selection</h3>
           <em id="no-samples-label-trig">No Samples Detected</em>
           <div id="sample-group">
             <div class="rnbo-clickable-keyboard" id="trig-test"></div> 
             <select id="trig-dropdown"></select>
+            
+          </div>
+          <div id="trig-sliders-main" class="sliders-box-trig-loop">
+            <div class="vertical-slider-container">
+              <input type="range" id="vol-trig" class="volume-slider">
+              <span id="vol-trig-label"><h2>Vol</h2></span>
+            </div>
+            <div class="two-sliders-on-top">
+              <input type="range" class="threshold-visualization">
+              <div id="on-top-of">
+                <div id="threshold-track"><input type="range" class="threshold-slider" id="threshold-slider"></div>
+                <div id="threshold-arrow"><input type="range" class="threshold-slider-arrow"></div>
+              </div>
+            </div>
+          </div>
+          <div id="labels">
+            <span id="thresh-label"><h2>Threshold</h2></span>
           </div>
         </div>
-        </br>
       </div>
-
+      
     </br>
-
-
-      <div id="loop-sound" class="p1">
-        <h2>Loop a Sound</h2>
-        <div id="sensor-info-loop"></div>
-
-        <h3>Parameters</h3>
-        <div id="loop-sliders" class="rnbo-parameter-sliders">
-          <em id="no-param-label-loop">No parameters</em>
+    </br>
+    </br>
+      <h1>LOOP</h1>
+      <div id="connected-to-loop" class="connected-to"><strong>connected to:</strong></div>
+      <div id="loop-sound" class="instrument"> 
+        <div class="connect-wash">
+          <div class="dynamicbtn" id="iconnect">
+            <button id="loop-connect" class="connectbtn" onclick="scanToConnect()">Connect</button>
+          </div>
         </div>
 
         <div id="sounds-loop" class="sounds">
-          <h3>Loop Sound Selection</h3>
           <em id="no-samples-label-loop">No Samples Detected</em>
           <div id="sample-group">
             <div class="rnbo-clickable-keyboard" id="loop-test"></div> 
             <select id="loop-dropdown"></select>
+            
+          </div>
+          <div id="trig-sliders-main" class="sliders-box-trig-loop">
+            <div class="vertical-slider-container">
+              <input type="range" id="vol-sens" class="volume-slider">
+              <span id="vol-sens-label"><h2>Vol</h2></span>
+            </div>
+            <div class="two-sliders-on-top">
+              <input type="range" class="sensitivity-visualization">
+              <input type="range" class="sensitivity-slider">
+            </div>
           </div>
         </div>
-        </br>
+        <div id="labels">
+          <span id="sens-label"><h2>Sensitivity</h2></span>
+        </div>
       </div>
 
-
-      <!-- <div id="rnbo-parameter-sliders">
-        <em id="no-param-label">No parameters</em>
-      </div> -->
-
-      <!-- <h2>Sounds</h2>
-
-      <div id="sounds" class="sounds">
-        <div>
-          <h3>Trig. Sound</h3>
-          <select id="trig-dropdown"></select>
-        </div>
-        <em id="no-samples-label">No Samples Detected</em>
-        <div>
-          <h3>Cont. Sound</h3>
-          <select id="cont-dropdown"></select>
-        </div>
-      </div> -->
-
-
-
-    <!-- <div id="drop-area">
-      <form class="my-form">
-        <p>Upload a file with the file dialog or by dragging and dropping a .wav file onto the dashed region</p>
-        <input type="file" id="fileElem" accept="audio/wav" onchange="handleDrop(this.files, device)">
-        <label class="button" for="fileElem">Select some files</label>
-      </form>
-    </div> -->
-
-    <!-- <div id="rnbo-inports">
-        <h2>Inports</h2>
-        <em id="no-inports-label">No inports available</em>
-        <form id="inport-form" className="inport">
-            <div className="inport-input">
-                <select id="inport-select"></select>
-                <input id="inport-text" type="text"></input>
-                <input id="inport-submit" className="smallButton" type="submit" value="Send"/>
-            </div>
-        </form>
-    </div> -->
-    <!-- <div id="rnbo-console">
-      <h2>Outports</h2>
-      <em id="no-outports-label">No outports available</em>
-      <div id="rnbo-console-div">
-        <p id="rnbo-console-readout">Waiting for messages...</p>
-        <em id="rnbo-console-description">Check the developer console for more messages from the RNBO device</em>
-      </div>
-    </div> -->
-    <!-- <div id="rnbo-presets">
-      <h2>Presets</h2>
-      <em id="no-presets-label">No presets defined</em>
-      <select id="preset-select"></select>
-    </div> -->
-    
-    <!-- </div> -->
+    </main>
+    <footer>
+      <p>this is my footer</p>
+    </footer>
   </div>
-
-
-
+</body>
 
   <!-- Javascript files-->
-  <script src='https://g200kg.github.io/webaudio-tinysynth/webaudio-tinysynth.js'></script>
+  <script src="./classSlider.js"></script>
+  <script src="./classSensor.js"></script>
   <script src="./common.js"></script>
   <script src="./midiBLEdecoder.js"></script>
   <!-- <script src="./blerx.js"></script> -->
@@ -207,5 +172,4 @@
   <!-- <script type="text/javascript" src="./app.js"></script> -->
   
   
-</body>
 </html>
