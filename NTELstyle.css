@@ -577,6 +577,68 @@ p {
   /* border: 2px solid var(--primary-l); */
 }
 
+.map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: 100%;
+  height: fit-content;
+  /* padding: 25px; */
+  /* background-color: var(--text); */
+  border-radius: 50px;
+}
+
+.education-map {
+  width: 400px;
+  height: 600px;
+  background-color: var(--accent-ll);
+  border: 30px solid var(--secondary-l);
+  border-radius: 50px;
+}
+
+.lesson-buttons-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 4px solid black; */
+  width: 400px;
+  height: 600px;
+
+}
+
+.lesson-button {
+  position: absolute;
+  font-family: var(--heading-other);
+  color: var(--text);
+  font-size: 25px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  width: 100px;
+  height: 70px;
+  border-radius: 25px;
+  z-index: 5;
+  /* background-color: var(--primary); */
+  border: 6px solid var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(var(--text) 0, var(--text) 50%, var(--primary) 0, var(--primary) 100%);
+  background-repeat: no-repeat;
+  background-size: 300% 500%;
+  background-position: -0% 0%;
+  transition: .3s ease;
+
+}
+
+.lesson-button:hover {
+  background-position: 50% 33%;
+  border: 6px solid var(--primary);
+  color: var(--secondary-l)
+
+}
+
 .click-here {
   position: fixed;
   z-index: 100;
@@ -596,8 +658,9 @@ p {
   background-color: var(--secondary);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
-  padding-top: 0px;
+  padding-top: 20px;
   padding-left: 5px ;
+
 }
 
 .sidebar a {
@@ -616,7 +679,8 @@ p {
 .sidebar a:hover {
   color: var(--primary);
   background-color: var(--background);
-  transition: .2s ease-out;
+  border-radius: 25px;
+  transition: .2s;
 }
 
 .menu {
