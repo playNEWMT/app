@@ -150,6 +150,10 @@ class Slider {
         if (this.id === "user_Organic_Modes") {
             label = document.getElementById("grain-modes-label");
         }
+        if (this.id === "tempo") {
+            label = document.getElementById('tempo-label');
+            console.log("hi"); 
+        }
 
 
         slider.setAttribute("name", this.name);
@@ -170,7 +174,7 @@ class Slider {
                 newPosition = 10 - (newValue * 0.2),
                 percentage = (value - slider.min) / (slider.max - slider.min),
                 progress = percentage * 100;
-            let labelText = slider.value.slice(0,4);
+            let labelText = slider.value.slice(0,3);
             // labelText = labelText.toFixed(1);
             label.innerHTML = `<span>${labelText}</span>`;
             label.style.left = `calc(${newValue}% + (${newPosition}px))`;

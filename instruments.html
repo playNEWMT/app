@@ -111,7 +111,7 @@
       <div class="warning-container">
         <div class="warning-icon">!</div>
         <div class="warning-bubble">
-          To use web MIDI in combination to web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Sticks</a> to use our instruments.
+          To use web MIDI in combination to web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 Wearable Music Sensors [e.g. an <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Stick</a>] to use our instruments.
         </div>
       </div>
 
@@ -123,7 +123,10 @@
             <h2>Sonic Introduction</h2>
             <img class="instrument-item-main-icon" src="./media/sonicicon.svg" style="rotate:10deg;">
           </div>
-          <p>Here is how to participate for personal development</p>
+          <p>
+            Sonic Introduction guides students into the world of digital music creation by introducing two instruments, tap and loop, that reflect two different approaches to the creation of sound.
+
+          </p>
         </a>
 
         <a class="instrument-item-main" href="./rainstick.html" aria-label="Play Rainstick">
@@ -132,7 +135,9 @@
             <img class="instrument-item-main-icon" src="./media/rainstick2.svg" style="rotate:-10deg;">
           </div>
 
-          <p>Here is how to participate for personal development</p>
+          <p>
+            Rainstick uses a sensor to control audio playback. Just as in an acoustic rainstick where grains flow with tilt, the digital version plays short audio "grains" in response to tilting a sensor.
+          </p>
         </a>
 
         <a class="instrument-item-main" href="./wearablejazz.html" aria-label="Play Wearable Jazz">
@@ -140,7 +145,9 @@
             <h2>Wearable Jazz</h2>
             <img class="instrument-item-main-icon" src="./media/mainWJicon.svg" style="rotate:10deg;">
           </div>
-          <p>Here is how to participate for personal development</p>
+          <p>
+            Wearable Jazz is a virtual ensemble made up of different instruments or effects that can be controlled by up to three sensors. Sensors can control <em>Drums and Chords</em>, <em>Melody</em>, and <em>Effects</em>.
+          </p>
         </a>
 
         <a class="instrument-item-main" href="./soundboard.html" aria-label="Play Soundboard">
@@ -148,15 +155,48 @@
             <h2>Soundboard</h2>
             <img class="instrument-item-main-icon" src="./media/soundboardicon.svg" style="rotate:-10deg;">
           </div>
-          <p>Here is how to participate for personal development</p>
+          <p>
+            Soundboard is designed for the <em>Sports Orchestra</em> Lesson of our curriculum. It allows teachers to play five different baseball related sounds in order to be the "conductor" or the sports orchestra.
+          </p>
         </a>
       </div>
 
 
-      <div class="project-description">
-        <h3>Project Description</h3>
+      <div class="project-description instrument-overview">
+        <h3>Indepth Instrument Overview</h3>
+        <p>These instruments can be used stand-alone, or one can open multiple tabs of our instrument and connect sensors to instruments across tabs to achieve more complex behavior.
+          For example, "<em>Tap</em>", one half of Sonic Introduction, only works on one axis of the sensor at a time. However, if there are two instances of Tap open, and connected to the same sensor, one can play a two different sounds by moving a sensor along two different axis.
+          The possibilties open up from there. Rainstick and Loop can be combined to create ambient soundscapes, or three different instances of rainstick can form a tripple axis sound generating experience. 
+
+        </p>
+        <h4 class="project-description-inner-h4">Sonic Introduction</h4>
         <p>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          Sonic Introduction is two intruments in one. Each explore different paradigms in music making: the one-shot, and the loop. A one-shot is meant to only play once at a specified time, whereas a loop plays continously with the choice to fade it in or out depending on the context.
+
+          </br>
+          1. <em>Tap: Play a sound once</em>
+          </br>
+          Use your sensor to initiate the playback of a sound. You can choose which sound to play, as well as the threshold of tilt or movement required to activate it
+          </br>
+          2. <em>Loop: Play a sound forever</em>
+          </br>
+          Looping is an important technique in digital music, since it allows sounds of any length to play forever. With this instrument, the sensor controls the loudness of the sound, but the loop is always playing behind the scenes, even if you don’t hear it.
+        </p>
+
+        <h4 class="project-description-inner-h4">Rainstick</h4>
+        <p>
+          This digital Rainstick closely emulates an acoustic one; however, the user is able to choose what the grains sound like from a bank of sounds. Tilt the sensor to activate the Rainstick. The steeper the tilt, the faster these sounds play. Users can customize the maximum rate at which the grains play, select the number of audio grains, and change their size and pitch. You can even introduce different kinds of randomization to more closely simulate the physical attributes of a real rainstick.
+        </p>
+
+        <h4 class="project-description-inner-h4">Wearable Jazz</h4>
+        <p>
+          Wearable Jazz contains three parts that students can control with one, two, or three sensors. Each of these parts are different roles in a musical ensemble:
+          </br>
+          <em>- The Drum & Chord Sensor</em> makes the sound of a bass and snare drum and sets the mood by changing musical chords.
+          </br>
+          <em>- The Melody Sensor</em> plays notes that match the chord. A probability control affects how often notes will be played.
+          </br>
+          <em>- The Sound Effects Sensor</em> lets you change how our music sounds, adding rhythmic effects to the music and allowing selection of filtering, echo, or glitch effects that change the sound of the whole ensemble.
         </p>
       </div>
       

@@ -118,6 +118,12 @@ function makeSliders(device) {
         let container = null;
         let type = null;
 
+        if (param.name === "tempo") {
+            container = document.getElementById('tansport-tempo');
+            type = 'paramlabeled';
+            console.log("hi")
+        }
+
         if (param.name === "sensor_drums"){
             container = document.getElementById('connected-to-drums');
             type = 'sensor';
