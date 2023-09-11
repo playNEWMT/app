@@ -182,6 +182,8 @@ function removeOverlay() {
     overlayElements.forEach(overlay => {
         overlay.style.display = 'none';
     });
+
+    openSS();
 }
 
 function setDefaults() {
@@ -346,7 +348,6 @@ async function connectToDevice(device) {
     } 
 
     removeOverlay();
-    openSS();
 
     return;
   }

@@ -63,7 +63,7 @@
       <button class="openbtnSS" onclick="toggleSS()"> > </button>
       <button class="openbtninfo" onclick="toggleInfo()">?</br> > </button>
       <p>
-        <a href="./index.html">Home</a> &gt; <a href="./instrumentsmain.html">Instruments</a> &gt; <a href="./sonicintro.html">Sonic Introduction</a>
+        <a href="./index.html">Home</a> &gt; <a href="./instruments.html">Instruments</a> &gt; Wearable Jazz
       </p>
     </header>
     <main>
@@ -81,11 +81,14 @@
 
 
       <div id="wearable-jazz-main" class="instrument"> 
+
         <div class="connect-wash">
+          <button class="wash-close-btn" onclick="removeOverlay()">x</button>
           <div class="dynamicbtn" id="iconnect">
             <button id="trig-connect" class="connectbtn" onclick="scanToConnect()">Connect</button>
           </div>
         </div>
+
         <div id="drum-main" class="wearable-jazz-part">
           <div id="connected-to-drums" class="connected-to-WJ"><h2>Drums</h2>&nbsp;&nbsp;<strong>connected to:</strong></div>
           <div id="drums-ui" class="wearable-jazz-ui-elements">

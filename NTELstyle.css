@@ -1134,6 +1134,18 @@ p {
   z-index: 94;
 }
 
+.wash-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 4%;
+  background: transparent;
+  /* border: none; */
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--accent-ll);
+  /* border: 2px solid #6cbbaa; */
+}
+
 .sounds {
   text-align: center;
   display: flex;
