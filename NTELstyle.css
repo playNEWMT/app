@@ -100,7 +100,7 @@ footer {
   width: 27%;
   /* margin-left: -10px; */
   /* border: 2px solid green; */
-  line-height: 1.5;
+  line-height: 1.9;
 }
 
 .footer-contacts {
@@ -241,6 +241,23 @@ p {
   box-sizing: border-box;
 }
 
+.logo-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  /* border: 2px solid #6cbbaa; */
+  overflow: visible;
+  /* margin-bottom:-20px; */
+}
+
+.logo-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Change this line */
+}
 .mission-statement {
   border: 10px solid var(--accent-ll);
   background: radial-gradient(circle, var(--accent-l) 0%, var(--accent-l) 55%, var(--accent-ll) 55%, var(--accent-ll) 100%);
@@ -261,6 +278,7 @@ p {
   font-family: var(--heading-other);
   font-weight: 600;
   font-size: 1.2em;
+  line-height: 1.8;
 }
 
 .warning-container {
@@ -330,6 +348,15 @@ p {
   font-family: var(--textfont);
   font-size: 18px;
   line-height: 2;
+}
+
+.project-description a:hover {
+  color: var(--primary);
+  transition: .1s ease;
+}
+
+.project-description a:active {
+  color: var(--accent);
 }
 
 .citations > h3 {
@@ -402,6 +429,7 @@ p {
   border: 8px solid var(--secondary-l);
   border-radius: 25px;
   padding: 20px;
+  padding-bottom: 5px;
   /* border: 2px solid #6cbbaa; */
 }
 
