@@ -33,6 +33,11 @@ function isNotChrome() {
   return !/chrome/.test(userAgent) && !/chromium/.test(userAgent);
 }
 
+function closeWarning() {
+  const warningPopup = document.getElementById('warning-popup');
+  warningPopup.style.display = 'none';
+}
+
 window.addEventListener('load', function() {
   if (isNotChrome()) {
     const warningPopup = document.createElement('div');
@@ -42,8 +47,12 @@ window.addEventListener('load', function() {
     warningPopup.style.display = 'block';
     warningPopup.innerHTML = '<h4>Your current browser is not supported. Please use <a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a> for the best experience.</h4>';
 
-    document.body.appendChild(warningPopup);
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.addEventListener('click', closeWarning);
+    warningPopup.appendChild(closeButton);
 
+    document.body.appendChild(warningPopup);
   }
 });
 
@@ -106,6 +115,8 @@ function toggleInfo() {
     infoButton.innerHTML = '?<br>&gt'
   
     infoMenu.style.width = "0";
+    infoMenu.style.paddingLeft = "0px"
+    infoMenu.style.paddingRight = "0px"
     // document.getElementById("main-container").style.marginLeft= "0";
     infoMenu.classList.remove('open');
   } else {
@@ -113,10 +124,12 @@ function toggleInfo() {
     let fontSizeInfo = 25;
     document.documentElement.style.setProperty('--responsive-font-size-info', `${fontSizeInfo}px`);
 
-    infoButtonMargin = 260;
+    infoButtonMargin = 315;
     infoButton.innerHTML = '?<br>&lt'
   
-    infoMenu.style.width = "250px";
+    infoMenu.style.width = "290px";
+    infoMenu.style.paddingLeft = "10px"
+    infoMenu.style.paddingRight = "10px"
   
     // document.getElementById("main-container").style.marginLeft = "250px";
     infoMenu.classList.add('open');
@@ -381,6 +394,7 @@ async function disconnectFromDevice(device) {
 
   updateConnectedDevicesList();
   checkIfAllSensorsAreDisconnected();
+  openSS();
 }
 
 /** Connecting to given device. */

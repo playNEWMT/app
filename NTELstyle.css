@@ -880,13 +880,44 @@ p {
   background-color: var(--background);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
-  padding-top: 60px;
+  padding-top: 10px;
 }
 
 .info-sidebar > p {
-  line-height: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-family: var(--textfont);
+  font-size: 18px;
+  line-height: 1.8;
+  background-color: var(--secondary-l);
+  border-radius: 12.5px;
   padding: 10px;
 }
+
+.info-sidebar > h1 {
+  font-family: var(--heading-other);
+  font-size: 22px;
+}
+
+.info-sidebar > h1::after {
+  background: var(--accent-l);
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 4px;
+  left: 0;
+  /* position: absolute; */
+  width: 100px;
+}
+
+.info-sidebar > h2 {
+  font-family: var(--textfont);
+  color:var(--accent);
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: -10px;
+}
+
 
 .sensor-sidebar {
   height: 100%;
@@ -1066,7 +1097,7 @@ p {
   margin-top: -40px;
   position: relative;
   overflow: hidden;
-  height: 20vh;
+  height: 35vh;
   /* background: var(--secondary); */
   
 }
