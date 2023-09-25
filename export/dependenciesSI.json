@@ -1,7 +1,7 @@
 [
   {
-    "id": "b_access_granted_wav",
-    "file": "media\\access granted.wav"
+    "id": "b_arpeggio_wav",
+    "file": "media\\arpeggio.wav"
   },
   {
     "id": "b_bark_wav",
@@ -50,6 +50,30 @@
   {
     "id": "b_baseball_youre_out_wav",
     "file": "media\\baseball_youre_out.wav"
+  },
+  {
+    "id": "b_basketball_announcer_wav",
+    "file": "media\\basketball_announcer.wav"
+  },
+  {
+    "id": "b_basketball_bounce_wav",
+    "file": "media\\basketball_bounce.wav"
+  },
+  {
+    "id": "b_basketball_catch_wav",
+    "file": "media\\basketball_catch.wav"
+  },
+  {
+    "id": "b_basketball_dribble_wav",
+    "file": "media\\basketball_dribble.wav"
+  },
+  {
+    "id": "b_basketball_rim_wav",
+    "file": "media\\basketball_rim.wav"
+  },
+  {
+    "id": "b_basketball_shoe_squeak_wav",
+    "file": "media\\basketball_shoe_squeak.wav"
   },
   {
     "id": "b_bird_wav",
@@ -186,6 +210,10 @@
   {
     "id": "b_snare_wav",
     "file": "media\\snare.wav"
+  },
+  {
+    "id": "b_sports_cheering_wav",
+    "file": "media\\sports_cheering.wav"
   },
   {
     "id": "b_step_wav",

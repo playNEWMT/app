@@ -58,5 +58,33 @@
   {
     "id": "b_baseball_youre_out_wav",
     "file": "media\\baseball_youre_out.wav"
+  },
+  {
+    "id": "b_basketball_announcer_wav",
+    "file": "media\\basketball_announcer.wav"
+  },
+  {
+    "id": "b_basketball_bounce_wav",
+    "file": "media\\basketball_bounce.wav"
+  },
+  {
+    "id": "b_basketball_catch_wav",
+    "file": "media\\basketball_catch.wav"
+  },
+  {
+    "id": "b_basketball_dribble_wav",
+    "file": "media\\basketball_dribble.wav"
+  },
+  {
+    "id": "b_basketball_rim_wav",
+    "file": "media\\basketball_rim.wav"
+  },
+  {
+    "id": "b_basketball_shoe_squeak_wav",
+    "file": "media\\basketball_shoe_squeak.wav"
+  },
+  {
+    "id": "b_sports_cheering_wav",
+    "file": "media\\sports_cheering.wav"
   }
 ]

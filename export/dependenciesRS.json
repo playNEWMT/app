@@ -1,9 +1,5 @@
 [
   {
-    "id": "b_access_granted_wav",
-    "file": "media\\access granted.wav"
-  },
-  {
     "id": "b_bubbles_wav",
     "file": "media\\bubbles.wav"
   },
@@ -110,5 +106,9 @@
   {
     "id": "b_zip_wav",
     "file": "media\\zip.wav"
+  },
+  {
+    "id": "b_arpeggio_wav",
+    "file": "media\\arpeggio.wav"
   }
 ]

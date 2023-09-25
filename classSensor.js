@@ -40,7 +40,7 @@ class Sensor {
 
         } catch (error) {
             console.log(`ERRORCODE: ` + error);
-            printToConsole(`There has been an error in connecting to ${this.name}!` + "\n" + `Please turn off ${this.name}, disconnect it, turn it back on, and reconnect it`);
+            printToConsole(`There was an error connecting to ${this.name}!` + "\n" + `Please turn off ${this.name}, disconnect it, turn it back on, and reconnect it`);
         }
 
 
