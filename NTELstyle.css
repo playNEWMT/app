@@ -698,7 +698,7 @@ p {
 .c-banner {
   height: 20%;
   position:absolute;
-  scale: 1.8;
+  transform: scale(1.8);
   margin-top: -0px;
   /* margin-bottom: 40px; */
   z-index: 0;
@@ -792,7 +792,7 @@ p {
 }
 
 .instrument-item-main-icon {
-  scale: 2.5;
+  transform: scale(2.5);
   margin-left: 42px;
   margin-top: 38px;
   height:fit-content;
@@ -1577,9 +1577,9 @@ input[type="range"].volume-slider {
   /* background-position: center; */
   width: 18px;
   height: 21px;
-  rotate: 90deg;
+  transform: rotate(90deg) scale(var(--ear-scale, 3.5));
   margin-bottom: 15px;
-  scale: var(--ear-scale, 3.5);
+  
 
   /* background-color: var(--primary); */
   /* border-radius: 50%; */
@@ -2020,7 +2020,7 @@ input[type="range"].effect-slider {
   margin-left: -10px;
   height: fit-content;
   width: 100%;
-  rotate: -70deg;
+  transform: rotate(-70deg);
   /* border: solid 4px #6cbbaa; */
 }
 
@@ -2060,7 +2060,7 @@ input[type="range"].dj-hand-slider {
   /* margin-top: 30%; */
   border-bottom: 4px solid var(--accent-l);
   border-radius: 50px;
-  rotate: -45deg;
+  transform: rotate(-45deg);
     /* border: solid 4px #6cbbaa; */
 
 }
@@ -2074,7 +2074,7 @@ input[type="range"].dj-hand-slider {
   background-image: url(./media/dj-hand.svg);
   background-size: cover;
   background-position: center center;
-  rotate: 90deg;
+  transform: rotate(90deg);
   margin-top: -90px;
 
 }
