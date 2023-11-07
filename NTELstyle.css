@@ -556,6 +556,35 @@ p {
   width: 400px;
 }
 
+.sensor-setup-button {
+  text-align: center;
+  border-radius: 25px;
+  text-decoration: none;
+  overflow: hidden;
+  position: relative;
+  display: block;
+  flex-basis: calc(50% - 0.83334em);
+  padding: 25px;
+  margin-top: 30px;
+  background-color: #ffece7ff;
+  border: 10px solid var(--secondary-l);
+  background-image: radial-gradient(#ee3b25 0, #ee3b25 50%, #ffece7ff 0, #ffece7ff 100%);
+  background-repeat: no-repeat;
+  background-size: 250% 500%;
+  background-position: -50% 25%;
+  transition: background-position .3s ease;
+}
+
+.sensor-setup-button > h1 {
+  color: var(--text);
+  font-size: 55px;
+}
+
+.sensor-setup-button:hover {
+  background-position: 50% 33%;
+  color: var(--secondary-l);
+}
+
 .two-buttons-next-to {
   display: flex;
   flex-direction: row;
