@@ -39,8 +39,19 @@ class Sensor {
             printToConsole(`Connected to ${this.name}!`);
 
         } catch (error) {
-            console.log(`ERRORCODE: ` + error);
-            printToConsole(`There was an error connecting to ${this.name}!` + "\n" + `Please turn off ${this.name}, disconnect it, turn it back on, and reconnect it`);
+            if (error.name === 'NotFoundError') {
+                console.error('Device not found. Please make sure it is turned on and in range.');
+                printToConsole('Device not found. Please make sure it is turned on and in range.');
+            } else if (error.name === 'SecurityError') {
+                console.error('Security error. Make sure your browser has necessary permissions.');
+                printToConsole('Security error. Make sure your browser has necessary permissions.');
+            } else if (error.name === 'NotAllowedError') {
+                console.error('Permission denied. Please allow browser access to Bluetooth devices.');
+                printToConsole('Permission denied. Please allow browser access to Bluetooth devices.');
+            } else {
+                console.error('An error occurred while connecting to the device:', error);
+                printToConsole('An error occurred while connecting to the device. See console for details.');
+            }
         }
 
 
@@ -73,7 +84,7 @@ class Sensor {
             this.container = 'connected-devices-1';
         } else if (this.name.includes("2")) {
             this.channel = 2;
-            this.shortName = this.name;
+            this.shortName = 'Sensor 2';
             // this.color = ['3px solid rgb(38, 34, 255)', '#2622ff33'];
             this.container = 'connected-devices-2';
         } else if (this.name.includes("3")) {
