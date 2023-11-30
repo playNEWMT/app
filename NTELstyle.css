@@ -566,6 +566,7 @@ p {
   flex-basis: calc(50% - 0.83334em);
   padding: 25px;
   margin-top: 30px;
+  margin-bottom: 30px;
   background-color: #ffece7ff;
   border: 10px solid var(--secondary-l);
   background-image: radial-gradient(#ee3b25 0, #ee3b25 50%, #ffece7ff 0, #ffece7ff 100%);
