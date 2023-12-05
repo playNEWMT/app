@@ -104,6 +104,8 @@ async function setup() {
 
     //makeDropArea(device, context);
 
+    removeLoading(device);
+
     document.body.onclick = () => {
         context.resume();
     }
@@ -111,6 +113,27 @@ async function setup() {
     // Skip if you're not using guardrails.js
     if (typeof guardrails === "function")
         guardrails();
+}
+
+function removeLoading(device) {
+
+    const param = device.parametersById.get(`onload`);
+    param.changeEvent.subscribe((e) => {
+
+        if(e === 1) {
+            loadingIcon = document.querySelectorAll('.loading-icon');
+
+            loadingIcon.forEach(icon => {
+                icon.style.display = 'none';
+            });
+
+            overlayElements = document.querySelectorAll('.connect-wash');
+
+            overlayElements.forEach(overlay => {
+                overlay.style.backgroundColor = '#230543df';
+            });
+        }
+    });
 }
 
 function makeSliders(device) {
@@ -139,6 +162,10 @@ function makeSliders(device) {
         if (param.name === "user_p1_Drums_Volume"){
             container = document.getElementById('vol-drums');
             type = 'vol';
+        }
+        if (param.name === "hat_toggle"){
+            container = document.getElementById('speed-hat');
+            type = 'speed';
         }
 
 

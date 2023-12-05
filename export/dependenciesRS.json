@@ -1,5 +1,9 @@
 [
   {
+    "id": "b_arpeggio_wav",
+    "file": "media\\arpeggio.wav"
+  },
+  {
     "id": "b_bubbles_wav",
     "file": "media\\bubbles.wav"
   },
@@ -44,6 +48,10 @@
     "file": "media\\fast bubbles.wav"
   },
   {
+    "id": "b_hand_drum_loop_wav",
+    "file": "media\\hand drum loop.wav"
+  },
+  {
     "id": "b_music_box_wav",
     "file": "media\\music box.wav"
   },
@@ -58,10 +66,6 @@
   {
     "id": "b_plucking_wav",
     "file": "media\\plucking.wav"
-  },
-  {
-    "id": "b_rainbow_wav",
-    "file": "media\\rainbow.wav"
   },
   {
     "id": "b_rainstick_wav",
@@ -106,9 +110,5 @@
   {
     "id": "b_zip_wav",
     "file": "media\\zip.wav"
-  },
-  {
-    "id": "b_arpeggio_wav",
-    "file": "media\\arpeggio.wav"
   }
 ]

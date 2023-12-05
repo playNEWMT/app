@@ -113,6 +113,8 @@ async function setup() {
 
     //makeDropArea(device, context);
 
+    removeLoading(device);
+
     document.body.onclick = () => {
         context.resume();
     }
@@ -122,19 +124,24 @@ async function setup() {
         guardrails();
 }
 
-function loadRNBOScript(version) {
-    return new Promise((resolve, reject) => {
-        if (/^\d+\.\d+\.\d+-dev$/.test(version)) {
-            throw new Error("Patcher exported with a Debug Version!\nPlease specify the correct RNBO version to use in the code.");
+function removeLoading(device) {
+
+    const param = device.parametersById.get(`onload`);
+    param.changeEvent.subscribe((e) => {
+
+        if(e === 1) {
+            loadingIcon = document.querySelectorAll('.loading-icon');
+
+            loadingIcon.forEach(icon => {
+                icon.style.display = 'none';
+            });
+
+            overlayElements = document.querySelectorAll('.connect-wash');
+
+            overlayElements.forEach(overlay => {
+                overlay.style.backgroundColor = '#230543df';
+            });
         }
-        const el = document.createElement("script");
-        el.src = "https://c74-public.nyc3.digitaloceanspaces.com/rnbo/" + encodeURIComponent(version) + "/rnbo.min.js";
-        el.onload = resolve;
-        el.onerror = function(err) {
-            console.log(err);
-            reject(new Error("Failed to load rnbo.js v" + version));
-        };
-        document.body.append(el);
     });
 }
 

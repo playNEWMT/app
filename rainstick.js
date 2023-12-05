@@ -107,6 +107,8 @@ async function setup() {
 
     //makeDropArea(device, context);
 
+    removeLoading(device);
+
     document.body.onclick = () => {
         context.resume();
     }
@@ -114,6 +116,27 @@ async function setup() {
     // Skip if you're not using guardrails.js
     if (typeof guardrails === "function")
         guardrails();
+}
+
+function removeLoading(device) {
+
+    const param = device.parametersById.get(`onload`);
+    param.changeEvent.subscribe((e) => {
+
+        if(e === 1) {
+            loadingIcon = document.querySelectorAll('.loading-icon');
+
+            loadingIcon.forEach(icon => {
+                icon.style.display = 'none';
+            });
+
+            overlayElements = document.querySelectorAll('.connect-wash');
+
+            overlayElements.forEach(overlay => {
+                overlay.style.backgroundColor = '#230543df';
+            });
+        }
+    });
 }
 
 function makeMIDIKeyboard(device, samples) {
@@ -154,7 +177,7 @@ function makeMIDIKeyboard(device, samples) {
 
     dropdown.addEventListener("change", (event) => {
         buf.value = event.target.value;
-        // console.log(event.target.value)
+        console.log(event.target.value)
     });
 
     const rstestdiv = document.getElementById("rs-test");

@@ -1,0 +1,90 @@
+[
+  {
+    "id": "b_baseball_bat_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_bat.wav"
+  },
+  {
+    "id": "b_baseball_catch_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_catch.wav"
+  },
+  {
+    "id": "b_baseball_cleats_walking_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_cleats_walking.wav"
+  },
+  {
+    "id": "b_baseball_fly_ball_left_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_fly_ball_left.wav"
+  },
+  {
+    "id": "b_baseball_foul_ball_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_foul_ball.wav"
+  },
+  {
+    "id": "b_baseball_next_up_to_bat_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_next_up_to_bat.wav"
+  },
+  {
+    "id": "b_baseball_runners_on_the_corners_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_runners_on_the_corners.wav"
+  },
+  {
+    "id": "b_baseball_running_on_dirt_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_running_on_dirt.wav"
+  },
+  {
+    "id": "b_baseball_safe_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_safe.wav"
+  },
+  {
+    "id": "b_baseball_skid_on_leaves_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_skid_on_leaves.wav"
+  },
+  {
+    "id": "b_baseball_slide_into_base_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_slide_into_base.wav"
+  },
+  {
+    "id": "b_baseball_strike_one_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_strike_one.wav"
+  },
+  {
+    "id": "b_baseball_strike_two_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_strike_two.wav"
+  },
+  {
+    "id": "b_baseball_that_ball_is_outa_here_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_that_ball_is_outa_here.wav"
+  },
+  {
+    "id": "b_baseball_youre_out_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\baseball_youre_out.wav"
+  },
+  {
+    "id": "b_basketball_announcer_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\basketball_announcer.wav"
+  },
+  {
+    "id": "b_basketball_bounce_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\basketball_bounce.wav"
+  },
+  {
+    "id": "b_basketball_catch_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\basketball_catch.wav"
+  },
+  {
+    "id": "b_basketball_dribble_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\basketball_dribble.wav"
+  },
+  {
+    "id": "b_basketball_rim_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\basketball_rim.wav"
+  },
+  {
+    "id": "b_basketball_shoe_squeak_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\basketball_shoe_squeak.wav"
+  },
+  {
+    "id": "b_sports_cheering_wav",
+    "file": "..\\..\\..\\..\\..\\..\\NEWMT\\sounds\\SB\\sports_cheering.wav"
+  }
+]

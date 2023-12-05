@@ -223,7 +223,7 @@ class Slider {
         const inputEvent = new Event('input');
         slider.dispatchEvent(inputEvent);
     }
-
+ 
     attachSensorUI() {
         const radioContainer = document.createElement('div'); // Create a div to hold radio buttons
         let xyz = ['Sensor 1', 'Sensor 2', 'Sensor 3'];

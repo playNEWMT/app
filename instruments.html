@@ -2,7 +2,7 @@
 <html lang="en" >
 <!-- Invisible things... -->
 <meta charset="UTF-8">
-<title>NTEL Home</title>
+<title>Instruments</title>
 
 <head>
   <link rel="icon" type="image/png" href="./media/NEWMTfavicon.png">
@@ -19,24 +19,25 @@
     <li>
       <a href="./instruments.html">Instruments</a>
       <ul class="submenu">
-        <li><a href="./rainstick.html">Rainstick</a></li>
         <li><a href="./sonicintro.html">Sonic<br>Introduction</a></li>
+        <li><a href="./rainstick.html">Rainstick</a></li>
         <li><a href="./wearablejazz.html">Wearable<br>Jazz</a></li>
         <li><a href="./soundboard.html">Sound Board</a></li>
       </ul>
     </li>
     <li><a href="./curriculum.html">Curriculum</a></li>
+    <li><a href="./setupsensor.html">Sensor Resources</a></li>
   </ul>
 </div>
 
 <div id="sensorSidebar" class="sensor-sidebar">
   <div class="sidebarbuttons">
-    <div class="dynamicbtn" id="iconnect">
+    <div class="dynamicbtn" id="iconnect" style="width:100%;">
       <button id="sensor-connect" class="connectbtnsidebar" onclick="scanToConnect()">Connect</button>
     </div>
-    <div class="dynamicbtn" id="iconnect">
-      <button id="ibutton" class="connectbtnsidebar" onclick="scanToDisconnect()">Disconnect</button>
-    </div>
+    <!-- <div class="dynamicbtn" id="iconnect" style="width:100%;">
+      <button id="sensor-disconnect" class="connectbtnsidebar" onclick="scanToDisconnect()">Disconnect</button>
+    </div> -->
   </div>
 
   <div id="connected-devices-1"></div>
@@ -83,49 +84,34 @@
           <div class="connection-banners">
             <img src="./media/connectionbanner1.svg" class="c-banner" style="height:auto;">
 
-            <div class="dynamicbtn" id="iconnect" style="height:35%; z-index: 5; ">
-              <button id="sensor-connect" class="connectbtnsidebar" style="border-width: 4px; border-radius: 25px; scale: 1.2;" onclick="scanToConnect()">Connect</button>
+            <div class="dynamicbtn" id="iconnect" style="height:20%; z-index: 5; ">
+              <button id="sensor-connect" class="connectbtnsidebar" style="border-width: 4px; border-radius: 25px; scale: 1.3; background: var(--primary); border-bottom: 4px solid var(--secondary);" onclick="scanToConnect()">Connect</button>
             </div>
             </br>
 
             <!-- <img src="./media/connectionbanner1.svg" class="c-banner" style="margin-top: 0px;"> -->
             
-            <div class="dynamicbtn" id="iconnect" style="z-index: 5;">
+            <!-- <div class="dynamicbtn" id="iconnect" style="z-index: 5;">
               <button id="ibutton" class="connectbtnsidebar" style="border-width: 4px; border-radius: 25px; scale: 1.2;" onclick="scanToDisconnect()">Disconnect</button>
-            </div>
+            </div> -->
             <!-- <img src="./media/connectionbanner1.svg" class="c-banner" style="margin-top: -250px;"> -->
-
           </div>
 
-
-          
           <div class="connection-instructions">
             <h3>Try connecting to a sensor!</h3>
             <ul>
               <li>Turn your sensor on and hit the connect button to pair your sensor.</li>
               <li>The Sensor Sidebar will open, showing you information about your sensor</li>
-              <li>In the Sensor Sidebar you can change the sensor's axis.</li>
+              <li>In the Sensor Sidebar you can change the sensor's axis and view it's orientation.</li>
               <li>Pressing the center button on your sensor will toggle the mode between Accelerometer and Gyroscope</li>
               <li>Accelerometer is for tilting and Gyroscope is for flicking</li>
               <li>Close the Sensor Sidebar by clicking the sensor button.</li>
-              <li>The disconnect button (also in the Sensor Sidebar) allows your to unpair a sensor.</li>
+              <li>Refresh your page to disconnect your sensor.</li>
               <li>(Note: <strong>You will need to connect on each instrument page</strong>)</li>
-              
             </ul>
-
           </div>
         </div>
-
       </div>
-
-
-      <div class="warning-container">
-        <div class="warning-icon">!</div>
-        <div class="warning-bubble">
-          To use web MIDI in combination to web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 Wearable Music Sensors [e.g. an <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Stick</a>] to use our instruments.
-        </div>
-      </div>
-
 
       <div class="all-instruments-main">
         <h1 style="font-size:45px; color:var(--primary); text-shadow: 3px 3px var(--text);">Our Instruments</h1>
@@ -172,7 +158,14 @@
         </a>
       </div>
 
-          <div class="project-description instrument-overview">
+      <div class="warning-container">
+        <div class="warning-icon">!</div>
+        <div class="warning-bubble">
+          To use web MIDI in combination to web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 Wearable Music Sensors [e.g. an <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Stick</a>] to use our instruments.
+        </div>
+      </div>
+
+      <div class="project-description instrument-overview">
         <h3>Indepth Instrument Overview</h3>
         <p>These instruments can be used stand-alone, or you can open multiple tabs of our instruments and connect sensors to instruments across tabs to achieve more complex behavior.
           For example, "<em>Tap</em>", one half of Sonic Introduction, only works on one axis of the sensor at a time. However, if there are two instances of Tap open in different tabs, connected to the same sensor on different axis, you can play a two different sounds by moving a sensor along the two axis.
