@@ -249,6 +249,7 @@ h1 {
   margin: 0;
   font-family: var(--heading1);
   letter-spacing: 0.1rem;
+
   font-weight: 800;
   text-align: center;
   /* font-size: 5em; */
@@ -899,6 +900,7 @@ p {
   /* background-color: var(--primary); */
   border: 6px solid var(--text);
   display: flex;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   background-image: radial-gradient(var(--text) 0, var(--text) 50%, var(--primary) 0, var(--primary) 100%);
@@ -913,6 +915,70 @@ p {
   background-position: 50% 33%;
   border: 6px solid var(--primary);
   color: var(--secondary-l)
+
+}
+
+.transcript-button {
+  font-family: var(--heading-other);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+  width: fit-content;
+  height: auto;
+  border-radius: 25px;
+  /* background-color: var(--primary); */
+  border: 4px solid var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(var(--accent-l) 0, var(--accent-l) 50%, var(--background) 0, var(--background) 100%);
+  background-repeat: no-repeat;
+  background-size: 300% 500%;
+  background-position: -0% 0%;
+  transition: .3s ease;
+
+}
+
+.transcript-button:hover {
+  background-position: 50% 33%;
+  border: 4px solid var(--text);
+
+}
+
+.slides-button {
+  font-family: var(--heading-other);
+  color: var(--text);
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+  width: fit-content;
+  margin-right: 6px;
+  height: auto;
+  border-radius: 25px;
+  /* background-color: var(--primary); */
+  border: 4px solid var(--accent-ll);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(var(--accent) 0, var(--accent) 50%, var(--accent-l) 0, var(--accent-l) 100%);
+  background-repeat: no-repeat;
+  background-size: 300% 500%;
+  background-position: -0% 0%;
+  transition: .3s ease;
+
+}
+
+.slides-button:hover {
+  background-position: 50% 33%;
+  border: 4px solid var(--text);
+  color: var(--background)
 
 }
 
