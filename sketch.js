@@ -65,6 +65,32 @@ let uID = 0;
 let bounds = 50;
 
 
+let wordArray = ["Sound", "Vibration", "Wave Length", "Amplitude", "Frequency", "Medium", "Pitch", "Echo", "Tilt", "Modulation", "Grains", "X-Axis", "Y-axis", "Z-axis"];
+let defArray = [
+    "A wave created by vibrating objects and moved through a medium from one location to another",
+    "A physical movement or oscillation about a reference point",
+    "The spatial period of a plane wave",
+    "Distance between the origin and crest",
+    "The number of cycles or vibrations per second",
+    "The material through which a wave travels",
+    "High or low sounds determined by its frequency",
+    "A sound or series of sounds caused by the reflection of sound waves from a surface back to the listener",
+    "Move or cause to move into a sloping position",
+    "The process of encoding information in a transmitted signal",
+    "Related to the texture of a sound, and includes such modulations as vibrato and tremolo. Splitting of a sound into multiple segments.",
+    "Horizontal- left to right line",
+    "Vertical- up and down line",
+    "3 dimensional coordinate plane- towards and away "
+];
+let soundImg; let vibrationImg; let waveLengthImg; let amplitudeImg; let frequencyImg; let mediumImg; let pitchImg; let echoImg; let tiltImg; let modulationImg; let grainsImg; let xaxisImg; let yaxisImg; let zaxisImg; 
+let imgArray = [soundImg, vibrationImg, waveLengthImg, amplitudeImg, frequencyImg, mediumImg, pitchImg, echoImg, tiltImg, modulationImg, grainsImg, xaxisImg, yaxisImg, zaxisImg];
+
+function preload() {
+    for ([index, img] in imgArray){
+        img = loadImage(`./media/m_${index}.png`);
+    };
+}
+
 function setup(){
     var myCanvas = createCanvas(windowWidth, windowHeight);
     let b = document.getElementById("idnameofdiv");
@@ -72,59 +98,32 @@ function setup(){
     let h = b.clientHeight;
     
     createP('');
-    sensorButton = createButton("add");
-    sensorButton.mousePressed(newEffect);
-    sensorButton.parent("idnameofdiv");
-
-
     colorButton = createButton(`${w}`);
     colorButton.mousePressed(changeAllColors)
     colorButton.parent("idnameofdiv")
     myCanvas.parent("idnameofdiv");
 
-    newVolumeCap(w,h);
+    newWordMatchTriplet();
 }
 
-function newModulator(w,h) {
+function newWordMatchTriplet(){
+
+}
+
+function newWord(w,h) {
     let s = new Modulator(w/2, h-50, 50);
     objectArray.push(s);
-    uID += 1;
 }
 
-function newVolumeCap(w,h) {
+function newDef(w,h) {
     let s = new VolumeCap(w/2, h-50, 50);
     objectArray.push(s);
     uID += 1;
 }
 
-function newSensor() {
-    let s = new Sensor(random(width - bounds), random(height - bounds), uID);
+function newImg(w,h) {
+    let s = new VolumeCap(w/2, h-50, 50);
     objectArray.push(s);
-    uID += 1;
-}
-
-function newSensor() {
-    let s = new Sensor(random(width - bounds), random(height - bounds), uID);
-    objectArray.push(s);
-    uID += 1;
-}
-
-function newEffect() {
-    let s = new Effect(random(width - bounds), random(height - bounds), uID);
-    objectArray.push(s);
-    uID += 1;
-}
-
-function newFeature() {
-    let s = new Feature(random(width - bounds), random(height - bounds), uID);
-    objectArray.push(s);
-    uID += 1;
-}
-
-function newGenerator() {
-    let g = new Generator(random(width - bounds), random(height - bounds), uID);
-    objectArray.push(g);
-    uID += 1;
 }
 
 function trashBlock() {
@@ -142,11 +141,6 @@ function mousePressed() {
     if (mouseButton === LEFT) {    
         for (block of objectArray){
             block.pressed();
-        }
-    } else if (mouseButton === RIGHT) {
-        for (block of objectArray){
-            //console.log(block.blockType, block.connected, "right connection:" + block.connectR, "left connection:" + block.connectL);
-            console.log(block.connected)
         }
     }
 }
@@ -185,9 +179,9 @@ function draw(){
             let other = objectArray[j];
             if (objectArray[i] != objectArray[j]){
 
-                objectArray[i].searchForConnection(other.x, other.y, other.w, other.h, other.blockType, other.uID, other.dragging, other.connectL, other.connectR);
-                objectArray[i].connect(other.x, other.y, other.w, other.h, other.uID, other.dragging, other.preConnectL, other.preConnectR, other.blockType, other.connectL, other.connectR);
-                objectArray[i].disconnect(other.uID, other.dragging);
+                objectArray[i].searchForMatch(other.x, other.y, other.w, other.h, other.blockType, other.uID, other.dragging, other.match);
+                objectArray[i].matchSuccess(other.x, other.y, other.w, other.h, other.uID, other.dragging, other.blockType);
+                objectArray[i].matchFailed(other.uID, other.dragging);
             }
             objectArray[i].shading()
             objectArray[i].show(other.blockType, other.uID);
@@ -196,7 +190,7 @@ function draw(){
     }
 }
 
-class Block {
+class Block{
     constructor(x, y, uID){
         this.x = x;
         this.y = y;
@@ -206,11 +200,7 @@ class Block {
 
         this.uID = uID;
         this.blockType = "default";
-        this.preConnectL = -1;
-        this.preConnectR = -1;
         this.connected = false;
-        this.connectL = -1;
-        this.connectR = -1;
 
         this.offsetX = 0;
         this.offsetY = 0;
@@ -282,43 +272,26 @@ class Block {
         this.blue = random(255);
     }
 
-    connect(oX, oY, oW, oH, ouID, oDrag, oPreconnectL, oPreconnectR, oT, oConnectL, oConnectR) {
+    matchSuccess(oX, oY, oW, oH, ouID, oDrag, oT, oMatched) {
         let onBlock = this.x < (oX + oW) && (this.x + this.w) > oX 
         && this.y < (oY + oH) && (this.y + this.h) > oY;
 
 
         if (onBlock && this.dragging === false && oDrag === false) {
 
-                if (ouID === this.preConnectL) {
+                if (ouID === this.uID) {
                     this.x = oX + oW;
                     this.y = oY;
                 
-    
-                    this.connected = true;
-                    this.connectL = ouID;
+                    this.matched = true;
                 }
-                if (oPreconnectR === this.uID){
-                    this.connected = true;
-                    this.connectL = ouID;
-                }
-            
-
-        
-                if (ouID === this.preConnectR) {
-                    this.x = oX - this.w;
-                    this.y = oY;
-        
-                    this.connected = true;
-                    this.connectR = ouID;
-                } 
-                if (oPreconnectL === this.uID){
-                    this.connected = true;
-                    this.connectR = ouID;
+                if (oMatched === true && ouID === this.uID){
+                    this.matched = true;
                 }
         }
     }
 
-    disconnect(ouID, oDrag) {
+    matchFailed(ouID, oDrag) {
         if (this.dragging === true){
             this.connectL = -1;
             this.connectR = -1;
@@ -461,328 +434,7 @@ class Effect extends Block {
     }
 }
 
-class Generator extends Block {
-    constructor(x, y, uID){
-        super(x, y, uID);
-        this.blockType = "generator";
-        this.w = 175;
-        this.h = 100;
 
-        this.red = 100;
-        this.blue = 235;
-        this.green = 65;
-    }
-
-
-    searchForConnection(oX, oY, oW, oH, oT, ouID, oDrag) {
-        let onBlock = this.x < (oX + oW) && (this.x + this.w) > oX 
-        && this.y < (oY + oH) && (this.y + this.h) > oY;
-
-        if ((oT === "feature") && onBlock
-        && oDrag) {
-            this.highlight = true;
-        } else if ((oT === "feature") && !onBlock
-        && oDrag){
-            this.highlight = false;
-        }
-
-        if (oT === "feature") {
-            if (this.dragging && onBlock){
-                this.preConnectL = ouID;
-            }
-        }
-
-        if (onBlock && ouID === this.preConnectL && this.dragging){
-            this.wiggling = true;
-        } else if (onBlock && ouID === this.preConnectL && this.dragging === false){
-            this.wiggling = false;
-        } else if (!onBlock && ouID === this.preConnectL){
-            this.wiggling = false;
-            this.preConnectL = -1;
-        }
-
-        
-        if ((oT === "effect" || oT === "volume") && onBlock
-        && oDrag) {
-            this.highlight = true;
-        } else if ((oT === "effect" || oT === "volume") && !onBlock
-        && oDrag){
-            this.highlight = false;
-        }
-
-        if ((oT === "effect" || oT === "volume")) {
-            if (this.dragging && onBlock){
-                this.preConnectR = ouID;
-            }
-        }
-
-
-        if (onBlock && ouID === this.preConnectR && this.dragging){
-            this.wiggling = true;
-        } else if (onBlock && ouID === this.preConnectR && this.dragging === false){
-            this.wiggling = false;
-        } else if (!onBlock && ouID === this.preConnectR){
-            this.wiggling = false;
-            this.preConnectR = -1;
-        }
-    }
-
-    show(oT, ouID) {
-        push();
-        translate(this.x + this.w/2, this.y + this.h/2);
-
-        if (this.dragging){
-            scale(this.s*1.2);
-        }
-
-        if (this.wiggling){
-            rotate(sin(millis()/150) * PI/11);
-
-        }
-
-        beginShape();
-        vertex(-this.w/2, -this.h/2);
-        vertex(-this.w/2 + this.w, -this.h/2);
-        vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/2));
-        vertex(-this.w/2 + this.w, -this.h/2 + this.h);
-        vertex(-this.w/2, -this.h/2 + this.h);
-        vertex(-this.w/2 + 25, -this.h/2 + (this.h/4 * 3));
-        vertex(-this.w/2, -this.h/2 + (this.h/4 * 2));
-        vertex(-this.w/2 + 25, -this.h/2 + this.h/4);
-        vertex(-this.w/2, -this.h/2);
-        endShape();
-
-        scale(this.s*0.92, this.s*0.9)
-        noStroke()
-        if (this.dragging) {
-            fill(this.red, this.green - 5, this.blue - 5);
-        } else if (this.rollover && !this.highlight) {
-            fill(this.red + 70, this.green + 70, this.blue + 70);
-        } else{
-            fill(this.red + 20, this.green + 20, this.blue + 20);
-        }
-
-        beginShape();
-        vertex(-this.w/2, -this.h/2);
-        vertex(-this.w/2 + this.w, -this.h/2);
-        vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/2));
-        vertex(-this.w/2 + this.w, -this.h/2 + (this.h));
-        vertex(-this.w/2 + this.w, -this.h/2 + this.h);
-        vertex(-this.w/2, -this.h/2 + this.h);
-        vertex(-this.w/2 + 25, -this.h/2 + (this.h/4 * 3));
-        vertex(-this.w/2, -this.h/2 + (this.h/4 * 2));
-        vertex(-this.w/2 + 25, -this.h/2 + this.h/4);
-        
-        vertex(-this.w/2, -this.h/2);
-        endShape();
-        
-
-        pop();
-
-    }
-}
-
-class Feature extends Block {
-    constructor(x, y, uID){
-        super(x, y, uID);
-        this.blockType = "feature";
-        this.w = 75;
-        this.h = 100;
-
-        this.red = 235;
-        this.blue = 5;
-        this.green = 235;
-    }
-
-    searchForConnection(oX, oY, oW, oH, oT, ouID, oDrag) {
-        let onBlock = this.x < (oX + oW) && (this.x + this.w) > oX 
-        && this.y < (oY + oH) && (this.y + this.h) > oY;
-
-        if ((oT === "sensor") && onBlock
-        && oDrag) {
-            this.highlight = true;
-        } else if ((oT === "sensor") && !onBlock
-        && oDrag){
-            this.highlight = false;
-        }
-
-        if (oT === "sensor") {
-            if (this.dragging && onBlock){
-                this.preConnectL = ouID;
-            }
-        }
-
-
-        if (onBlock && ouID === this.preConnectL && this.dragging){
-            this.wiggling = true;
-        } else if (onBlock && ouID === this.preConnectL && this.dragging === false){
-            this.wiggling = false;
-        } else if (!onBlock && ouID === this.preConnectL){
-            this.wiggling = false;
-            this.preConnectL = -1;
-        }
-
-        
-        if ((oT === "generator" || oT === "modulator") && onBlock
-        && oDrag) {
-            this.highlight = true;
-        } else if ((oT === "generator" || oT === "modulator") && !onBlock
-        && oDrag){
-            this.highlight = false;
-        }
-
-        if ((oT === "generator" || oT === "modulator")) {
-            if (this.dragging && onBlock){
-                this.preConnectR = ouID;
-            }
-        }
-
-        if (onBlock && ouID === this.preConnectR && this.dragging){
-            this.wiggling = true;
-        } else if (onBlock && ouID === this.preConnectR && this.dragging === false){
-            this.wiggling = false;
-        } else if (!onBlock && ouID === this.preConnectR){
-            this.wiggling = false;
-            this.preConnectR = -1;
-        }
-    }
-
-    show(oT, ouID) {
-        push();
-        translate(this.x + this.w/2, this.y + this.h/2);
-
-        if (this.dragging){
-            scale(this.s*1.2);
-        }
-
-        if (this.wiggling){
-            rotate(sin(millis()/150) * PI/11);
-
-        }
-        if (this.connectR === -1){
-            beginShape();
-            vertex(-this.w/2, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2);
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4));
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h/4 * 2));
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2 + this.w, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2  + 25, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2  + 25, -this.h/2 + (this.h/4));
-            vertex(-this.w/2, -this.h/2 + (this.h/4));
-            vertex(-this.w/2, -this.h/2);
-            endShape();
-            //rect(-this.w/2, -this.h/2, this.w, this.h);
-        } else if (ouID === this.connectR && (oT === "generator" || oT === "modulator")){
-            beginShape();
-            vertex(-this.w/2, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2);
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4));
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h/4 * 2));
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2 + this.w, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2  + 25, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2  + 25, -this.h/2 + (this.h/4));
-            vertex(-this.w/2, -this.h/2 + (this.h/4));
-            vertex(-this.w/2, -this.h/2);
-            endShape();
-        }
-
-        pop();
-    }
-}
-
-class Sensor extends Block {
-    constructor(x, y, uID){
-        super(x, y, uID);
-        this.blockType = "sensor";
-        this.w = 75;
-        this.h = 100;
-
-        this.red = 255;
-        this.blue = 5;
-        this.green = 150;
-    }
-
-
-    searchForConnection(oX, oY, oW, oH, oT, ouID, oDrag, oConnectL, oConnectR) {
-        let onBlock = this.x < (oX + oW) && (this.x + this.w) > oX 
-        && this.y < (oY + oH) && (this.y + this.h) > oY;
-
-        if (this.connected === false){
-            if ((oT === "feature") && onBlock
-            && oDrag) {
-                this.highlight = true;
-            } else if ((oT === "feature") && !onBlock
-            && oDrag){
-                this.highlight = false;
-            }
-        }
-
-        if (onBlock && ouID === this.preConnectR && this.dragging === false){
-            this.wiggling = false;
-        } else if (!onBlock && ouID === this.preConnectR){
-            this.wiggling = false;
-            this.preConnectR = -1;
-        }
-
-        if (oConnectL === -1){
-            if (oT === "feature") {
-                if (this.dragging && onBlock){
-                    this.preConnectR = ouID;
-                }
-            }
-
-            if (onBlock && ouID === this.preConnectR && this.dragging){
-                this.wiggling = true;
-            }
-        }
-    }
-
-    show(oT, ouID) {
-        push();
-        translate(this.x + this.w/2, this.y + this.h/2);
-
-        if (this.dragging){
-            scale(this.s*1.2);
-        }
-
-        if (this.wiggling){
-            rotate(sin(millis()/150) * PI/11);
-
-        }
-        if (this.connectR === -1){
-            beginShape();
-            vertex(-this.w/2, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h/4));
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4));
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2 + this.w, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2);
-            endShape();
-        } else if (ouID === this.connectR && oT === "feature"){
-            beginShape();
-            vertex(-this.w/2, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h/4));
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4));
-            vertex(-this.w/2 + this.w + 25, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h/4 * 3));
-            vertex(-this.w/2 + this.w, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2 + this.h);
-            vertex(-this.w/2, -this.h/2);
-            endShape();
-        }
-        pop();
-    }
-}
 
 class VolumeCap extends Block {
     constructor(x, y, uID){
@@ -797,7 +449,7 @@ class VolumeCap extends Block {
     }
 
 
-    searchForConnection(oX, oY, oW, oH, oT, ouID, oDrag, oConnectL, oConnectR) {
+    searchForConnection(oX, oY, oW, oH, oT, ouID, oDrag, ) {
         let onBlock = this.x < (oX + oW) && (this.x + this.w) > oX 
         && this.y < (oY + oH) && (this.y + this.h) > oY;
 
@@ -861,91 +513,6 @@ class VolumeCap extends Block {
             vertex(-this.w/2 + this.w, -this.h/2 + (this.h));
             vertex(-this.w/2, -this.h/2 + this.h);
             vertex(-this.w/2 + 25, -this.h/2 + (this.h/2));
-            vertex(-this.w/2, -this.h/2);
-            endShape();
-        }
-        pop();
-    }
-}
-
-class Modulator extends Block {
-    constructor(x, y, uID){
-        super(x, y, uID);
-        this.blockType = "modulator";
-        this.w = 125;
-        this.h = 100;
-
-        this.red = 255;
-        this.blue = 50;
-        this.green = 50;
-    }
-
-
-    searchForConnection(oX, oY, oW, oH, oT, ouID, oDrag, oConnectL, oConnectR) {
-        let onBlock = this.x < (oX + oW) && (this.x + this.w) > oX 
-        && this.y < (oY + oH) && (this.y + this.h) > oY;
-        if (this.connected === false){
-            if ((oT === "feature") && onBlock
-            && oDrag) {
-                this.highlight = true;
-            } else if ((oT === "feature") && !onBlock
-            && oDrag){
-                this.highlight = false;
-            }
-        }
-
-        if (onBlock && ouID === this.preConnectL && this.dragging === false){
-            this.wiggling = false;
-        } else if (!onBlock && ouID === this.preConnectL){
-            this.wiggling = false;
-            this.preConnectL = -1;
-        } 
-
-        if (oConnectR === -1){
-            if (oT === "feature") {
-                if (this.dragging && onBlock){
-                    this.preConnectL = ouID;
-                }
-            }
-            if (onBlock && ouID === this.preConnectL && this.dragging){
-                this.wiggling = true;
-            }
-        }  
-    }
-
-    show(oT, ouID) {
-
-        push();
-        translate(this.x + this.w/2, this.y + this.h/2);
-
-        if (this.dragging){
-            scale(this.s*1.2);
-        }
-
-        if (this.wiggling){
-            rotate(sin(millis()/150) * PI/11);
-        }
-        
-        if (this.connectL === -1){
-            beginShape();
-            vertex(-this.w/2, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h));
-            vertex(-this.w/2, -this.h/2 + this.h);
-            vertex(-this.w/2 + 25, -this.h/2 + ((this.h/4) * 3));
-            vertex(-this.w/2, -this.h/2 + ((this.h/4) * 2));
-            vertex(-this.w/2 + 25, -this.h/2 + (this.h/4));
-            vertex(-this.w/2, -this.h/2);
-            endShape();
-        } else {
-            beginShape();
-            vertex(-this.w/2, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2);
-            vertex(-this.w/2 + this.w, -this.h/2 + (this.h));
-            vertex(-this.w/2, -this.h/2 + this.h);
-            vertex(-this.w/2 + 25, -this.h/2 + ((this.h/4) * 3));
-            vertex(-this.w/2, -this.h/2 + ((this.h/4) * 2));
-            vertex(-this.w/2 + 25, -this.h/2 + (this.h/4));
             vertex(-this.w/2, -this.h/2);
             endShape();
         }
