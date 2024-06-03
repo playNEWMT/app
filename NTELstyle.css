@@ -3184,7 +3184,7 @@ input[type="range"].FXvolume-slider {
 
 .preset-button:hover {
   transition: 0.3s ease;
-  border: 7px solid var(--primary);
+  border: 7px solid var(--calm);
   transform: scale(1.1);
 }
 .connect-device-button:hover,
@@ -3714,7 +3714,7 @@ input[type="range"].probability-slider {
 }
 
 #visualize-drums {
-  transform: scale(4);
+  /* transform: scale(4); */
   /* margin-right: -80px; */
 
 

@@ -846,6 +846,7 @@ async function setupInstrument(context, outputNode, deviceInfo) {
     makeSliders(device, deviceID, selectID);
   } else {
     let globalFX = deviceArray.find(device => device.name === "Effects") || null;
+    console.log(globalFX,globalFX.device);
     device.node.connect(globalFX.device.node);
     deviceArray.push({ name: name, device: device, ID: deviceID, selectID: selectID, connectedSensor: null, axisID: axisID, deviceAxis: null });
     console.log(axisID, selectID);
