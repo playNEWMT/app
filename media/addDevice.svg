@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="47.772999"
+   height="47.243"
+   viewBox="0 0 12.639938 12.49971"
+   version="1.1"
+   id="svg124969"
+   sodipodi:docname="addDevice.svg"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview124971"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="5.2163188"
+     inkscape:cx="22.429611"
+     inkscape:cy="23.771553"
+     inkscape:window-width="1309"
+     inkscape:window-height="808"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs124966" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-0.76711051,-0.59331881)">
+    <path
+       style="fill:#699cd8;fill-opacity:1;stroke:#230543;stroke-width:0.833702;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       id="path131890"
+       sodipodi:type="arc"
+       sodipodi:cx="7.1974897"
+       sodipodi:cy="6.8828902"
+       sodipodi:rx="5.6387153"
+       sodipodi:ry="5.7007775"
+       sodipodi:start="0"
+       sodipodi:end="6.248534"
+       sodipodi:arc-type="slice"
+       d="M 12.836205,6.8828902 A 5.6387153,5.7007775 0 0 1 7.2463363,12.583454 5.6387153,5.7007775 0 0 1 1.5596208,6.981655 5.6387153,5.7007775 0 0 1 7.0509646,1.1840377 5.6387153,5.7007775 0 0 1 12.83282,6.6853904 L 7.1974897,6.8828902 Z" />
+    <path
+       style="fill:#699cd8;fill-opacity:1;stroke:none;stroke-width:0.315173;stroke-linecap:round;stroke-linejoin:round"
+       id="path131890-1"
+       sodipodi:type="arc"
+       sodipodi:cx="8.0968981"
+       sodipodi:cy="-6.5938473"
+       sodipodi:rx="4.6770291"
+       sodipodi:ry="4.4781251"
+       sodipodi:start="0"
+       sodipodi:end="6.248534"
+       sodipodi:arc-type="slice"
+       d="M 12.773927,-6.5938473 A 4.6770291,4.4781251 0 0 1 8.1374139,-2.1158902 4.6770291,4.4781251 0 0 1 3.4205709,-6.5162647 4.6770291,4.4781251 0 0 1 7.9753629,-11.07046 4.6770291,4.4781251 0 0 1 12.77112,-6.7489891 L 8.0968981,-6.5938473 Z"
+       transform="matrix(0.19533691,0.9807362,-0.98345342,0.18116115,0,0)" />
+    <path
+       style="fill:#699cd8;fill-opacity:1;stroke:none;stroke-width:0.315173;stroke-linecap:round;stroke-linejoin:round"
+       id="path131890-1-1"
+       sodipodi:type="arc"
+       sodipodi:cx="7.8106294"
+       sodipodi:cy="-5.2497444"
+       sodipodi:rx="4.6770291"
+       sodipodi:ry="4.4781251"
+       sodipodi:start="0"
+       sodipodi:end="6.248534"
+       sodipodi:arc-type="slice"
+       d="m 12.487659,-5.2497444 a 4.6770291,4.4781251 0 0 1 -4.6365138,4.47795705 4.6770291,4.4781251 0 0 1 -4.716843,-4.40037455 4.6770291,4.4781251 0 0 1 4.554792,-4.5541954 4.6770291,4.4781251 0 0 1 4.7957568,4.321471 l -4.6742216,0.1551419 z"
+       transform="matrix(0.19533691,0.9807362,-0.98345342,0.18116115,0,0)" />
+    <rect
+       style="fill:#f1806b;fill-opacity:1;stroke:#230543;stroke-width:0.970639;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect128414"
+       width="4.9857874"
+       height="0.94826835"
+       x="4.7418342"
+       y="6.1549163" />
+    <rect
+       style="fill:#f1806b;fill-opacity:1;stroke:#230543;stroke-width:0.970639;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect128414-2"
+       width="5.109911"
+       height="0.92523414"
+       x="-9.2764854"
+       y="6.7269926"
+       transform="rotate(-90)" />
+  </g>
+</svg>

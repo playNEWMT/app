@@ -13,32 +13,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Chivo:wght@400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
 </head>
 
-<div id="mySidebar" class="sidebar">
-  <ul class="menu">
-    <li><a href="./index.html">Home</a></li>
-    <li>
-      <a href="./instruments.html">Instruments</a>
-      <ul class="submenu">
-        <li><a href="./sonicintro.html">Sonic<br>Introduction</a></li>
-        <li><a href="./rainstick.html">Rainstick</a></li>
-        <li><a href="./wearablejazz.html">Wearable<br>Jazz</a></li>
-        <li><a href="./soundboard.html">Sound Board</a></li>
-      </ul>
-    </li>
-    <li><a href="./curriculum.html">Curriculum</a></li>
-    <li><a href="./sensorinfo.html">Sensor Resources</a></li>
-  </ul>
-</div>
 
   <body>
     <div class="main-container" id="main-container">
       <header>
-
-        <button class="openbtn" onclick="toggleNav()">☰ </br> > </button>
-
-        <p>
-          <a href="./index.html">Home</a> &gt; <a href="./curriculum.html">Curriculum</a> &gt; Lesson 4
-        </p>
+        <div class="banner-sensor">
+          <span>Need Information about the sensors?</span>
+          <span style="margin-top: 3px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="13" viewBox="0 0 2 13" fill="none"><path opacity="0.4" d="M1 0.5V12.5" stroke="var(--primary-l)" stroke-width="1.5"></path></svg>
+          </span>
+          <a href="./sensorinfo.html" target="_blank" class="learn-more-link">
+            <span>Learn more
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11" viewBox="0 0 9 9" fill="none"><path d="M1 1H8M8 1V8M8 1L1 8" stroke="var(--background)" stroke-width="1.8"></path></svg>
+              </span>
+            </span>
+          </a>
+        </div>
+  
+        <div class="banner-nav">
+          <div class="navigation-buttons">
+            <a href="./curriculum.html" class="navbar-button h-cb">Curriculum</a>
+            <a href="./instruments.html" class="navbar-button h-ib">Instruments</a>
+            <a href ="./about.html" class="navbar-button h-ab">About Us</a>
+          </div>
+          <div class="navbar-right">
+            <a href="https://www.youtube.com/@NEWMTapp" target="_blank" class="youtube">▶</a>
+          </div>
+        </div>
+  
+        <div class="logo-wrapper">
+          <a href="./index.html" class="logo-home-button"><img src="./media/MW.svg"></a>
+        </div>
+        <!-- <button class="openbtn" onclick="toggleNav()">☰ </br> > </button> -->
+        <!-- <p class="click-here">↑</br>click </br>here!</p> -->
       </header>
 
       <main id="main" style="padding: 0.5em">

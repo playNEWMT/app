@@ -33,32 +33,87 @@
 <body>
   <div class="main-container" id="main-container">
     <header>
-      
-      <button class="openbtn" onclick="toggleNav()">☰ </br> > </button>
-      <p class="click-here">↑</br>click </br>here!</p>
+      <div class="banner-sensor">
+        <span>Need Information about the sensors?</span>
+        <span style="margin-top: 3px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="13" viewBox="0 0 2 13" fill="none"><path opacity="0.4" d="M1 0.5V12.5" stroke="var(--primary-l)" stroke-width="1.5"></path></svg>
+        </span>
+        <a href="./sensorinfo.html" target="_blank" class="learn-more-link">
+          <span>Learn more
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11" viewBox="0 0 9 9" fill="none"><path d="M1 1H8M8 1V8M8 1L1 8" stroke="var(--background)" stroke-width="1.8"></path></svg>
+            </span>
+          </span>
+        </a>
+      </div>
+
+      <div class="banner-nav">
+        <div class="navigation-buttons">
+          <a href="./curriculum.html" class="navbar-button h-cb">Curriculum</a>
+          <a href="./instruments.html" class="navbar-button h-ib">Instruments</a>
+          <a href ="./about.html" class="navbar-button h-ab">About Us</a>
+        </div>
+        <div class="navbar-right">
+          <a href="https://www.youtube.com/@NEWMTapp" target="_blank" class="youtube">▶</a>
+        </div>
+      </div>
+
+      <div class="logo-wrapper">
+        <a href="./index.html" class="logo-home-button"><img src="./media/MW.svg"></a>
+      </div>
+      <!-- <button class="openbtn" onclick="toggleNav()">☰ </br> > </button> -->
+      <!-- <p class="click-here">↑</br>click </br>here!</p> -->
     </header>
     <main id="main">
-      <div class="logo-container">
-        <img src="./media/NEWMTlogoBanner.png" alt="NEWMT Logo Banner">
-      </div>
-      
-      <!-- <h1 style="font-size: 100px; line-height: 85px;">NEWMT</h1>
-      <h2 style="font-size: 22px; text-align: center; line-height: 5px;">Neurodiverse Educational Wearable Music Tech</h2> -->
 
-      <div class="mission-statement">
-        <p>
-          NEWMT explores computer science education as it intersects with disability and the arts. Working with embodied technologies and constructivist pedagogy, we strive to build rich, inclusive computational learning experiences for all students.
-        </p>
+      <div class="front-page_logo-container">
+        <div class="front-page_title"> 
+          <span class="letter"><img src="./media/N.svg"></span>
+          <span class="letter"><img src="./media/E.svg"></span>
+          <span class="letter"><img src="./media/MW.svg" style="margin-top: 0px;"></span>
+          <span class="letter"><img src="./media/T.svg"></span>
+        </div>
+        <div class="front-page_subtitle">
+          <h2>Neurodiverse Educational Wearable Music Tech</h2>
+        </div>
+        <div class="front-page_floaties">
+          <img src="./media/2x8thnote.svg" class="floatie">
+          <img src="./media/8thnote.svg" class="floatie">
+          <img src="./media/greycircle.svg" class="floatie">
+          <img src="./media/greytri.svg" class="floatie">
+          <img src="./media/pinkflower.svg" class="floatie">
+          <img src="./media/greycircle.svg" class="floatie">
+          <img src="./media/greyspiral.svg" class="floatie">
+          <img src="./media/redspiral.svg" class="floatie">
+          <img src="./media/redorder.svg" class="floatie">
+          <!-- <img src="./media/greyarrrow.svg" class="floatie"> -->
+          <!-- <img src="./media/Newton.svg" class="floatie"> -->
+        </div>
+
+        <div class="front-page_pause-button">
+          <button id="toggleAnimation">
+            <img id="playIcon" style="display:none;" src="./media/play.svg">
+            <img id="pauseIcon" src="./media/pause.svg">
+            <span id="playButtonText">Pause</span>
+          </button>
+        </div>
       </div>
 
       <div class="two-buttons-next-to">
-        <a class="picture-button-item" style="margin-right: 1.66667em;"href="./curriculum.html" aria-label="NEWMT Intruments">
+        <a class="icon-button ib-c" href="./curriculum.html">
+          <h3 class="icon-button-text">Curriculum</h3>
+        </a>
+        <a class="icon-button ib-i" href="./instruments.html">
+          <h3 class="icon-button-text">Instruments</h3>
+        </a>
+
+        <!-- <a class="picture-button-item" style="margin-right: 1.66667em;"href="./curriculum.html" aria-label="NEWMT Intruments">
           <div class="picture-button-image">
             <img class="centered-image" src="./media/whiteboardlearning1.png" alt="young student at a whiteboard writing something with a marker">
           </div>
           <div class="picture-button-text">
             <h3 class="picture-button-title">Curriculum</h3>
-            <p class="picture-button-description">View our curriculum and vocabulary centered on neurodiversity and computational thinking!</p>
+            <p class="picture-button-description">View our curriculum centered on neurodiversity and computational thinking!</p>
           </div>
         </a>
 
@@ -68,154 +123,41 @@
           </div>
           <div class="picture-button-text">
             <h3 class="picture-button-title">Instruments</h3>
-            <p class="picture-button-description">Play our interactive and embodied wearable instruments with a Wearable Music Sensor!</p>
+            <p class="picture-button-description">Play our interactive and embodied instruments with a Wearable Music Sensor!</p>
           </div>
-        </a>
+        </a> -->
       </div>
-
-      <div class="warning-container">
-        <div class="warning-icon">!</div>
-        <div class="warning-bubble">
-          To use web MIDI in combination with web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 Wearable Music Sensors [e.g. an <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Stick</a>] to use our instruments.
-        </div>
+      
+      <div class="front-page_waves">
+        <img src="./media/waves-front.svg" class="front-wave">
+        <img src="./media/waves-back.svg" class="back-wave">
       </div>
-
-      <a class="professional-development" id="NEWMTforPD" href="https://stemteachers.asu.edu/" target="_blank" aria-label="Participate in Professional Development">
-        <h3>Participate for Personal Development!</h3>
-        <p>Are you an ASU ASAP Fellow? Participation in our NEWMT series of teacher workshops during the 2023-2024 school year will qualify as your ASAP PD hours. Click here for more information on the ASU ASAP program.</p>
-      </a>
-
-      <div class="project-description" id="whatWeDo">
-        <h3>Project Description</h3>
-        <p>
-          Students with disabilities, particularly those with autism, experience unequal outcomes in STEM education and employment. Despite frequently reported strengths and interests in STEM disciplines, individuals with autism often do not receive the support—those related to communication, transitions, and flexibility—needed to succeed. The Neurodiversity Education Research Center and Arizona State University Research Practice Partnership (RPP) is co-designing curriculum, neurodiverse pedagogies, and wearable music technology for use with neurodiverse middle-schoolers, including students with autism labels. In working with teachers, parents, and employers, this project will create pathways to position students with autism spectrum disorder for success in school and also the larger community.
-        </br>
-          This is a three-year project funded by an <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2122924" target="_blank">NSF Computer Science for All grant.</a>
-          </p>
-          
-          <h4 class="project-description-inner-h4">First Year 2021-2022</h4>
-          <p>
-          During four workshops, a pilot group of experienced teachers of neurodivergent middle school students (Teacher Fellows), alongside teacher educators and experts in computer science, media studies, and the arts, explored the potential of custom designed, wearable musical instruments to embed and teach computational thinking concepts to neurodiverse middle school students. Teacher Fellows piloted the various iterations in their classrooms and received feedback from their students. Central to this work was the building, playing, and performing of wearable digital musical instruments and CT activities.
-          </p>
-          
-          <h4 class="project-description-inner-h4">Second Year 2022-2023</h4>
-          <p>
-          Teacher Fellows and the ASU research team co-designed and refined devices and apps while developing a set of four CT lesson kits. Each kit included a full lesson and ideas for extensions, expansions across content areas, and adapations. Lessons also included notes on how to develop neurodiverse workplace skills. Teacher Fellows introduced lessons to teachers and middle school students through interactive demonstrations at a culminating event called <a href="https://www.eventbrite.com/e/neurodiversity-steam-fest-tickets-629367383787" target="_blank">Neurodiversity STEAM Fest</a>, 
-          hosted at ASU's Tempe campus.
-          </p>
-          
-          <h4 class="project-description-inner-h4">Third Year 2023-2024</h4>
-          <p>
-          The research team is currently seeking 25 middle school teachers to participate in a series of six Teacher Fellow-led workshops. Teacher Fellows will introduce the co-designed curriculum during the workshops and the research team will support teacher implementation in their classrooms. Check out events calendar for workshop dates.
-          </br>
-          If interested in this opportunity, please contact <a href="mailto:avasquez@neurodiversitycenter.org">Anani Vasquez</a>.
-          </br>
-          </br>
-          The research team is also currently seeking employers who are interested in learning more about the neurodiversity paradigm, neurodivergent employee talent development, and supporting neurodivergence in the workplace. Interested employers would participate in 5 contact hours of research-related activities.
-          An informational webinar is scheduled for Friday, November 3, 2023. You can see event details with registration link in the events calendar.
-          </br>
-          If interested this opportunity, please contact <a href="mailto:creutlin@asu.edu">Corey Reutlinger</a>.
-          By working with teachers, parents, students, and employers, this project creates pathways to position neurodivergent students, including students with autism labels, for success in school and the larger community.  
-          </p>
-          <p></p>
-      </div>
-
-
-      <div class="about-us" id="aboutUs">
-        <h2 style="text-align: center; margin-top:-10px;">- Who are we? -</h2>
-        <div class="about-us-item">
-          <div class="about-us-image-container">
-            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/ASUlogo.png" alt="Arizona State University acronym ASU on a pillar in front of blooming palo verde trees"></div>
-          </div>
-          <div class="about-us-text" style="border-bottom-left-radius: 0px;">
-            <h3>ASU <em>- MLFTC & AME</em></h3>
+      <div class="between-waves">
+        <div style="width:120%; height:500px; background-color: var(--secondary-l);">
+          <!-- <div class="mission-statement">
             <p>
-              Educators and researchers from ASU's Mary Lou Fulton Teacher's College and the school of Arts, Media and Engineering:</br>
-              </br>- Sha Xin Wei, Principle Investigator (AME)</br>
-              - Seth Thorn, Co-PI (AME)</br>
-              - Mirka Koro, Co-PI (MLFTC)</br>
-              - Margarita Pivovarova, Co-PI (MLFTC)</br>
-              - Corey Reutlinger, Postdoctoral Researcher (AME)</br>
-              - Cole Mcleod, Research Assistant (AME)
-            </p>  
-          </div>
-        </div>
-
-        <div class="about-us-item-reversed">
-          <div class="about-us-text" style="border-bottom-right-radius: 0px;">
-            <h3>NERC and Science Prep Academy</h3>
-            <p>
-              NERC is an independent nonprofit research center dedicated to improving access to quality education and workforce development for Neurodivergent humans. 
-              Science Prep Academy, is NERC’s flagship STEM private school.
-            </br>
-            </br>
-            - Ananí M. Vasquez, PhD (NERC)</br>
-            - Denise Amiot, School Director (NERC)</br>
-            - Cintya Arcos, Program Coordinator (NERC)</br>
+              NEWMT explores computer science education as it intersects with disability and the arts. Working with embodied technologies and constructivist pedagogy, we strive to build rich, inclusive computational learning experiences for all students.
             </p>
           </div>
-          <div class="about-us-image-container">
-            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/img-man-teaching-kids.jpg" alt="man in blue coveralls passionately explaining something to a groupd of people"></div>
-          </div>
+    
+          <div class="warning-container">
+            <div class="warning-icon">!</div>
+            <div class="warning-bubble">
+              To use web MIDI in combination with web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 Wearable Music Sensors [e.g. an <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Stick</a>] to use our instruments.
+            </div>
+          </div> -->
         </div>
+      </div>
 
-        <div class="about-us-item">
-          <div class="about-us-image-container">
-            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/teacher-fellows.jpg" alt="group of teachers disscussing curriculum at a table"></div>
-          </div>
-          <div class="about-us-text" style="border-bottom-left-radius: 0px;">
-            <h3>Teacher Fellows</h3>
-            <p>
-              Various teachers helped us design and test our instruments and curriculum:</br>
-              </br>
-              - Jessica Strouth, Science Prep Academy</br>
-              - Kristin Kennedy, Sacaton Schools</br>
-              - Exie Weathers, Science Prep Academy</br>
-              - Jasmine Cano, Cholla Schools</br>
-              - Jonathan Perrone, Arizona Educational Foundation
-
-            </p>  
-          </div>
-        </div>
-
-        <div class="about-us-item-reversed">
-          <div class="about-us-text" style="border-bottom-right-radius: 0px;">
-            <h3>Employer Collaborators</h3>
-            <p>
-              If interested this opportunity, please contact <a href="mailto:creutlin@asu.edu">Corey Reutlinger</a>.
-            </p>
-          </div>
-          <div class="about-us-image-container">
-            <div class="about-us-image" style="left:0%;"><img class="centered-image" src="./media/whiteboard.png" alt="Two people talking at a whiteboard"></div>
-          </div>
-        </div>
-
+      <div class="front-page_waves" style="transform: rotate(180deg);">
+        <img src="./media/waves-front.svg" class="front-wave">
+        <img src="./media/waves-back.svg" class="back-wave">
       </div>
 
       
       <div class="events-calendar">
         <h2 style="text-align: center; margin-top: -10px; margin-bottom: -5px;">- Events -</h2>
         <iframe src="https://calendar.google.com/calendar/embed?src=NEWMTcontact%40gmail.com&ctz=America%2FPhoenix&mode=AGENDA&showTitle=0" style="border: 0" width="100%" height="300" frameborder="0" scrolling="no"></iframe>
-      </div>
-
-      <div class="faq-container">
-        <h1>Frequently Asked Questions</h1>
-
-        <details>
-          <summary>How do I set up my Wearable Music Sensor?</summary>
-          <p>Please refer to <a href="./sensorinfo.html#sensorsetupmain">our setup instructions.</a></p>
-        </details>
-
-        <details>
-          <summary>What do the buttons on my Wearable Music Sensor do?</summary>
-          <p>Please refer to <a href="./sensorinfo.html#sensordiagram">this diagram.</a></p>
-        </details>
-
-        <!-- <details>
-          <summary>Question 3</summary>
-          <p>Answer to Question 3.</p>
-        </details> -->
-
       </div>
       
       

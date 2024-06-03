@@ -10,6 +10,14 @@ class Slider {
 
         this.container = container;
 
+        this.currentRotation = 0;
+        this.isRotating = false;
+        this.rotationDirection = 1; // 1 for clockwise, -1 for counterclockwise
+        this.rotationSpeed = 0; // Speed of rotation
+
+        // Bind the update function
+        this.updateRotation = this.updateRotation.bind(this);
+
 
         this.type = type;
         this.device = device;
@@ -23,9 +31,15 @@ class Slider {
         if(this.type === 'paramlabeled') {
             this.attachParamLabeled();
         }
+        if (this.type === 'tempo') {
+            this.attachParamTempo();
+        }
 
         if(this.type === 'visualize') {
             this.attachVisualizeSliders();
+        }
+        if(this.type === 'visualizeLoop') {
+            this.attachVisualizeLoop();
         }
         if(this.type === 'visualizeRS') {
             this.attachVisualizeRS();
@@ -35,6 +49,12 @@ class Slider {
         }
         if(this.type === 'visualizeMelody') {
             this.attachVisualizeMelody();
+        }
+        if(this.type === 'visualizeFX') {
+            this.attachVisualizeFX();
+        }
+        if(this.type === 'visualizeTap') {
+            this.attachVisualizeTap();
         }
 
         if (this.type === 'vol') {
@@ -53,6 +73,39 @@ class Slider {
         if(this.type === 'prob') {
             this.attachProb();
         }
+        if (this.type === 'verb') {
+            this.attachVerb();
+        }
+        if(this.type === 'choices') {
+            this.attatchFXchoices();
+        }
+        if(this.type === 'sensor-select-vis') {
+            this.attachSensorVis();
+        }
+        if(this.type ==='visualizeHarmony') {
+            this.attachHarmonyVis();
+        }
+    }
+
+    attachVisualizeTap() {
+        console.log("hi- blap");
+        const container = this.container;
+    
+        let paramName = this.name;
+        const param = this.device.parametersById.get(paramName);
+        param.changeEvent.subscribe((value) => {
+            // console.log(value);
+            // Smooth rotation animation using CSS transition
+            // container.style.transition = "transform 0.3s ease-in-out";
+            // container.style.transform = `rotate(${value * 10}deg)`;
+    
+            // Delay class removal to allow animation to complete
+            setTimeout(() => {
+                container.classList.remove('scale-animate');
+            }, 200); // Adjust timeout to match transition duration
+            // Add the class to trigger the animation
+            container.classList.add('scale-animate');
+        });
 
     }
 
@@ -107,6 +160,69 @@ class Slider {
         animate();
     }
 
+    updateRotation() {
+        if (!this.isRotating) return;
+
+        const loopRotate = this.container[1];
+
+        // Update current rotation based on the direction and speed
+        this.currentRotation += this.rotationDirection * this.rotationSpeed;
+        loopRotate.style.transform = `rotate(${this.currentRotation}deg)`;
+
+        // Continue rotation
+        requestAnimationFrame(this.updateRotation);
+    }
+
+    startRotation() {
+        if (!this.isRotating) {
+            this.isRotating = true;
+            this.updateRotation();
+        }
+    }
+
+    stopRotation() {
+        this.isRotating = false;
+    }
+
+    setRotationParams(value) {
+        if (value > 63) {
+            this.rotationDirection = 1; // Clockwise
+        } else if (value < 63) {
+            this.rotationDirection = -1; // Counterclockwise
+        }
+
+        this.rotationSpeed = Math.abs(value - 63) / 6; // Adjust speed based on distance from 63 (tune the divisor as needed)
+    }
+
+    attachVisualizeLoop() {
+        const throttledUpdate = this.throttle((e) => {
+            this.setRotationParams(e);
+            this.startRotation();
+        }, 50);
+
+        this.param.changeEvent.subscribe(throttledUpdate);
+
+        let slider = this.container[0];
+
+        slider.setAttribute("name", this.name);
+        slider.setAttribute("min", this.min);
+        slider.setAttribute("max", this.max);
+        if (this.steps > 1) {
+            slider.setAttribute("step", (this.max - this.min) / (this.steps - 1));
+        } else {
+            slider.setAttribute("step", (this.max - this.min) / 100);
+        }
+        slider.setAttribute("value", this.param.value);
+        slider.setAttribute("id", this.id);
+
+        this.device.parameterChangeEvent.subscribe(param => {
+            if (param.id === slider.id){
+                slider.value = param.value;
+                //console.log(param.value);
+            }
+        });
+    }
+
     attachProb() {
         let slider = this.container;
 
@@ -151,8 +267,7 @@ class Slider {
             label = document.getElementById("grain-modes-label");
         }
         if (this.id === "tempo") {
-            label = document.getElementById('tempo-label');
-            console.log("hi"); 
+            label = document.getElementById('tempo-label'); 
         }
 
 
@@ -171,12 +286,27 @@ class Slider {
             const
                 value = event.target.value,
                 newValue = Number( (slider.value - slider.min) * 100 / (slider.max - slider.min) ),
-                newPosition = 10 - (newValue * 0.2),
+                newPosition = 35 - (newValue * 0.7),
                 percentage = (value - slider.min) / (slider.max - slider.min),
                 progress = percentage * 100;
             let labelText = slider.value.slice(0,3);
             // labelText = labelText.toFixed(1);
-            label.innerHTML = `<span>${labelText}</span>`;
+            if (this.name === 'user_Grains') {
+                label.innerHTML = `<span>num</span>`;
+            }
+            if (this.id === "user_Grain_Size") {
+                label.innerHTML = `<span>size</span>`;
+            }
+            if (this.id === "user_Grain_Pitch") {
+                label.innerHTML = `<span>pitch</span>`;
+            }
+            if (this.id === "user_Organic_Modes") {
+                label.innerHTML = `<span>???</span>`;
+            }
+            if (this.id === "tempo") {
+                label.innerHTML = `<span>${labelText}</span>`; 
+            }
+            
             label.style.left = `calc(${newValue}% + (${newPosition}px))`;
             event.target.style.background = `linear-gradient(to right, var(--primary) ${progress}%, var(--secondary) ${progress}%)`;
 
@@ -185,6 +315,51 @@ class Slider {
     
         
 
+        const inputEvent = new Event('input');
+        slider.dispatchEvent(inputEvent);
+    }
+
+    attachParamTempo() {
+        let slider = this.container;
+        let label = document.getElementById('tempo-label');
+        // const video = document.getElementById('tempo-video');
+  
+        // video.src = './media/metronome.mp4'; 
+
+        slider.setAttribute("name", this.name);
+        slider.setAttribute("min", this.min);
+        slider.setAttribute("max", this.max);
+        if (this.steps > 1) {
+            slider.setAttribute("step", (this.max - this.min) / (this.steps - 1));
+        } else {
+            slider.setAttribute("step", (this.max - this.min) / 1000.0);
+        }
+        slider.setAttribute("value", this.param.value);
+        label.innerText = this.param.value;
+    
+        slider.addEventListener('input', (event) => {
+            const
+                value = event.target.value,
+                percentage = (value - slider.min) / (slider.max - slider.min),
+                progress = percentage * 100;
+            let labelText = parseInt(slider.value, 10);
+            label.innerHTML = labelText.toString();
+            event.target.style.background = `linear-gradient(to right, var(--primary) ${progress}%, var(--text-l) ${progress}%)`;
+
+            // const playbackRate = Math.min(Math.max(value / 50, 0.5), 4.0);
+            // console.log(playbackRate);
+            // video.playbackRate = playbackRate;
+        
+            // Position the video element over the slider thumb
+            // const rect = slider.getBoundingClientRect();
+            // video.style.display = 'block';
+            // video.style.position = 'absolute';
+            // video.style.left = `${rect.left + (slider.value / slider.max) * rect.width - 650}px`; 
+            // video.style.top = `${rect.top - 330}px`;
+
+            this.param.value = value;
+        });
+        // video.play();
         const inputEvent = new Event('input');
         slider.dispatchEvent(inputEvent);
     }
@@ -216,7 +391,7 @@ class Slider {
             const progress = percentage * 100;
             const scaleProgress = this.mapRange(progress, 0, 100, 41, 255);
             event.target.style.background = `linear-gradient(to right, rgb(249, 173, var(--speed-blue, 41)) ${progress}%, var(--secondary) ${progress}%)`;
-            event.target.style.setProperty('--speed-blue', `${scaleProgress}`);
+            event.target.style.setProperty('--speed-blue', `${scaleProgress + 40}`);
             this.param.value = value;
         });
 
@@ -279,25 +454,72 @@ class Slider {
         });
     }
 
+    attachVisualizeFX() {
+        let slider = this.container;
+        let sensorvis = document.getElementById('ss-fx');
+
+        slider.setAttribute("name", this.name);
+        slider.setAttribute("min", this.min);
+        slider.setAttribute("max", this.max);
+        if (this.steps > 1) {
+            slider.setAttribute("step", (this.max - this.min) / (this.steps - 1));
+        } else {
+            slider.setAttribute("step", (this.max - this.min) / 100);
+        }
+        slider.setAttribute("value", this.param.value);
+        slider.setAttribute("id", this.id);
+
+        this.device.parameterChangeEvent.subscribe(param => {
+            if (param.id === slider.id){
+                slider.value = param.value;
+                //console.log(param.value);
+                const progress = this.mapRange(param.value, 0, 127, 0, 100);
+                sensorvis.style.background = `linear-gradient(to right, var(--sensor-red) ${progress}%, var(--sensor-red-l) ${progress}%)`;
+            }
+        });
+
+        slider.addEventListener("input", () => {
+            let value = Number.parseFloat(slider.value);
+            this.param.value = value;
+            console.log(this.param.value, value);
+        });
+    }
+
     attachVisualizeDrums(){
         let container = this.container
-        console.log(this.id);
+        // console.log(this.id);
         container.setAttribute("id", this.id);
+        if(this.param.value === 0.5) {
+            console.log("hello");
+
+            container.style.backgroundImage = 'url(./media/drum-neutral.svg)';
+        }
         this.device.parameterChangeEvent.subscribe(param => {
             if (param.id === container.id){
                 
-                console.log(container.id, param.value);
+                // console.log(container.id, param.value);
 
                 if(param.value === 0) {
-                    console.log("kick");
+                    // console.log("kick");
                     container.style.backgroundImage = 'url(./media/drum-bass.svg)';
                 }
                 if(param.value === 1) {
-                    console.log("snare");
+                    // console.log("snare");
                     container.style.backgroundImage = 'url(./media/drum-snare.svg)';
                 }
             }
         });
+
+        // this.param.changeEvent.subscribe((e) => {
+        //     if(param.value === 0) {
+        //         console.log("kick");
+        //         container.style.backgroundImage = 'url(./media/drum-bass.svg)';
+        //     }
+        //     if(param.value === 1) {
+        //         console.log("snare");
+        //         container.style.backgroundImage = 'url(./media/drum-snare.svg)';
+        //     }
+        // });
     }
 
     attachVisualizeMelody(){
@@ -311,10 +533,6 @@ class Slider {
         this.device.parameterChangeEvent.subscribe(param => {
             if (param.id === container.id){
                 
-                
-
-
-
                 if(param.value === 1) {
 
                     container.style.backgroundImage = 'url(./media/trumpet-1.svg)';
@@ -343,18 +561,11 @@ class Slider {
         });
     }
 
-    attachParamSliders() {
-    
-        // This will allow us to ignore parameter update events while dragging the slider.
-        // let isDraggingSlider = false;
-        // let uiElements = {};
 
+
+    attachParamSliders() {
         let slider = this.container;
-    
-        // Make each slider reflect its parameter
-        // slider.setAttribute("type", "range");
-        // slider.setAttribute("class", "param-slider");
-        // slider.setAttribute("id", this.id);
+
         slider.setAttribute("name", this.name);
         slider.setAttribute("min", this.min);
         slider.setAttribute("max", this.max);
@@ -364,53 +575,35 @@ class Slider {
             slider.setAttribute("step", (this.max - this.min) / 1000.0);
         }
         slider.setAttribute("value", this.param.value);
-    
-        // Make a settable text input display for the value
-        // text.setAttribute("value", param.value.toFixed(1));
-        // text.setAttribute("type", "text");
-    
-        // Make each slider control its parameter
-        // slider.addEventListener("pointerdown", () => {
-        //     isDraggingSlider = true;
-        // });
-        // slider.addEventListener("pointerup", () => {
-        //     isDraggingSlider = false;
-        //     slider.value = this.param.value;
-        //     text.value = this.param.value.toFixed(1);
-        // });
+        
         slider.addEventListener("input", () => {
             let value = Number.parseFloat(slider.value);
             this.param.value = value;
-            console.log(this.param.value, value);
+            updateSliderBackground(slider);
         });
-
-            // Make the text box input control the parameter value as well
-            // text.addEventListener("keydown", (ev) => {
-            //     if (ev.key === "Enter") {
-            //         let newValue = Number.parseFloat(text.value);
-            //         if (isNaN(newValue)) {
-            //             text.value = param.value;
-            //         } else {
-            //             newValue = Math.min(newValue, param.max);
-            //             newValue = Math.max(newValue, param.min);
-            //             text.value = newValue;
-            //             param.value = newValue;
-            //         }
-            //     }
-            // });
-    
-            // Store the slider and text by name so we can access them later
-            // uiElements[param.id] = { slider, text };
-    
-            // Add the slider element
-            // pdiv.appendChild(sliderContainer);
-    
-        // Listen to parameter changes from the device
-        // device.parameterChangeEvent.subscribe(param => {
-        //     if (!isDraggingSlider)
-        //         uiElements[param.id].slider.value = param.value;
-        //     uiElements[param.id].text.value = param.value.toFixed(1);
-        // });
+        
+        const updateSliderBackground = (slider) => {
+            const value = Number.parseFloat(slider.value);
+            const min = Number.parseFloat(slider.min);
+            const max = Number.parseFloat(slider.max);
+            const percentage = (value - min) / (max - min);
+            const midpoint = 0.5;
+        
+            let gradient;
+        
+            if (percentage <= midpoint) {
+                gradient = `linear-gradient(to right, #f9ad2963 ${percentage * 100}%, transparent ${percentage * 100}%)`;
+            } else {
+                gradient = `linear-gradient(to left, #f9ad2963 ${(1 - percentage) * 100}%, transparent ${(1 - percentage) * 100}%)`;
+            }
+        
+            slider.style.background = gradient;
+        };
+        
+        updateSliderBackground(slider);
+        
+        const inputEvent = new Event('input');
+        slider.dispatchEvent(inputEvent);
     }
 
     attachVolSliders() {
@@ -431,9 +624,9 @@ class Slider {
             const value = event.target.value;
             const percentage = (value - slider.min) / (slider.max - slider.min);
             const progress = percentage * 100;
-            const scaleProgress = this.mapRange(progress, 0, 100, 2.5, 6);
+            const scaleProgress = this.mapRange(progress, 0, 100, 2.0, 4.5);
             event.target.style.setProperty('--ear-scale', `${scaleProgress}`);
-            event.target.style.background = `linear-gradient(to right, var(--primary) ${progress}%, var(--secondary) ${progress}%)`;
+            event.target.style.background = `linear-gradient(to right, var(--primary) ${progress}%, var(--text-l) ${progress}%)`;
             this.param.value = value;
         });
 
@@ -475,7 +668,107 @@ class Slider {
 
     }
 
+    attachVerb() {
+        let slider = this.container;
+        let wash = document.querySelector(".effects-controls");
+        // console.log(wash)
+;
+        slider.setAttribute("name", this.name);
+        slider.setAttribute("min", this.min);
+        slider.setAttribute("max", this.max);
+        if (this.steps > 1) {
+            slider.setAttribute("step", (this.max - this.min) / (this.steps - 1));
+        } else {
+            slider.setAttribute("step", (this.max - this.min) / 1000.0);
+        }
+        slider.setAttribute("value", this.param.value);
+
+
+        slider.addEventListener('input', (event) => {
+            const value = event.target.value;
+            const percentage = (value - slider.min) / (slider.max - slider.min);
+            const progress = percentage * 100;
+            const primaryProgress = this.mapRange(progress, 0, 100, 0, 20);
+            const secondaryProgress = this.mapRange(progress, 0, 100, 0, 120);
+            const primaryProgresswash = this.mapRange(progress, 0, 100, 100, -10);
+            const secondaryProgresswash = this.mapRange(progress, 0, 100, 100, 110);
+            // console.log(progress);
+            // document.documentElement.style.setProperty('--sensitivity-thumb-height', `${thumbProgress}px`);
+            slider.style.background = `linear-gradient(to right, var(--primary) ${primaryProgress}%, var(--text) ${secondaryProgress}%, var(--text) 100%)`;
+            this.param.value = value;
+            wash.style.background = `linear-gradient(to bottom, var(--text) ${primaryProgresswash}%, var(--text-d) ${secondaryProgresswash}%, var(--text-d) 80%)`;
+
+          });
+
+          const inputEvent = new Event('input');
+          slider.dispatchEvent(inputEvent);
+
+    }
+
+    attatchFXchoices() {
+        const param = this.param; 
+        
+        const buttons = document.querySelectorAll(".effects-toggle-button");
+
+        buttons.forEach(button => {
+          button.addEventListener("click", function() {
+            // console.log(param);
+
+            if (param) {
+              // Remove 'active' class from all buttons
+              buttons.forEach(btn => btn.classList.remove("active"));
+      
+              // Add 'active' class to the clicked button
+              this.classList.add("active");
+      
+              // Convert the data-value attribute to a number and set the parameter value
+              const value = Number(this.getAttribute("data-value"));
+              param.value = value; // Set the value of param.value
+              console.log(param.value, value);
+            } else {
+              console.error("param is undefined or null");
+            }
+            
+          });
+          if (button.getAttribute("data-value") == 1) {
+            button.classList.add("active");
+          }
+        });
+    }
+
+    attachSensorVis() {
+        let sensorvis = this.container;
+        
+        let paramName = this.name;
+        const param = this.device.parametersById.get(paramName);
+        param.changeEvent.subscribe((value) => {
+            console.log(value);
+            const progress = this.mapRange(value, 0, 127, 0, 100);
+            sensorvis.style.background = `linear-gradient(to right, var(--sensor-red) ${progress}%, var(--sensor-red-l) ${progress}%)`;
+	        // Handle events here
+        });
+        
+        
+        this.device.parameterChangeEvent.subscribe(param => {
+
+
+        });
+    }
+
+    attachHarmonyVis() {
+        let sensorvis = this.container;
+        
+        let paramName = this.name;
+        const param = this.device.parametersById.get(paramName);
+        param.changeEvent.subscribe((value) => {
+            console.log(param.value);
+            //console.log(param.value);
+            const progress = this.mapRange(param.value, 0, 127, 0, 100);
+            sensorvis.style.background = `linear-gradient(to right, var(--accent-ll) ${progress}%, var(--background) ${progress}%)`;
+        });
+    }
 }
+
 
 
 

@@ -14,6 +14,9 @@ class Sensor {
         this.deviceLabel = '';
         this.deviceSlider = null;
         this.container = null;
+        this.connectedTo = []; // figure out dropdown for all paired sensors of sensorarray, figure out how to store which senssors are connectedTo which devices
+
+        this.mode = 0;
     }
 
     async connect() {
@@ -33,8 +36,12 @@ class Sensor {
 
             await this.characteristic.startNotifications();
 
+            this.boundhandleMidiMessageReceived = 
+
             console.log(this.characteristic.startNotifications());
-            this.characteristic.addEventListener('characteristicvaluechanged', handleMidiMessageRecieved);
+            this.characteristic.addEventListener('characteristicvaluechanged', (event) => {
+                handleMidiMessageRecieved(event, this.id, this.axis, this.connectedTo);
+            });
             console.log(`Notifications started`)
             printToConsole(`Connected to ${this.name}!`);
 
@@ -57,6 +64,7 @@ class Sensor {
 
         // Do any further initialization or operations here
     }
+
 
     async disconnect() {
         try{

@@ -5,11 +5,11 @@
    width="40"
    version="1.1"
    id="svg19"
-   sodipodi:docname="ear.svg"
+   sodipodi:docname="rainstick.svg"
    inkscape:export-filename="..\..\..\mainroot\project files\code\NSF code\refactored\media\hearing.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
-   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,13 +26,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="22.627417"
-     inkscape:cx="6.2755727"
-     inkscape:cy="13.766485"
-     inkscape:window-width="1513"
-     inkscape:window-height="1401"
-     inkscape:window-x="-8"
-     inkscape:window-y="0"
+     inkscape:zoom="14.338995"
+     inkscape:cx="16.981664"
+     inkscape:cy="10.984033"
+     inkscape:window-width="1470"
+     inkscape:window-height="835"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg19" />
   <path
@@ -40,7 +40,7 @@
      d="m 262.96388,-726.65476 c -4.003,-15.83148 -14.5416,-22.4742 -22.98097,-35.35534 -1.88989,-2.88456 -2.44501,-6.45116 -3.53553,-9.72272 -2.50329,-7.50986 -5.63847,-16.7923 -6.18719,-24.74874 -0.52704,-7.64217 0,-15.32064 0,-22.98097 0,-6.58858 -1.372,-21.5351 0.88388,-27.40039 0.946,-2.45958 2.53217,-4.63432 3.53553,-7.07106 0.40908,-0.99348 2.0812,-8.65809 4.41942,-10.6066 1.32988,-1.10823 17.23125,-7.79739 17.67767,-7.95496 2.56148,-0.90405 5.33772,-1.04075 7.95496,-1.76776 2.69311,-0.74809 5.21982,-2.07584 7.95495,-2.65165 6.54651,-1.37822 27.13,-3.15153 33.58756,-1.76777 1.9326,0.41412 3.4072,2.09397 5.30332,2.65165 3.16018,0.92946 6.627,0.64206 9.7227,1.76776 5.28808,1.92294 9.3227,5.35986 14.14214,7.95495 6.09646,3.28271 7.19626,3.04364 12.37438,7.07107 5.48218,4.26392 8.59832,16.61824 11.49048,22.98097 0.5452,1.19952 1.5094,2.2435 1.7678,3.53553 0.3468,1.73344 -0.3466,3.56987 0,5.3033 0.5482,2.74081 2.1035,5.21415 2.65166,7.95495 0.3466,1.73344 -0.2192,3.54919 0,5.30331 0.082,0.65372 0.5892,1.1785 0.8838,1.76776 0.2946,2.35702 0.7358,4.70032 0.8838,7.07106 0.3814,6.10166 0,12.44301 0,18.56156 0,3.83016 1.1152,7.82627 0,11.49048 -0.3842,1.26248 -10.16746,14.14589 -11.49048,15.90989 -6.08774,8.117 -11.87284,14.482 -19.44544,21.21322 -7.79872,6.93218 -8.7809,9.44534 -17.67766,13.25824 -1.3808,0.5918 -3.03268,0.306 -4.41942,0.8838 -5.66272,2.35948 -5.25218,3.9647 -10.6066,5.3033 -9.97478,2.4937 -25.92905,0.884 -37.12311,0.884"
      id="path18146" />
   <rect
-     style="fill:#bf8fbe;fill-opacity:1;stroke:#dac1da;stroke-width:25.58;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+     style="fill:#bf8fbe;fill-opacity:1;stroke:#974795;stroke-width:25.58;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
      id="rect11291"
      width="740.41461"
      height="180.41463"
@@ -54,7 +54,7 @@
      x="532.09711"
      y="-796.92352" />
   <rect
-     style="fill:#e6e4df;fill-opacity:1;stroke:#dac1da;stroke-width:27.5907;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+     style="fill:#e4dfe6;fill-opacity:1;stroke:#974795;stroke-width:27.5907;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
      id="rect17437"
      width="112.0103"
      height="233.98622"
@@ -82,7 +82,7 @@
      x="233.34525"
      y="-778.80389" />
   <rect
-     style="fill:#974795;fill-opacity:1;stroke:#bf8fbe;stroke-width:10.1804;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+     style="fill:#974795;fill-opacity:1;stroke:#974795;stroke-width:10.1804;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
      id="rect22901-32-2"
      width="26.50631"
      height="220.06674"

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="47.772999"
+   height="47.243"
+   viewBox="0 0 12.639938 12.49971"
+   version="1.1"
+   id="svg124969"
+   sodipodi:docname="toTopSide.svg"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview124971"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="5.2163188"
+     inkscape:cx="22.429611"
+     inkscape:cy="23.771553"
+     inkscape:window-width="1309"
+     inkscape:window-height="808"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs124966" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-0.76711051,-0.59331881)">
+    <path
+       sodipodi:type="star"
+       style="fill:#230543;fill-opacity:1;stroke:#230543;stroke-width:0.483658;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="path280911"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="11.310658"
+       sodipodi:cy="13.994543"
+       sodipodi:r1="20.713129"
+       sodipodi:r2="10.356565"
+       sodipodi:arg1="0.53407038"
+       sodipodi:arg2="1.5812679"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 29.139323,24.538377 -6.7349019,24.162703 11.527554,-6.7174503 Z"
+       transform="matrix(0.2146919,0,0,0.18117018,4.6229499,3.9239898)"
+       inkscape:transform-center-x="0.023282979"
+       inkscape:transform-center-y="-0.92108355" />
+    <rect
+       style="fill:#230543;fill-opacity:1;stroke:#230543;stroke-width:0.323497;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
+       id="rect280965"
+       width="2.7787328"
+       height="1.5656877"
+       x="5.6573205"
+       y="8.2354641" />
+  </g>
+</svg>

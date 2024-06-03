@@ -57,7 +57,7 @@ const displayObtrusiveErrors = (errors) => {
         container.appendChild(explainer);
     });
 
-    document.getElementById("rnbo-root").appendChild(column);
+    document.getElementById("main-container").appendChild(column);
 
     const svg = document.getElementById('background');
     

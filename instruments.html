@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" >
-<!-- Invisible things... -->
+  <!-- Invisible things... -->
 <meta charset="UTF-8">
-<title>Instruments</title>
+<title>Sonic Introduction</title>
+  <!-- Stylesheet-->
 
 <head>
   <link rel="icon" type="image/png" href="./media/NEWMTfavicon.png">
@@ -10,199 +11,375 @@
   <link rel="stylesheet" type="text/css" href="NTELstyle.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Chivo:wght@400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">  
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Chivo:wght@400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"> 
 </head>
-
-<div id="mySidebar" class="sidebar">
-  <ul class="menu">
-    <li><a href="./index.html">Home</a></li>
-    <li>
-      <a href="./instruments.html">Instruments</a>
-      <ul class="submenu">
-        <li><a href="./sonicintro.html">Sonic<br>Introduction</a></li>
-        <li><a href="./rainstick.html">Rainstick</a></li>
-        <li><a href="./wearablejazz.html">Wearable<br>Jazz</a></li>
-        <li><a href="./soundboard.html">Sound Board</a></li>
-      </ul>
-    </li>
-    <li><a href="./curriculum.html">Curriculum</a></li>
-    <li><a href="./sensorinfo.html">Sensor Resources</a></li>
-  </ul>
-</div>
-
-<div id="sensorSidebar" class="sensor-sidebar">
-  <div class="sidebarbuttons">
-    <div class="dynamicbtn" id="iconnect" style="width:100%;">
-      <button id="sensor-connect" class="connectbtnsidebar" onclick="scanToConnect()">Connect</button>
-    </div>
-    <!-- <div class="dynamicbtn" id="iconnect" style="width:100%;">
-      <button id="sensor-disconnect" class="connectbtnsidebar" onclick="scanToDisconnect()">Disconnect</button>
-    </div> -->
-  </div>
-
-  <div id="connected-devices-1"></div>
-  <div id="connected-devices-2"></div>
-  <div id="connected-devices-3"></div>
-  <div id="connected-devices-misc"></div>
-
   
-  <div class="console" id="iConsole">
-    <h2><u>info log:</u></h2>
-    <section id="midi-data">  
-        <ul></ul>
-    </section>
-  </div>
-
+<div class="console" id="iConsole">
+  <section id="midi-data">  
+      <p id="console-message"></p>
+  </section>
 </div>
 
 <body>
+
+  <div class="side-buttons">
+    <button class="go-to-top" onclick="goToTop()">
+      <img src="./media/toTopSide.svg" alt="Go to Top Button"> 
+    </button>
+    <button class="connect-device-button-side" onclick="addNewDevice()">
+      <img src="./media/addDeviceSide.svg" alt="Add Instrument Button">
+    </button>
+    <button class="connect-sensor-button-side" onclick="scanToConnect()">
+      <img src="./media/sensorOnSide.svg" alt="Connect Sensor Button">
+    </button>
+    <a class="soundboard-side" href="soundboard.html" target="_blank">
+      <img src="./media/soundboardSide.svg" alt="Connect Sensor Button">
+    </a>
+  </div>
+
   <div class="main-container" id="main-container">
     <header>
-      
-      <button class="openbtn" onclick="toggleNav()">☰ </br> > </button>
-      <button class="openbtnSS" onclick="toggleSS()"> > </button>
-      <p class="click-here">↑</br>side</br>bar</p>
+      <div class="banner-sensor">
+        <span>Need Information about the sensors?</span>
+        <span style="margin-top: 3px">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="13" viewBox="0 0 2 13" fill="none"><path opacity="0.4" d="M1 0.5V12.5" stroke="var(--primary-l)" stroke-width="1.5"></path></svg>
+        </span>
+        <a href="./sensorinfo.html" target="_blank" class="learn-more-link">
+          <span>Learn more
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="11" viewBox="0 0 9 9" fill="none"><path d="M1 1H8M8 1V8M8 1L1 8" stroke="var(--background)" stroke-width="1.8"></path></svg>
+            </span>
+          </span>
+        </a>
+      </div>
 
-      <p>
-        <a href="./index.html">Home</a> &gt; Instruments
-      </p>
+      <div class="banner-nav">
+        <div class="navigation-buttons">
+          <a href="./curriculum.html" class="navbar-button h-cb">Curriculum</a>
+          <a href="./instruments.html" class="navbar-button h-ib">Instruments</a>
+          <a href ="./about.html" class="navbar-button h-ab">About Us</a>
+        </div>
+        <div class="navbar-right">
+          <a href="https://www.youtube.com/@NEWMTapp" target="_blank" class="youtube">▶</a>
+        </div>
+      </div>
+
+      <div class="logo-wrapper">
+        <a href="./index.html" class="logo-home-button"><img src="./media/MW.svg"></a>
+      </div>
+      <!-- <button class="openbtn" onclick="toggleNav()">☰ </br> > </button> -->
+      <!-- <p class="click-here">↑</br>click </br>here!</p> -->
     </header>
-    <main id="main">
 
-      <h1>Instruments</h1>
-      <h2 style="font-size: 22px; text-align: center; line-height: 0px; margin-top: 5px; margin-bottom: 40px;">Neurodiverse, embodied, musical expression</h2>
+    <main>
+      <div class="instrument-globals">
 
-      <a class="sensor-setup-button" id="sensorsetup" href="./sensorinfo.html" aria-label="Set-up your sensor!">
-        <h1>Click for sensor info</h1>
-        <p></p>
-      </a>
+        <!-- <div class="connect-wash">
+          <button class="wash-close-btn" onclick="removeOverlay()">x</button>
+          <div class="dynamicbtn" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="scanToConnect()">Connect</button>
+          </div>
+          <div class="loading-icon" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="">Loading...</button>
+          </div>
+        </div> -->
 
+        <div class="tempo-container">
+          <div class="tempo-icon">
+            <h2 style="color:var(--secondary-l)"><u>Tempo</u></h2>
+          </div>
+          <input type="range" id="tempo" class="tempo-slider">
+          <div id="tempo-label">0</div>
+          <h2 class="bpm-text">BPM</h2>
+          <!-- <video id="tempo-video" loop muted></video> -->
+        </div>
 
-      <div class="connection-test">
-        <div class="connect-buttons-instructions">
-
-          <div class="connection-banners">
-            <img src="./media/connectionbanner1.svg" class="c-banner" style="height:auto;">
-
-            <div class="dynamicbtn" id="iconnect" style="height:20%; z-index: 5; ">
-              <button id="sensor-connect" class="connectbtnsidebar" style="border-width: 4px; border-radius: 25px; scale: 1.3; background: var(--primary); border-bottom: 4px solid var(--secondary);" onclick="scanToConnect()">Connect</button>
+        <div id="effects-main" class="effects-main">
+          <div class="effects-title-and-selects">
+            <h2 style="color:var(--background)"><u>Effects</u></h2>
+            <div class="plug"></div>
+            <select id="ss-fx" class="sensor-select"></select>
+            <select id="as-fx" class="axis-select"></select>
+            <h2 id="as-fx-mode" class="axis-mode">MODE</h2>
+          </div>
+          <div class="FX-vol-next-to">
+            <div class="FXvolume-slider-container" style="width: 17%; height: 300px;">
+              <input type="range" id="vol-effects" class="FXvolume-slider">
+              <!-- <span id="grain-title" style="margin-left: 50%;">volume</span> -->
+              <span id="vol-FX-label"><h2 style="color:var(--text);">volume</h2></span>
             </div>
-            </br>
-
-            <!-- <img src="./media/connectionbanner1.svg" class="c-banner" style="margin-top: 0px;"> -->
-            
-            <!-- <div class="dynamicbtn" id="iconnect" style="z-index: 5;">
-              <button id="ibutton" class="connectbtnsidebar" style="border-width: 4px; border-radius: 25px; scale: 1.2;" onclick="scanToDisconnect()">Disconnect</button>
-            </div> -->
-            <!-- <img src="./media/connectionbanner1.svg" class="c-banner" style="margin-top: -250px;"> -->
+  
+  
+            <div class="effects-controls">
+              <div class="reverb-swell">
+                <div class="" id="wearable-jazz-effects-image">
+                  <input type="range" id="dj-hand" class="dj-hand-slider">
+                </div>
+              </div>
+  
+  
+              <div id="effects-button-container">
+                <h2 class="verb-title">FX:</h2>
+                <button class="effects-toggle-button" data-value="1">None</button>
+                <button class="effects-toggle-button" data-value="2">DJ Filter</button>
+                <button class="effects-toggle-button" data-value="3">Echo</button>
+                <button class="effects-toggle-button" data-value="4">Glitch</button>
+              </div>
+  
+              <div class="horizontal-slider-reverb" style="margin-right: 20px; padding-right: 23px;">
+                <h2 class="verb-title">Reverb:</h2>
+                <input type="range" class="reverb-slider reverb">
+              </div>
+            </div>
           </div>
+          
+        </div>
+        <div class="funnel"></div>
+        <div class="funnel-stripe"></div>
+        <div class="funnel-stripe" style="width:105%"></div>
+        <div class="funnel-stripe" style="width:110%"></div>
+        
 
-          <div class="connection-instructions">
-            <h3>Try connecting to a sensor!</h3>
-            <ul>
-              <li>Turn your sensor on and hit the connect button to pair your sensor.</li>
-              <li>The Sensor Sidebar will open, showing you information about your sensor</li>
-              <li>In the Sensor Sidebar you can change the sensor's axis and view it's orientation.</li>
-              <li>Pressing the center button on your sensor will toggle the mode between Accelerometer and Gyroscope</li>
-              <li>Accelerometer is for tilting and Gyroscope is for flicking</li>
-              <li>Close the Sensor Sidebar by clicking the sensor button.</li>
-              <li>Refresh your page to disconnect your sensor.</li>
-              <li>(Note: <strong>You will need to connect on each instrument page</strong>)</li>
-            </ul>
+        <div class="connection-zone">
+          <div class="instrument-presets">
+            <button id="SIpreset" class="preset-button" onclick="setupSI(context, outputNode)">
+              <img src="./media/sonicicon.svg" alt="Sonic Introduction Button" style="transform:scale(3);">
+              Sonic Introduction
+            </button>
+            <button id="RSpreset" class="preset-button" onclick="setupRS(context, outputNode)">
+              <img src="./media/rainstick2.svg" alt="Rainstick Button" style="transform:scale(3);">
+              Rainstick
+            </button>
+            <button id="WJpreset" class="preset-button" onclick="setupWJ(context, outputNode)">
+              <img src="./media/mainWJicon.svg" alt="Wearable Jazz Button" style="transform:scale(3.0) rotate(-10deg);">
+              Wearable Jazz
+            </button>
+          </div>
+          
+          <div class="connection-buttons">
+            <button class="connect-device-button" onclick="addNewDevice()">
+              <img src="./media/addDevice.svg" alt="Add Device Button">
+              add instrument
+            </button>
+            <button class="connect-sensor-button" onclick="scanToConnect()">
+              <img src="./media/sensorOn.svg" alt="Connect Sensor Button">
+              connect sensor
+            </button>
+          </div>
+        </div>
+
+        <div id="device-modal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="device-buttons">
+              <button onclick="setupLoop(context, outputNode)">
+                <img src="./media/IconLoop.svg" alt="Loop">
+                <span>LOOP</span>
+              </button>
+              <button onclick="setupTap(context, outputNode)">
+                <img src="./media/IconTap.svg" alt="Tqp">
+                <span>TAP</span>
+              </button>
+              <button onclick="setupRainstick(context, outputNode)">
+                <img src="./media/IconRainstick.svg" alt="Rainstick">
+                <span>Rainstick</span>
+              </button>
+              <button onclick="setupDrums(context, outputNode)">
+                <img src="./media/IconDrums.svg" alt="Drums">
+                <span>Drums</span>
+              </button>
+              <button onclick="setupMelody(context, outputNode)">
+                <img src="./media/IconMelody.svg" alt="Melody">
+                <span>Melody</span>
+              </button>
+              <button onclick="setupHarmony(context, outputNode)">
+                <img src="./media/IconHarmony.svg" alt="Harmony">
+                <span>Harmony</span>
+              </button>
+            </div>
+            <h2 style="color: var(--calm); font-size: 48px; padding: 0px; width: max-content; margin: 0 auto;">Choose an Instrument</h2>
           </div>
         </div>
       </div>
 
-      <div class="all-instruments-main">
-        <h1 style="font-size:45px; color:var(--primary); text-shadow: 3px 3px var(--text);">Our Instruments</h1>
-        <a class="instrument-item-main" href="./sonicintro.html" aria-label="Play Sonic Introduction">
-          <div class="instrument-main-title-icon">
-            <h2>Sonic Introduction</h2>
-            <img class="instrument-item-main-icon" src="./media/sonicicon.svg" style="rotate:10deg;">
-          </div>
-          <p>
-            Sonic Introduction guides students into the world of digital music creation by introducing two instruments, tap and loop, that reflect two different approaches to the creation of sound.
+      <div class="injected-instruments"></div>
 
-          </p>
-        </a>
-
-        <a class="instrument-item-main" href="./rainstick.html" aria-label="Play Rainstick">
-          <div class="instrument-main-title-icon">
-            <h2>Rainstick</h2>
-            <img class="instrument-item-main-icon" src="./media/rainstick2.svg" style="rotate:-10deg;">
-          </div>
-
-          <p>
-            Rainstick uses a sensor to control audio playback. Just as in an acoustic rainstick where grains flow with tilt, the digital version plays short audio "grains" in response to tilting a sensor.
-          </p>
-        </a>
-
-        <a class="instrument-item-main" href="./wearablejazz.html" aria-label="Play Wearable Jazz">
-          <div class="instrument-main-title-icon">
-            <h2>Wearable Jazz</h2>
-            <img class="instrument-item-main-icon" src="./media/mainWJicon.svg" style="rotate:10deg;">
-          </div>
-          <p>
-            Wearable Jazz is a virtual ensemble made up of different instruments or effects that can be controlled by up to three sensors. Sensors can control <em>Drums and Chords</em>, <em>Melody</em>, and <em>Effects</em>.
-          </p>
-        </a>
-
-        <a class="instrument-item-main" href="./soundboard.html" aria-label="Play Soundboard">
-          <div class="instrument-main-title-icon">
-            <h2>Soundboard</h2>
-            <img class="instrument-item-main-icon" src="./media/soundboardicon.svg" style="rotate:-10deg;">
-          </div>
-          <p>
-            Soundboard is designed for the <em>Sports Orchestra</em> Lesson of our curriculum. It allows teachers to play five different baseball related sounds in order to be the "conductor" or the sports orchestra.
-          </p>
-        </a>
-      </div>
-
-      <div class="warning-container">
-        <div class="warning-icon">!</div>
-        <div class="warning-bubble">
-          To use web MIDI in combination to web Bluetooth, you need to enable Bluetooth on your device. GPS might be needed for security reasons. This web application is only known to be supported by Chrome. Safari and Fire Fox are not officially supported. You will need 1-3 Wearable Music Sensors [e.g. an <a href="https://shop.m5stack.com/products/m5stickc-plus-esp32-pico-mini-iot-development-kit" target="_blank">M5 Stick</a>] to use our instruments.
-        </div>
-      </div>
-
-      <div class="project-description instrument-overview">
-        <h3>Indepth Instrument Overview</h3>
-        <p>These instruments can be used stand-alone, or you can open multiple tabs of our instruments and connect sensors to instruments across tabs to achieve more complex behavior.
-          For example, "<em>Tap</em>", one half of Sonic Introduction, only works on one axis of the sensor at a time. However, if there are two instances of Tap open in different tabs, connected to the same sensor on different axis, you can play a two different sounds by moving a sensor along the two axis.
-          The possibilties open up from there. Rainstick and Loop can be combined to create ambient soundscapes, or three different instances of rainstick can form a tripple axis sound generating experience. </br> Below are some detail descriptions of our instruments:
-
-        </p>
-        <h4 class="project-description-inner-h4">Sonic Introduction</h4>
-        <p>
-          Sonic Introduction is two intruments in one. Each explore different paradigms in music making: the one-shot, and the loop. A one-shot is meant to only play once at a specified time, whereas a loop plays continously with the choice to fade it in or out depending on the context.
-
-          </br>
-          1. <em>Tap: Play a sound once</em>
-          </br>
-          Use your sensor to initiate the playback of a sound. You can choose which sound to play, as well as the threshold of tilt or movement required to activate it
-          </br>
-          2. <em>Loop: Play a sound forever</em>
-          </br>
-          Looping is an important technique in digital music, since it allows sounds of any length to play forever. With this instrument, the sensor controls the loudness of the sound, but the loop is always playing behind the scenes, even if you don’t hear it.
-        </p>
-
-        <h4 class="project-description-inner-h4">Rainstick</h4>
-        <p>
-          This digital Rainstick closely emulates an acoustic one; however, the user is able to choose what the grains sound like from a bank of sounds. Tilt the sensor to activate the Rainstick. The steeper the tilt, the faster these sounds play. Users can customize the maximum rate at which the grains play, select the number of audio grains, and change their size and pitch. You can even introduce different kinds of randomization to more closely simulate the physical attributes of a real rainstick.
-        </p>
-
-        <h4 class="project-description-inner-h4">Wearable Jazz</h4>
-        <p>
-          Wearable Jazz contains three parts that students can control with one, two, or three sensors. Each of these parts are different roles in a musical ensemble:
-          </br>
-          <em>- The Drum & Chord Sensor</em> makes the sound of a bass and snare drum and sets the mood by changing musical chords.
-          </br>
-          <em>- The Melody Sensor</em> plays notes that match the chord. A probability control affects how often notes will be played.
-          </br>
-          <em>- The Sound Effects Sensor</em> lets you change how our music sounds, adding rhythmic effects to the music and allowing selection of filtering, echo, or glitch effects that change the sound of the whole ensemble.
-        </p>
-      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
       
+      <!-- <h1>RAINSTICK</h1>
+
+      <div>
+        <select id="ss-rainstick" class="sensor-select"></select>
+        <select id="as-rainstick"></select>
+        <h2 id="as-rainstick-mode"></h2>
+      </div>
+
+      <div id="connected-to-rs" class="connected-to"><strong>connected to:</strong></div>
+      <div id="rainstick-main" class="instrument"> 
+
+        <div class="connect-wash">
+          <button class="wash-close-btn" onclick="removeOverlay()">x</button>
+          <div class="dynamicbtn" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="scanToConnect()">Connect</button>
+          </div>
+          <div class="loading-icon" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="">Loading...</button>
+          </div>
+        </div>
+
+        <div id="sounds-rs" class="sounds">
+          <em id="no-samples-label-rs">No Samples Detected</em>
+          <div id="sample-group">
+            <div class="rnbo-clickable-keyboard" id="rs-test"></div> 
+            <select id="rs-dropdown"></select>
+            
+          </div>
+          <div id="trig-sliders-main" class="sliders-box-rs">
+            <div class="three-next-to">
+              <div class="vertical-slider-container" style="width: 25%;">
+                <input type="range" id="vol-rs" class="volume-slider">
+                <span id="vol-rs-label"><h2>Vol</h2></span>
+              </div>
+              <div class="rainstick-visualize"><div id="rainstick-tilt"></div></div>
+
+              <div class="vertical-slider-container" style="width: 25%;">
+                <input type="range" id="speed-rs" class="speed-slider">
+                <span id="speed-rs-label"><h2>Speed</h2></span>
+              </div>
+
+            </div>
+            <div class="grain-main">
+            <span id="grain-control">Grain Controls</span>
+              <div class="three-sliders-on-top">
+                <div class="grain-container">
+                  <div id="number-few" class="grain-slider-icons"></div>
+                  <span id="grain-title" style="margin-left: 50%;">number</span>
+                  <input type="range" id="grain-number-rs" class="grain-slider">
+                  <div class="grain-label" id="grain-number-label">0</div>
+                  <div id="number-many" class="grain-slider-icons"></div>
+                </div> 
+                
+                <div class="grain-container">
+                  <div id="size-small" class="grain-slider-icons"></div>
+                  <span id="grain-title" style="margin-left: -50%;">size</span>
+                  <input type="range" id="grain-size-rs" class="grain-slider">
+                  <div class="grain-label" id="grain-size-label">0</div>
+                  <div id="size-large" class="grain-slider-icons"></div>
+                </div>
+                <div class="grain-container">
+                  <div id="pitch-low" class="grain-slider-icons"></div>
+                  <span id="grain-title" style="margin-left: 50%;">pitch</span>
+                  <input type="range" id="grain-pitch-rs" class="grain-slider">
+                  <div class="grain-label" id="grain-pitch-label">0</div>
+                  <div id="pitch-high" class="grain-slider-icons"></div>
+                </div>
+
+                <div class="grain-container">
+                  <div id="random-normal" class="grain-slider-icons"></div>
+                  <span id="grain-title" style="margin-left: -45%;">randomness</span>
+                  <input type="range" id="modes" class="grain-slider">
+                  <div class="grain-label" id="grain-modes-label">0</div>
+                  <div id="random-random" class="grain-slider-icons"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      </br>
+      </br>
+      </br> -->
+
+
+      <!-- <h1>LOOP</h1>
+      <div>
+        <select id="ss-loop" class="sensor-select"></select>
+        <select id="as-loop"></select>
+        <h2 id="as-loop-mode"></h2>
+      </div>
+      <div id="connected-to-loop" class="connected-to"><strong>connected to:</strong></div>
+      <div id="loop-sound" class="instrument"> 
+
+        <div class="connect-wash">
+          <button class="wash-close-btn" onclick="removeOverlay()">x</button>
+          <div class="dynamicbtn" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="scanToConnect()">Connect</button>
+          </div>
+          <div class="loading-icon" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="">Loading...</button>
+          </div>
+        </div>
+
+        <div id="sounds-loop" class="sounds">
+          <em id="no-samples-label-loop">No Samples Detected</em>
+          <div id="sample-group">
+            <div class="rnbo-clickable-keyboard" id="loop-test"></div> 
+            <select id="loop-dropdown"></select>
+            
+          </div>
+          <div id="trig-sliders-main" class="sliders-box-trig-loop">
+            <div class="vertical-slider-container">
+              <input type="range" id="vol-sens" class="volume-slider">
+              <span id="vol-sens-label"><h2>Vol</h2></span>
+            </div>
+            <div class="two-sliders-on-top">
+              <input type="range" class="sensitivity-visualization">
+              <input type="range" class="sensitivity-slider">
+            </div>
+          </div>
+        </div>
+        <div id="labels">
+          <span id="sens-label"><h2>Sensitivity</h2></span>
+        </div>
+      </div>
+
+      <h1>TAP</h1>
+      <div id="connected-to-trig" class="connected-to"><strong>connected to:</strong></div>
+      <div id="trigger-sound" class="instrument"> 
+
+        <div class="connect-wash">
+          <button class="wash-close-btn" onclick="removeOverlay()">x</button>
+          <div class="dynamicbtn" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="scanToConnect()">Connect</button>
+          </div>
+          <div class="loading-icon" id="iconnect">
+            <button id="trig-connect" class="connectbtn" onclick="">Loading...</button>
+          </div>
+        </div>
+        
+        <div id="sounds-trig" class="sounds">
+          <em id="no-samples-label-trig">No Samples Detected</em>
+          <div id="sample-group">
+            <div class="rnbo-clickable-keyboard" id="trig-test"></div> 
+            <select id="trig-dropdown"></select>
+            
+          </div>
+          <div id="trig-sliders-main" class="sliders-box-trig-loop">
+            <div class="vertical-slider-container">
+              <input type="range" id="vol-trig" class="volume-slider">
+              <span id="vol-trig-label"><h2>Vol</h2></span>
+            </div>
+            <div class="two-sliders-on-top">
+              <input type="range" class="threshold-visualization">
+              <div id="on-top-of">
+                <div id="threshold-track"><input type="range" class="threshold-slider" id="threshold-slider"></div>
+                <div id="threshold-arrow"><input type="range" class="threshold-slider-arrow"></div>
+              </div>
+            </div>
+          </div>
+          <div id="labels">
+            <span id="thresh-label"><h2>Threshold</h2></span>
+          </div>
+        </div>
+      </div> -->
+
     </main>
     <footer>
       
@@ -231,14 +408,32 @@
       </div>
     </footer>
   </div>
+
+
+    <!-- Javascript files-->
+    <script src="./classSlider.js"></script>
+    <script src="./classSensor.js"></script>
+    <script src="./common.js"></script>
+    <script src="./midiBLEdecoder.js"></script>
+    <!-- <script src="./blerx.js"></script> -->
+    <script src="./rainstick.js"></script>
+    <script src="./sonicintro.js"></script>
+  
+    <script src="./midiContentDecoder.js"></script>
+    <!-- Load the script that creates the RNBO device  -->
+    <!-- Uncomment if you know the version of your exported RNBO patch to avoid dynamic loading -->
+    <!-- <script type="text/javascript" src="https://cdn.cycling74.com/rnbo/latest/rnbo.min.js"></script> -->
+  
+    <!-- (Optional) The guardrails.js script isn't required for RNBO to work, and you can skip including it -->
+    <!-- It simply offers some helpful error messages for common problems -->
+    <script type="text/javascript" src="./guardrails.js"></script>
+  
+    <!-- Import RNBO Engine Wrapper -->
+    <!-- Make sure to include the RNBO engine version to the version of your exported code, found in rnbopackage.json -->
+    <!-- <script type="text/javascript" src="./app.js"></script> -->
 </body>
 
-<script src="./common.js"></script>
-<script src="./classSensor.js"></script>
-<script src="./midiContentDecoder.js"></script>
-<script src="./midiBLEdecoder.js"></script>
-<script src="./classSlider.js"></script>
-<script type="text/javascript" src="./guardrails.js"></script>
-<script src="./instrumenttest.js"></script>
 
+  
+  
 </html>
