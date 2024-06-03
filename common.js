@@ -1498,8 +1498,9 @@ function makeSliders(device, ID, selectID) {
       type = 'visualizeLoop';
     }
     if (param.name === "user_loop_Volume"){
-      container = document.querySelector(`.vol-sens-${ID}`);
+      container = document.querySelector(`.vol-loop-${ID}`);
       type = 'vol';
+      console.log(container, type);
     }
     if (param.name === "user_loop_Sensitivity"){
       container = document.querySelector(`.sensitivity-slider-${ID}`);

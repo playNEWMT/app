@@ -59,6 +59,7 @@ class Slider {
 
         if (this.type === 'vol') {
             this.attachVolSliders();
+            console.log("loop vol");
         }
         if(this.type === 'sensor') {
             this.attachSensorUI();
