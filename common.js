@@ -45,6 +45,7 @@ function closeWarning() {
 }
 
 window.addEventListener('load', function() {
+  console.log("pathname test");
   if (isNotChrome() && window.location.pathname === 'https://playnewmt.github.io/app//instruments.html') {
     const warningPopup = document.createElement('div');
     warningPopup.style.color = 'red'; 
