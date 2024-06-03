@@ -45,8 +45,8 @@ function closeWarning() {
 }
 
 window.addEventListener('load', function() {
-  console.log("pathname test");
-  if (isNotChrome() && window.location.pathname === 'https://playnewmt.github.io/app/instruments.html') {
+  console.log("pathname test", window.location.pathname);
+  if (isNotChrome() && window.location.pathname === '/app/instruments.html') {
     const warningPopup = document.createElement('div');
     warningPopup.style.color = 'red'; 
     warningPopup.style.fontFamily = 'var(--heading)';
@@ -775,7 +775,7 @@ window.onload= async function(){
   }
 
   // console.log(window.location.pathname);
-  if (window.location.pathname === 'https://playnewmt.github.io/app/instruments.html') {
+  if (window.location.pathname === '/app/instruments.html') {
     try {
       await setupClock(context, outputNode); // Wait for setupClock to complete
       await setupEffects(context, outputNode); // Then start setupEffects
