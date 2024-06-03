@@ -3307,6 +3307,7 @@ input[type="range"].FXvolume-slider {
   background-color: var(--background);
   padding: 10px;
   border-radius: 0px 25px 25px 0px;
+  z-index: 10000;
   /* transform: scale(0.95); */
   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
