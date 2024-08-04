@@ -235,7 +235,7 @@ function makeMIDIKeyboard(device, samples) {
 
         const key = document.createElement("div");
         const label = document.createElement("p");
-        label.textContent = "Play";
+        label.textContent = "▶";
         label.style.fontSize = '40px';
         label.style.fontWeight = 'bold';
         key.appendChild(label);

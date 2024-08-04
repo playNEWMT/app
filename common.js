@@ -14,6 +14,7 @@ var SIdevice;
 var RSdevice;
 var sensorArray = [];
 var deviceArray = [];
+let mouseModeArray = [];
 var deviceID = 0;
 var globalClock;
 
@@ -286,6 +287,98 @@ function removeOverlay() {
     // openSS();
 }
 
+let counter = 0;
+function nextCollaborator() {
+  let image = document.querySelector('.about-us-image');
+  let text = document.querySelector('.about-us-text');
+  imageAway(image);
+
+  const ASUtext = `
+  <h3>ASU <em>- MLFTC & AME</em></h3>
+  <p>
+    Educators and researchers from ASU's Mary Lou Fulton Teacher's College and the school of Arts, Media and Engineering:</br>
+    </br>
+    <strong>
+    - Sha Xin Wei: Principle Investigator (AME)</br>
+    - Seth Thorn: Co-PI, Audio Developer (AME)</br>
+    - Mirka Koro: Co-PI (MLFTC)</br>
+    - Margarita Pivovarova: Co-PI (MLFTC)</br>
+    - Corey Reutlinger: Postdoctoral Researcher (AME)</br>
+    - Cole Mcleod: UI/UX & Audio Developer (AME)
+    </strong>
+  </p>
+  `;
+  const NERCtext = `
+    <h3>NERC and Science Prep Academy</h3>
+    <p>
+      NERC is an independent nonprofit research center dedicated to improving access to quality education and workforce development for Neurodivergent humans. 
+      Science Prep Academy, is NERC’s flagship STEM private school.
+      </br>
+      </br>
+      <strong>
+      - Ananí M. Vasquez, PhD (NERC)</br>
+      - Denise Amiot, School Director (NERC)</br>
+      - Cintya Arcos, Program Coordinator (NERC)</br>
+      </strong>
+    </p>
+  `;
+
+  const TEACHtext = `
+    <h3>Teacher Fellows</h3>
+    <p>
+      Teacher Fellows were integral to the co-design process and to the facilitation of professional development for their colleagues.</br>
+      </br>
+      <strong>
+      - Jessica Strouth, Science Prep Academy</br>
+      - Kristin Kennedy, Sacaton Schools</br>
+      - Exie Weathers, Science Prep Academy</br>
+      - Jasmine Cano, Cholla Schools</br>
+      - Jonathan Perrone, Arizona Educational Foundation
+      </strong>
+    </p>  
+  `;
+
+  counter += 1;
+  let abouttext = '';
+  if (counter == 3) {
+    counter = 0;
+  }
+
+  if (counter == 0) {
+    abouttext = ASUtext;
+  }
+  else if (counter == 1) {
+    abouttext = NERCtext;
+  }
+  else if (counter == 2) {
+    abouttext = TEACHtext;
+  }
+  text.innerHTML = abouttext;
+}
+
+async function imageAway(image) {
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  image.style.left = '100%';
+  await delay(550);
+  imageBack(image);
+}
+
+function imageBack(image) {
+  let picture = image.children[0];
+  if (counter == 0){
+    picture.src = './media/ASUlogo.png';
+
+  } else if (counter == 1){
+    picture.src = './media/img-man-teaching-kids.jpg';
+
+  } else if (counter == 2){
+    picture.src = './media/teacher-fellows.jpg';
+
+  }
+  
+  image.style.left = '0%';
+}
+
 function setDefaults() {
   // const navButton = document.querySelector('.openbtn');
   // document.documentElement.style.setProperty('--responsive-to-nav', `${10}px`);
@@ -351,11 +444,7 @@ function loadRNBOScript(version) {
 function populateAxis() {
 
   deviceArray.forEach(device => {
-    // console.log(device);
-    let thisDeviceSensor = device.connectedSensor;
-    if (thisDeviceSensor === null) {
-      return
-    }
+
     // console.log(thisDeviceSensor);
     let axisSelect = document.getElementById(`${device.axisID}`);
     // console.log(device.axisID, axisSelect);
@@ -363,35 +452,75 @@ function populateAxis() {
     let h2Element = document.getElementById(`${device.axisID}-mode`);
 
     var axisSelectedValue = axisSelect.value;
-    console.log(thisDeviceSensor);
+    // console.log(thisDeviceSensor);
 
-      if (thisDeviceSensor.mode == 0) {
-        h2Element.textContent = "EASY";
-        axisSelect.innerHTML = "";
-        let options = ['Pitch', 'Roll', 'Shake'];
-        options.forEach((option, index) => {
-          var optionElement = document.createElement("option");
-          optionElement.text = option;
-          optionElement.value = index + 1;
-          axisSelect.add(optionElement);
-        });
+    if ((mouseModeArray.find(MMdevice => MMdevice.ID === device.ID) || null) !== null){
+      h2Element.textContent = "MOUSE";
+      axisSelect.innerHTML = "";
+      let options = ['X-Axis', 'Y-Axis'];
+      options.forEach((option, index) => {
+        var optionElement = document.createElement("option");
+        optionElement.text = option;
+        optionElement.value = index + 1;
+        axisSelect.add(optionElement);
+      });
 
-      }
-      else if (thisDeviceSensor.mode == 1 || thisDeviceSensor.mode == 2) {
-        if (thisDeviceSensor.mode == 1){
-          h2Element.textContent = "ACCEL";
-        } else {
-          h2Element.textContent = "GYRO";
-        }
-        let options = ['X-Axis', 'Y-Axis', 'Z-Axis'];
-        axisSelect.innerHTML = "";
-        options.forEach((option, index) => {
-          var optionElement = document.createElement("option");
-          optionElement.text = option;
-          optionElement.value = index + 1;
-          axisSelect.add(optionElement);
+      axisSelect.value = axisSelectedValue;
+
+      axisSelect.addEventListener("change", event => {
+        // console.log(device, event.target.value);
+        device.deviceAxis = event.target.value;
+        // console.log(device.deviceAxis);
+      });
+
+      if (!axisSelect.value) {
+        axisSelect.value = 2;
+        var event = new Event('change', {
+          bubbles: true,
+          cancelable: true
         });
+        axisSelect.dispatchEvent(event);
       }
+
+      return;
+    }
+    // console.log(device);
+    let thisDeviceSensor = device.connectedSensor;
+    if (thisDeviceSensor === null && (mouseModeArray.find(MMdevice => MMdevice.ID === device.ID) || null) === null) {
+      h2Element.textContent = "MODE";
+      axisSelect.innerHTML = "";
+      return;
+    }
+
+    if (thisDeviceSensor === null) {
+      return;
+    }
+
+    if (thisDeviceSensor.mode == 0) {
+      h2Element.textContent = "EASY";
+      axisSelect.innerHTML = "";
+      let options = ['Pitch', 'Roll', 'Shake'];
+      options.forEach((option, index) => {
+        var optionElement = document.createElement("option");
+        optionElement.text = option;
+        optionElement.value = index + 1;
+        axisSelect.add(optionElement);
+      });
+    } else if (thisDeviceSensor.mode == 1 || thisDeviceSensor.mode == 2) {
+      if (thisDeviceSensor.mode == 1){
+        h2Element.textContent = "ACCEL";
+      } else {
+        h2Element.textContent = "GYRO";
+      }
+      let options = ['X-Axis', 'Y-Axis', 'Z-Axis'];
+      axisSelect.innerHTML = "";
+      options.forEach((option, index) => {
+        var optionElement = document.createElement("option");
+        optionElement.text = option;
+        optionElement.value = index + 1;
+        axisSelect.add(optionElement);
+      });
+    }
 
       axisSelect.value = axisSelectedValue;
 
@@ -678,18 +807,27 @@ if (midi[1] == 100 && midi[2] == 0) {
   populateAxis();
 }
 
+
 connectedTo.forEach(deviceInfo => {
   let thisDevice = deviceInfo.device;
+  // console.log(deviceInfo.ID);
+  // console.log(mouseModeArray.find(device => device.ID === deviceInfo.ID) || null);
+  if((mouseModeArray.find(device => device.ID === deviceInfo.ID) || null) !== null){
+    console.log("hello");
+    
+    return;
+  }
+  
   if (deviceInfo.deviceAxis == 1 && midi[1] == 1){
-    playNote(thisDevice, midi);
+    playNote(thisDevice, midi, deviceInfo.invert);
     // console.log("axis 1", midi);
 
   } else if (deviceInfo.deviceAxis == 2 && midi[1] == 2) {
-    playNote(thisDevice, midi);
+    playNote(thisDevice, midi, deviceInfo.invert);
     // console.log("axis 2", midi);
 
   } else if (deviceInfo.deviceAxis == 3 && midi[1] == 3) {
-    playNote(thisDevice, midi);
+    playNote(thisDevice, midi, deviceInfo.invert);
     // console.log("axis 3", midi);
 
   }
@@ -700,10 +838,18 @@ connectedTo.forEach(deviceInfo => {
 // playNote(RSdevice, SIdevice, bleMIDIrx(eventData));
 }
 
-function playNote (device, midiMessage) {
-  // console.log(midiMessage, device);
+function playNote (device, midiMessage, invert = false) {
+  let sendMidi = midiMessage;
+
+  if (invert) {
+    // Invert the midiValue (third element of the array)
+    invertedValue = 127 - midiMessage[2];
+    console.log("invertOn", midiMessage);
+    sendMidi = [midiMessage[0], midiMessage[1], invertedValue];
+  }
+  // console.log("invertOff", midiMessage);
   
-  let noteOnEvent = new RNBO.MIDIEvent(device.context.currentTime * 1000 , 0, midiMessage);
+  let noteOnEvent = new RNBO.MIDIEvent(device.context.currentTime * 1000 , 0, sendMidi);
   device.scheduleEvent(noteOnEvent);
   // console.log(midiMessage);
   // let noteOnEvent = new RNBO.MIDIEvent(SIdevice.context.currentTime * 1000 , 0, midiMessage);
@@ -711,6 +857,100 @@ function playNote (device, midiMessage) {
 
   // noteOnEvent = new RNBO.MIDIEvent(RSdevice.context.currentTime * 1000 , 0, midiMessage);
   // RSdevice.scheduleEvent(noteOnEvent);
+}
+
+function scale(value, inMin, inMax, outMin, outMax) {
+  return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+}
+
+window.addEventListener('mousemove', (event) => {
+  if (mouseModeArray.length === 0) {
+    return;
+  }
+  // Get the mouse position
+  let mouseX = event.clientX;
+  let mouseY = event.clientY;
+
+  // Get the dimensions of the window
+  let windowWidth = window.innerWidth;
+  let windowHeight = window.innerHeight;
+
+  // Scale the mouse position to a value between 0 and 127
+  let scaledX = Math.round(scale(mouseX, 0, windowWidth, 0, 127));
+  let scaledY = Math.round(scale(mouseY, 0, windowHeight, 0, 127));
+
+  // Construct a MIDI message (for example, a note on message)
+  let midiX = [176, 1, scaledX];
+  let midiY = [176, 2, scaledY];
+  // let midiClick = [176, 3, ]
+  // console.log(mouseModeArray);
+
+  // Get the device
+  for (let device of mouseModeArray) {
+    // console.log(device);
+    // return;
+    if (device.deviceAxis == 1){
+      playNote(device.device, midiX, device.invert);
+      // console.log("axis X");
+  
+    } else if (device.deviceAxis == 2) {
+      playNote(device.device, midiY, device.invert);
+      // console.log("axis Y");
+  
+    } 
+    // else if (device.deviceAxis == 3) {
+    //   playNote(device, midiClick);
+    // }
+    // playNote(device, midiMessage);
+  }
+
+  // Call the playNote function with the device and MIDI message
+  
+});
+
+
+function mouseModeOn(ID) {
+  // console.log(deviceArray, ID);
+  let foundDevice = deviceArray.find(device => device.ID === ID) || null;
+  let mouseModeButton = document.querySelector(`.mouse-mode-on-${ID}`);
+  console.log(ID, foundDevice, mouseModeButton);
+
+  if (foundDevice === null) return; // Early exit if device not found
+
+  if (mouseModeArray.length === 0 || !mouseModeArray.find(device => device.ID === ID)) {
+    console.log("add");
+    mouseModeArray.push(foundDevice);
+    mouseModeButton.classList.add("mouse-mode-on");
+    
+  } else {
+    console.log("sub");
+    mouseModeArray = mouseModeArray.filter(device => device.ID !== ID);
+    mouseModeButton.classList.remove("mouse-mode-on");
+  }
+  console.log(mouseModeArray);
+  populateAxis();
+}
+
+function invertOn(ID) {
+  // console.log(deviceArray, ID);
+  let foundDevice = deviceArray.find(device => device.ID === ID) || null;
+  let invertButton = document.querySelector(`.invert-on-${ID}`);
+  console.log(ID, foundDevice, invertButton);
+
+  if (foundDevice === null) return; // Early exit if device not found
+
+  if (foundDevice.invert === true) {
+    console.log("uninverted");
+    invertButton.classList.remove("invert-on");
+    foundDevice.invert = false;
+  } else {
+    foundDevice.invert = true;
+    console.log("inverted");
+    invertButton.classList.add("invert-on");
+  }
+
+  console.log(foundDevice);
+
 }
 
 function onDisconnected(event) {
@@ -775,7 +1015,8 @@ window.onload= async function(){
   }
 
   // console.log(window.location.pathname);
-  if (window.location.pathname === '/app/instruments.html') {
+  // if (window.location.pathname === '/app/instruments.html') {
+    if (window.location.pathname === '/instruments.html') {
     try {
       await setupClock(context, outputNode); // Wait for setupClock to complete
       await setupEffects(context, outputNode); // Then start setupEffects
@@ -836,20 +1077,20 @@ async function setupInstrument(context, outputNode, deviceInfo) {
     let globalFX = deviceArray.find(device => device.name === "Effects") || null;
     device.node.connect(globalFX.device.node);
     clockInit(device);
-    deviceArray.push({ name: name, device: device, ID: deviceID, selectID: selectID, connectedSensor: null, axisID: axisID, deviceAxis: null });
+    deviceArray.push({ name: name, device: device, ID: deviceID, selectID: selectID, connectedSensor: null, axisID: axisID, deviceAxis: null, invert: false});
     makeSliders(device, deviceID, selectID);
 
   } else if (name == "Melody" || name == "Harmony") {
     let globalFX = deviceArray.find(device => device.name === "Effects") || null;
     device.node.connect(globalFX.device.node);
     clockInit(device);
-    deviceArray.push({ name: name, device: device, ID: deviceID, selectID: selectID, connectedSensor: null, axisID: axisID, deviceAxis: null });
+    deviceArray.push({ name: name, device: device, ID: deviceID, selectID: selectID, connectedSensor: null, axisID: axisID, deviceAxis: null, invert: false });
     makeSliders(device, deviceID, selectID);
   } else {
     let globalFX = deviceArray.find(device => device.name === "Effects") || null;
-    console.log(globalFX,globalFX.device);
+    // console.log(globalFX,globalFX.device);
     device.node.connect(globalFX.device.node);
-    deviceArray.push({ name: name, device: device, ID: deviceID, selectID: selectID, connectedSensor: null, axisID: axisID, deviceAxis: null });
+    deviceArray.push({ name: name, device: device, ID: deviceID, selectID: selectID, connectedSensor: null, axisID: axisID, deviceAxis: null, invert:false });
     console.log(axisID, selectID);
     makeSliders(device, deviceID, selectID);
     makeMIDIKeyboard(device, dependencies.length, deviceID, name);
@@ -896,6 +1137,38 @@ function handleSetupError(error) {
   }
 }
 
+function deleteDevice(ID) {
+  console.log(ID);
+  let globalFX = deviceArray.find(device => device.name === "Effects") || null;
+  const deviceIndex = deviceArray.findIndex(device => device.ID === ID);
+  if (deviceIndex !== -1) {
+    // Get the device
+    const deviceToRemove = deviceArray[deviceIndex];
+    
+    // Disconnect the device from the global output
+    if (deviceToRemove.device.node) {
+      deviceToRemove.device.node.disconnect(globalFX.device.node);
+    }
+
+    // Remove the device from the array
+    deviceArray.splice(deviceIndex, 1);
+    mouseModeArray = mouseModeArray.filter(device => device.ID !== ID);
+    // mouseModeButton.classList.remove("mouse-mode-on");
+  } else {
+    console.error(`Device with ID ${ID} not found.`);
+    return;
+  }
+
+  const element = document.getElementById(`device-${ID}`);
+  if (element) {
+    element.remove();
+  } else {
+    console.error(`HTML element for device with ID ${ID} not found.`);
+  }
+  console.log(`delete device-${ID}`);
+
+}
+
 function clockInit(device) {
   // console.log("effect device:", device);
   let masterClock = globalClock.device;
@@ -927,7 +1200,7 @@ function clockInit(device) {
 }
 
 function rootInit(device) {
-  console.log(globalClock);
+  // console.log(globalClock);
     device.messageEvent.subscribe((ev) => {
       // console.log(`Received message ${ev.tag}: ${ev.payload}`);
       if (ev.tag === "out3" && globalClock.device.parametersById.get("root")) {
@@ -949,7 +1222,7 @@ function findDrumsWithLowestId(devices) {
   const deviceWithLowestId = drumsDevices.reduce((lowest, current) => {
     return current.id < lowest.id ? current : lowest;
   }, drumsDevices[0]);
-
+  console.log(deviceWithLowestId);
   return deviceWithLowestId;
 }
 
@@ -1121,26 +1394,26 @@ async function setupRS(context, outputNode) {
 
 }
 
-async function setupSynth1(context, outputNode) {
-  const deviceInfo = {
-      name: 'Synth1',
-      patcherUrl: 'export/synth1.export.json',
-      dependenciesUrl: null,
-      selectID: null,
-      axisID: null
-  };
-  await setupInstrument(context, outputNode, deviceInfo);
-}
-async function setupSynth2(context, outputNode) {
-  const deviceInfo = {
-      name: 'Synth2',
-      patcherUrl: 'export/synth2.export.json',
-      dependenciesUrl: null,
-      selectID: null,
-      axisID: null
-  };
-  await setupInstrument(context, outputNode, deviceInfo);
-}
+// async function setupSynth1(context, outputNode) {
+//   const deviceInfo = {
+//       name: 'Synth1',
+//       patcherUrl: 'export/synth1.export.json',
+//       dependenciesUrl: null,
+//       selectID: null,
+//       axisID: null
+//   };
+//   await setupInstrument(context, outputNode, deviceInfo);
+// }
+// async function setupSynth2(context, outputNode) {
+//   const deviceInfo = {
+//       name: 'Synth2',
+//       patcherUrl: 'export/synth2.export.json',
+//       dependenciesUrl: null,
+//       selectID: null,
+//       axisID: null
+//   };
+//   await setupInstrument(context, outputNode, deviceInfo);
+// }
 
 function makeSlidersClock(device) {
   let param = device.parametersById.get("tempo")
@@ -1490,6 +1763,7 @@ function makeSliders(device, ID, selectID) {
     if (param.name === "sensor_vis") {
       container = document.getElementById(selectID);
       type = 'sensor-select-vis';
+      // console.log(container);
     }
 
     //Loop Params
@@ -1629,7 +1903,12 @@ function makeSliders(device, ID, selectID) {
 
 async function injectLoop(ID) {
   const htmlContent = `
-  <div class="instrument-block">
+  <div class="instrument-block" id="device-${ID}">
+  <div class="i-block-buttons">
+    <button class="invert-button invert-on-${ID}" onClick="invertOn(${ID})">Invert</button>
+    <button class="mouse-mode-button mouse-mode-on-${ID}" onClick="mouseModeOn(${ID})">Mouse Mode</button>
+    <button class="device-delete-button" onClick="deleteDevice(${ID})"><img src="./media/addDeviceSide.svg" alt="Delete Instrument"></button>
+  </div>
   <div class="i-block-sensors">
     <h2 style="color:var(--text)"><u>Loop</u></h2>
     <div class="plug-l"></div>
@@ -1665,7 +1944,12 @@ document.querySelector('.injected-instruments').insertAdjacentHTML('beforeend', 
 
 async function injectTap(ID) {
   const htmlContent = `
-  <div class="instrument-block">
+  <div class="instrument-block" id="device-${ID}">
+  <div class="i-block-buttons">
+    <button class="invert-button invert-on-${ID}" onClick="invertOn(${ID})">Invert</button>
+    <button class="mouse-mode-button mouse-mode-on-${ID}" onClick="mouseModeOn(${ID})">Mouse Mode</button>
+    <button class="device-delete-button" onClick="deleteDevice(${ID})"><img src="./media/addDeviceSide.svg" alt="Delete Instrument"></button>
+  </div>
   <div class="i-block-sensors">
     <h2 style="color:var(--text)"><u>Tap</u></h2>
     <div class="plug-l" style="margin-left: 30px;"></div>
@@ -1708,7 +1992,12 @@ document.querySelector('.injected-instruments').insertAdjacentHTML('beforeend', 
 function injectRainstick(ID) {
   const htmlContent = `
 
-  <div class="instrument-block">
+  <div class="instrument-block" id="device-${ID}">
+  <div class="i-block-buttons">
+    <button class="invert-button invert-on-${ID}" onClick="invertOn(${ID})">Invert</button>
+    <button class="mouse-mode-button mouse-mode-on-${ID}" onClick="mouseModeOn(${ID})">Mouse Mode</button>
+    <button class="device-delete-button" onClick="deleteDevice(${ID})"><img src="./media/addDeviceSide.svg" alt="Delete Instrument"></button>
+  </div>
     <div class="i-block-sensors">
       <h2 style="color:var(--text)"><u>Rainstick</u></h2>
       <div class="plug-l"></div>
@@ -1783,7 +2072,12 @@ function injectRainstick(ID) {
 
 async function injectMelody(ID) {
   htmlContent = `
-  <div class="instrument-block">
+  <div class="instrument-block" id="device-${ID}">
+  <div class="i-block-buttons">
+    <button class="invert-button invert-on-${ID}" onClick="invertOn(${ID})">Invert</button>
+    <button class="mouse-mode-button mouse-mode-on-${ID}" onClick="mouseModeOn(${ID})">Mouse Mode</button>
+    <button class="device-delete-button" onClick="deleteDevice(${ID})"><img src="./media/addDeviceSide.svg" alt="Delete Instrument"></button>
+  </div>
   <div class="i-block-sensors">
     <h2 style="color:var(--text)"><u>Melody</u></h2>
     <div class="plug-l"></div>
@@ -1810,7 +2104,12 @@ async function injectMelody(ID) {
 async function injectDrums(ID) {
   console.log(ID);
   htmlContent = `
-  <div class="instrument-block">
+  <div class="instrument-block" id="device-${ID}">
+    <div class="i-block-buttons">
+      <button class="invert-button invert-on-${ID}" onClick="invertOn(${ID})">Invert</button>
+      <button class="mouse-mode-button mouse-mode-on-${ID}" onClick="mouseModeOn(${ID})">Mouse Mode</button>
+      <button class="device-delete-button" onClick="deleteDevice(${ID})"><img src="./media/addDeviceSide.svg" alt="Delete Instrument"></button>
+    </div>
     <div class="i-block-sensors">
       <h2 style="color:var(--text)"><u>Drums</u></h2>
       <div class="plug-l"></div>
@@ -1844,7 +2143,12 @@ async function injectDrums(ID) {
 
 async function injectHarmony(ID) {
   htmlContent = `
-  <div class="instrument-block">
+  <div class="instrument-block" id="device-${ID}">
+  <div class="i-block-buttons">
+    <button class="invert-button invert-on-${ID}" onClick="invertOn(${ID})">Invert</button>
+    <button class="mouse-mode-button mouse-mode-on-${ID}" onClick="mouseModeOn(${ID})">Mouse Mode</button>
+    <button class="device-delete-button" onClick="deleteDevice(${ID})"><img src="./media/addDeviceSide.svg" alt="Delete Instrument"></button>
+  </div>
     <div class="i-block-sensors">
       <h2 style="color:var(--text)"><u>Harmony</u></h2>
       <div class="plug-l"></div>

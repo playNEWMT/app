@@ -743,7 +743,7 @@ class Slider {
         let paramName = this.name;
         const param = this.device.parametersById.get(paramName);
         param.changeEvent.subscribe((value) => {
-            console.log(value);
+            // console.log(value);
             const progress = this.mapRange(value, 0, 127, 0, 100);
             sensorvis.style.background = `linear-gradient(to right, var(--sensor-red) ${progress}%, var(--sensor-red-l) ${progress}%)`;
 	        // Handle events here
@@ -762,7 +762,7 @@ class Slider {
         let paramName = this.name;
         const param = this.device.parametersById.get(paramName);
         param.changeEvent.subscribe((value) => {
-            console.log(param.value);
+            // console.log(param.value);
             //console.log(param.value);
             const progress = this.mapRange(param.value, 0, 127, 0, 100);
             sensorvis.style.background = `linear-gradient(to right, var(--accent-ll) ${progress}%, var(--background) ${progress}%)`;

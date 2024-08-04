@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="visual"
+   viewBox="0 0 900 215"
+   width="900"
+   height="215"
+   version="1.1"
+   sodipodi:docname="blue-waves.svg"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs11" />
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.5410903"
+     inkscape:cx="260.85429"
+     inkscape:cy="181.04066"
+     inkscape:window-width="1309"
+     inkscape:window-height="456"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="visual" />
+  <path
+     d="M 0,0 21.5,4.5 C 43,9 86,18 128.8,25.5 171.7,33 214.3,39 257.2,34.7 300,30.3 343,15.7 385.8,8.7 428.7,1.7 471.3,2.3 514.2,10.2 557,18 600,33 642.8,31.2 685.7,29.3 728.3,10.7 771.2,4.8 814,-1 857,6 878.5,9.5 L 900,13 v 202 h -21.5 c -21.5,0 -64.5,0 -107.3,0 -42.9,0 -85.5,0 -128.4,0 -42.8,0 -85.8,0 -128.6,0 -42.9,0 -85.5,0 -128.4,0 -42.8,0 -85.8,0 -128.6,0 -42.9,0 -85.5,0 -128.4,0 C 86,215 43,215 21.5,215 H 0 Z"
+     fill="#f7f6f8"
+     id="path2"
+     inkscape:export-filename="blue-waves.svg"
+     inkscape:export-xdpi="93.653336"
+     inkscape:export-ydpi="93.653336" />
+  <path
+     d="M 0,81 21.5,79.2 C 43,77.3 86,73.7 128.8,77.5 171.7,81.3 214.3,92.7 257.2,94.2 300,95.7 343,87.3 385.8,80.5 428.7,73.7 471.3,68.3 514.2,68.2 557,68 600,73 642.8,78.3 c 42.9,5.4 85.5,11 128.4,8 C 814,83.3 857,71.7 878.5,65.8 L 900,60 v 155 h -21.5 c -21.5,0 -64.5,0 -107.3,0 -42.9,0 -85.5,0 -128.4,0 -42.8,0 -85.8,0 -128.6,0 -42.9,0 -85.5,0 -128.4,0 -42.8,0 -85.8,0 -128.6,0 -42.9,0 -85.5,0 -128.4,0 C 86,215 43,215 21.5,215 H 0 Z"
+     fill="#cacdea"
+     id="path4" />
+  <path
+     d="m 0,153 21.5,-3.5 C 43,146 86,139 128.8,133.3 c 42.9,-5.6 85.5,-10 128.4,-9 42.8,1 85.8,7.4 128.6,10 42.9,2.7 85.5,1.7 128.4,5 42.8,3.4 85.8,11 128.6,10.5 42.9,-0.5 85.5,-9.1 128.4,-10.8 42.8,-1.7 85.8,3.7 107.3,6.3 L 900,148 v 67 h -21.5 c -21.5,0 -64.5,0 -107.3,0 -42.9,0 -85.5,0 -128.4,0 -42.8,0 -85.8,0 -128.6,0 -42.9,0 -85.5,0 -128.4,0 -42.8,0 -85.8,0 -128.6,0 -42.9,0 -85.5,0 -128.4,0 C 86,215 43,215 21.5,215 H 0 Z"
+     fill="#80abdd"
+     id="path6" />
+</svg>
