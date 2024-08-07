@@ -1115,9 +1115,9 @@ async function setupInstrument(context, outputNode, deviceInfo) {
   //   makeMIDIKeyboard(device, dependencies.length, deviceID, name);
   //   // removeLoadingRS(device);
   // } 
-  if (name == "Synth1" || name == "Synth2") {
-    clockInit(device)
-  }
+  // if (name == "Synth1" || name == "Synth2") {
+  //   clockInit(device)
+  // }
 
   document.body.onclick = () => {
       context.resume();
