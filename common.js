@@ -101,13 +101,21 @@ function printToConsole(content) {
   const consoleElement = document.getElementById('iConsole');
   const messageElement = document.getElementById('console-message');
 
+
   // Set the message content
   messageElement.textContent = content;
   messageElement.style.color = "var(--sensor-red-l)"
   messageElement.style.fontSize = "20px"
 
+  consoleElement.classList.add('flash');
+
+
+  if(consoleElement.classList.contains('visible')) {
+    return;
+  }
+
   // Show the console with a flash animation
-  consoleElement.classList.add('visible', 'flash');
+  consoleElement.classList.add('visible');
 
   // Remove the flash animation after it completes
   setTimeout(() => {
@@ -117,7 +125,7 @@ function printToConsole(content) {
   // Hide the console after a few seconds
   setTimeout(() => {
     consoleElement.classList.remove('visible');
-  }, 2200); // Adjust this duration as needed
+  }, 4200); // Adjust this duration as needed
 }
 
 if (document.getElementById("toggleAnimation")) {
@@ -916,7 +924,7 @@ function mouseModeOn(ID) {
   console.log(ID, foundDevice, mouseModeButton);
 
   if (foundDevice === null) {
-    printToConsole("Error. Please try refreshing");
+    printToConsole(`Wait for the Instrument to load or please try refreshing the page.`);
     return;
   } // Early exit if device not found
 
@@ -941,7 +949,7 @@ function invertOn(ID) {
   console.log(ID, foundDevice, invertButton);
 
   if (foundDevice === null) {
-    printToConsole("Error. Please try refreshing");
+    printToConsole(`Wait for the Instrument to load or please try refreshing the page.`);
     return;
   } // Early exit if device not found
 
@@ -1026,6 +1034,7 @@ window.onload= async function(){
     try {
       await setupClock(context, outputNode); // Wait for setupClock to complete
       await setupEffects(context, outputNode); // Then start setupEffects
+      printToConsole("Instruments may have long loading times on first visit.")
     } catch (error) {
       console.error('Setup failed:', error);
     }
@@ -1162,7 +1171,7 @@ function deleteDevice(ID) {
     // mouseModeButton.classList.remove("mouse-mode-on");
   } else {
     console.error(`Device with ID ${ID} not found.`);
-    printToConsole(`Device error. Please try refreshing the page.`)
+    printToConsole(`Wait for the Instrument to load or please try refreshing the page.`)
     
     return;
   }

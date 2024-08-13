@@ -3646,7 +3646,7 @@ input[type="range"].FXvolume-slider {
 }
 
 .console.flash {
-  animation: flash 1.0s ease-in;
+  animation: flash 1.0s ease;
 }
 
 @keyframes flash {
