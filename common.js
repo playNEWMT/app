@@ -915,7 +915,10 @@ function mouseModeOn(ID) {
   let mouseModeButton = document.querySelector(`.mouse-mode-on-${ID}`);
   console.log(ID, foundDevice, mouseModeButton);
 
-  if (foundDevice === null) return; // Early exit if device not found
+  if (foundDevice === null) {
+    printToConsole("Error. Please try refreshing");
+    return;
+  } // Early exit if device not found
 
   if (mouseModeArray.length === 0 || !mouseModeArray.find(device => device.ID === ID)) {
     console.log("add");
@@ -937,7 +940,10 @@ function invertOn(ID) {
   let invertButton = document.querySelector(`.invert-on-${ID}`);
   console.log(ID, foundDevice, invertButton);
 
-  if (foundDevice === null) return; // Early exit if device not found
+  if (foundDevice === null) {
+    printToConsole("Error. Please try refreshing");
+    return;
+  } // Early exit if device not found
 
   if (foundDevice.invert === true) {
     console.log("uninverted");
@@ -1156,6 +1162,8 @@ function deleteDevice(ID) {
     // mouseModeButton.classList.remove("mouse-mode-on");
   } else {
     console.error(`Device with ID ${ID} not found.`);
+    printToConsole(`Device error. Please try refreshing the page.`)
+    
     return;
   }
 
